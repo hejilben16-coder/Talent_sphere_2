@@ -1,0 +1,6 @@
+{
+  "name": "Talent Sphere AI",
+  "description": "Enterprise AI Learning Management System (AI-LMS) featuring RAG PDF Knowledge Base, AI Exam Generator, Online Exam System with AI Evaluation, and AI Study Coach.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
