@@ -11,7 +11,8 @@ import {
   ActivityLog,
   SystemSettings,
   WeeklyStudyPlan,
-  Announcement
+  Announcement,
+  VoiceInterviewSubmission
 } from '../src/types.js';
 
 const DB_DIR = path.join(process.cwd(), 'database');
@@ -36,6 +37,7 @@ interface DatabaseSchema {
   settings: SystemSettings;
   plans: WeeklyStudyPlan[];
   announcements: Announcement[];
+  interviews?: VoiceInterviewSubmission[];
 }
 
 const defaultSettings: SystemSettings = {
@@ -559,6 +561,15 @@ export const dbStore = {
       db.announcements[idx] = { ...db.announcements[idx], ...updates };
       saveDatabase();
     }
+  },
+
+  // Voice Interview Submissions
+  getInterviews: () => db.interviews || [],
+  getStudentInterviews: (studentId: string) => (db.interviews || []).filter((i) => i.studentId === studentId),
+  addInterview: (submission: VoiceInterviewSubmission) => {
+    if (!db.interviews) db.interviews = [];
+    db.interviews.unshift(submission);
+    saveDatabase();
   },
 
   resetDatabase: () => {

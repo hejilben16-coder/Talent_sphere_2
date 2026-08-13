@@ -206,3 +206,46 @@ export interface StudentAnalytics {
   scoreTrend: { date: string; scorePct: number; examTitle: string }[];
   topicMastery: { topic: string; masteryPct: number }[];
 }
+
+export interface VoiceSettings {
+  voice: string;
+  speakingSpeed: number;
+  language: string;
+  autoListen: boolean;
+}
+
+export interface VoiceInterviewReport {
+  scorePct: number;
+  clarityScore: number;
+  correctnessScore: number;
+  relevanceScore: number;
+  conceptualScore: number;
+  completenessScore: number;
+  feedback: string;
+  testedTopics: string[];
+  weakTopics: string[];
+  recommendedMaterials: string[];
+}
+
+export interface VoiceInterviewSubmission {
+  id: string;
+  studentId: string;
+  studentName: string;
+  planId?: string;
+  planTitle?: string;
+  weekNumber?: number;
+  submittedAt: string;
+  scorePct: number;
+  clarityScore: number;
+  correctnessScore?: number;
+  relevanceScore?: number;
+  conceptualScore?: number;
+  completenessScore?: number;
+  transcriptCount: number;
+  feedback: string;
+  testedTopics?: string[];
+  weakTopics?: string[];
+  recommendedMaterials?: string[];
+  transcript: { sender: 'ai' | 'user'; text: string }[];
+}
+

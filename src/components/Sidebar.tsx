@@ -15,7 +15,8 @@ import {
   BookOpen,
   Calendar,
   Mic,
-  Megaphone
+  Megaphone,
+  Radio
 } from 'lucide-react';
 import { UserRole } from '../types';
 
@@ -38,6 +39,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'study-plan', label: 'Weekly Study Plans', icon: Calendar },
     { id: 'announcements', label: 'Announcements', icon: Megaphone },
+    { id: 'voice-tutor', label: 'Voice Tutor (Gemini Live)', icon: Radio },
     { id: 'voice-interview', label: 'AI Voice Interview', icon: Mic },
     { id: 'ai-assistant', label: 'AI Assistant', icon: Bot },
     { id: 'pdf-manager', label: 'PDF Knowledge Base', icon: FileText },
@@ -52,6 +54,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'study-plan', label: 'Weekly Study Plans', icon: Calendar },
     { id: 'announcements', label: 'Announcements', icon: Megaphone },
+    { id: 'voice-tutor', label: 'Voice Tutor (Gemini Live)', icon: Radio },
     { id: 'voice-interview', label: 'AI Voice Interview', icon: Mic },
     { id: 'ai-assistant', label: 'AI Assistant', icon: Bot },
     { id: 'take-exams', label: 'Exams & Quizzes', icon: FileQuestion },

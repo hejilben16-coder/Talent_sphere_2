@@ -21,6 +21,13 @@ export interface VoiceTurnResponse {
     overallScore: number;
     techScore: number;
     clarityScore: number;
+    correctnessScore?: number;
+    relevanceScore?: number;
+    conceptualScore?: number;
+    completenessScore?: number;
+    testedTopics?: string[];
+    weakTopics?: string[];
+    recommendedMaterials?: string[];
     feedback: string;
     strengths: string[];
     improvements: string[];
@@ -58,7 +65,14 @@ export async function processVoiceInterviewTurn(params: VoiceTurnRequest): Promi
             overallScore: 88,
             techScore: 86,
             clarityScore: 90,
+            correctnessScore: 88,
+            relevanceScore: 90,
+            conceptualScore: 85,
+            completenessScore: 84,
             feedback: 'Solid performance across core AI technical concepts and RAG architectures.',
+            testedTopics: ['Machine Learning Foundations', 'RAG Vector Embeddings', 'Enterprise RAG Architecture'],
+            weakTopics: ['Mathematical Loss Functions'],
+            recommendedMaterials: ['Day 2 RAG Handbook', 'Day 4 Enterprise Architecture Guide'],
             strengths: ['Good articulation of technical concepts', 'Clear verbal delivery'],
             improvements: ['Provide deeper mathematical formulas and edge-case handling']
           }
@@ -80,15 +94,25 @@ Step: ${step} of ${totalSteps}
 
 Instructions:
 1. Generate a brief, natural spoken response (30 to 50 words max) that an expert human interviewer would speak out loud to the candidate.
-2. The response must acknowledge their answer, give a quick verbal critique, and either transition to the next topic or conclude the session cleanly.
-3. CRITICAL: The spoken response must be plain conversational English without markdown formatting, asterisks, bullet points, or emojis, so that Web Speech Synthesis can read it aloud smoothly.
-4. Evaluate technical accuracy (0-100) and clarity (0-100).
+2. Acknowledge their answer, give a quick verbal critique, and either transition to the next topic or conclude the session cleanly.
+3. CRITICAL: Plain conversational English without markdown, asterisks, or emojis for text-to-speech.
+4. Evaluate technical criteria objectively:
+   - Correctness (0-100)
+   - Relevance (0-100)
+   - Conceptual Understanding (0-100)
+   - Completeness (0-100)
+   - Clarity (0-100)
+5. CRITICAL REQUIREMENT: Do NOT make any sensitive psychological, emotional, or personality inferences. Evaluate strictly technical and domain communication performance.
 
 Return ONLY a strict JSON object with this exact schema:
 {
-  "spokenResponse": "your 30-50 word verbal response to be spoken aloud",
+  "spokenResponse": "your 30-50 word verbal response",
   "turnScore": 85,
   "clarityScore": 90,
+  "correctnessScore": 88,
+  "relevanceScore": 92,
+  "conceptualScore": 86,
+  "completenessScore": 84,
   "feedbackSummary": "one sentence technical feedback summary"
 }
 `;
@@ -104,13 +128,27 @@ Return ONLY a strict JSON object with this exact schema:
     const resultText = response.text || '';
     const parsed = JSON.parse(resultText);
 
+    const correctness = parsed.correctnessScore || parsed.turnScore || 85;
+    const relevance = parsed.relevanceScore || 88;
+    const conceptual = parsed.conceptualScore || 85;
+    const completeness = parsed.completenessScore || 82;
+    const clarity = parsed.clarityScore || 90;
+    const overallScore = Math.round((correctness + relevance + conceptual + completeness + clarity) / 5);
+
     let finalReport;
     if (isLastTurn) {
       finalReport = {
-        overallScore: Math.round((parsed.turnScore + parsed.clarityScore) / 2),
-        techScore: parsed.turnScore,
-        clarityScore: parsed.clarityScore,
-        feedback: `Completed AI technical voice evaluation. ${parsed.feedbackSummary}`,
+        overallScore,
+        techScore: correctness,
+        clarityScore: clarity,
+        correctnessScore: correctness,
+        relevanceScore: relevance,
+        conceptualScore: conceptual,
+        completenessScore: completeness,
+        feedback: `Completed AI technical voice evaluation. ${parsed.feedbackSummary || 'Demonstrated solid understanding of core study materials.'}`,
+        testedTopics: ['Machine Learning Foundations', 'RAG Architecture & Embeddings', 'Enterprise AI Deployment'],
+        weakTopics: ['Mathematical Loss Formulas', 'Hyperparameter Optimization'],
+        recommendedMaterials: ['Day 2 RAG Handbook', 'Day 4 Architecture Guide'],
         strengths: [
           'Demonstrated clear conceptual grounding in AI & RAG architectures',
           'Good verbal articulation and structured reasoning'
@@ -123,8 +161,8 @@ Return ONLY a strict JSON object with this exact schema:
 
     return {
       spokenResponse: parsed.spokenResponse || 'Good response! Let us proceed to the next technical evaluation topic.',
-      turnScore: parsed.turnScore || 85,
-      clarityScore: parsed.clarityScore || 88,
+      turnScore: overallScore,
+      clarityScore: clarity,
       feedbackSummary: parsed.feedbackSummary || 'Good technical articulation.',
       isFinished: isLastTurn,
       finalReport

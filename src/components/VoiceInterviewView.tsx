@@ -25,6 +25,8 @@ import {
 interface VoiceInterviewViewProps {
   token: string;
   userRole?: string;
+  userName?: string;
+  userEmail?: string;
 }
 
 interface QuestionItem {
@@ -48,7 +50,9 @@ interface StudentSubmission {
 
 export const VoiceInterviewView: React.FC<VoiceInterviewViewProps> = ({
   token,
-  userRole = 'student'
+  userRole = 'student',
+  userName = 'Student',
+  userEmail = 'student@talentsphere.ai'
 }) => {
   // Session states for student interactive voice interview
   const [sessionActive, setSessionActive] = useState(false);
@@ -381,19 +385,51 @@ export const VoiceInterviewView: React.FC<VoiceInterviewViewProps> = ({
           if (data.finalReport) {
             setFinalReport(data.finalReport);
 
+            const updatedTranscript = [...newHistory, { sender: 'ai' as const, text: aiMessage }];
+
             const newSub: StudentSubmission = {
               id: `sub_${Date.now()}`,
-              studentName: 'Alex Rivera',
-              studentEmail: 'student@talentsphere.ai',
+              studentName: userName,
+              studentEmail: userEmail,
               date: new Date().toLocaleString(),
               overallScore: data.finalReport.overallScore,
               techScore: data.finalReport.techScore,
               clarityScore: data.finalReport.clarityScore,
-              transcriptCount: newHistory.length + 1,
+              transcriptCount: updatedTranscript.length,
               feedback: data.finalReport.feedback,
-              transcript: [...newHistory, { sender: 'ai', text: aiMessage }]
+              transcript: updatedTranscript
             };
             setSubmissions((prev) => [newSub, ...prev]);
+
+            // Save submission to server database
+            try {
+              fetch('/api/voice-interview/submit', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                  planId: 'plan_default',
+                  planTitle: 'Weekly Study Plan',
+                  weekNumber: 1,
+                  scorePct: data.finalReport.overallScore,
+                  clarityScore: data.finalReport.clarityScore,
+                  correctnessScore: data.finalReport.correctnessScore || data.finalReport.techScore,
+                  relevanceScore: data.finalReport.relevanceScore || 88,
+                  conceptualScore: data.finalReport.conceptualScore || 85,
+                  completenessScore: data.finalReport.completenessScore || 82,
+                  transcriptCount: updatedTranscript.length,
+                  feedback: data.finalReport.feedback,
+                  testedTopics: data.finalReport.testedTopics || ['Machine Learning Foundations', 'RAG Architecture'],
+                  weakTopics: data.finalReport.weakTopics || [],
+                  recommendedMaterials: data.finalReport.recommendedMaterials || [],
+                  transcript: updatedTranscript
+                })
+              });
+            } catch (err) {
+              console.warn('Failed to persist interview submission:', err);
+            }
           }
           speakText(aiMessage);
         }

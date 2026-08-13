@@ -14,6 +14,7 @@ import { SettingsView } from './components/SettingsView';
 import { StudyPlanView } from './components/StudyPlanView';
 import { VoiceInterviewView } from './components/VoiceInterviewView';
 import { AnnouncementsView } from './components/AnnouncementsView';
+import { VoiceTutorView } from './components/VoiceTutorView';
 import { User, UserRole } from './types';
 import {
   Sparkles,
@@ -25,7 +26,8 @@ import {
   BarChart3,
   ArrowRight,
   TrendingUp,
-  FileText
+  FileText,
+  Radio
 } from 'lucide-react';
 
 export default function App() {
@@ -126,7 +128,7 @@ export default function App() {
               </div>
 
               {/* Action Grid Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div
                   onClick={() => setActiveTab(user.role === 'admin' ? 'pdf-manager' : 'study-plan')}
                   className="p-6 rounded-3xl bg-white border border-slate-200/90 hover:border-indigo-500 shadow-xs hover:shadow-md transition cursor-pointer group space-y-3"
@@ -144,6 +146,22 @@ export default function App() {
                   </p>
                   <span className="text-xs font-bold text-indigo-600 flex items-center gap-1 group-hover:translate-x-1 transition pt-2">
                     {user.role === 'admin' ? 'Open Knowledge Store' : 'View Study Package'} <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+
+                <div
+                  onClick={() => setActiveTab('voice-tutor')}
+                  className="p-6 rounded-3xl bg-white border border-slate-200/90 hover:border-blue-500 shadow-xs hover:shadow-md transition cursor-pointer group space-y-3"
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:scale-110 transition">
+                    <Radio className="w-6 h-6 animate-pulse" />
+                  </div>
+                  <h3 className="font-bold text-slate-800 text-base">RAG Voice Tutor</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed">
+                    Bidirectional real-time Gemini Live API audio tutoring grounded strictly in unlocked materials.
+                  </p>
+                  <span className="text-xs font-bold text-blue-600 flex items-center gap-1 group-hover:translate-x-1 transition pt-2">
+                    Start Voice Session <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
 
@@ -200,10 +218,13 @@ export default function App() {
             </div>
           )}
 
+          {activeTab === 'voice-tutor' && <VoiceTutorView user={user} token={token || ''} />}
           {activeTab === 'ai-assistant' && <AIAssistant token={token} userRole={user.role} />}
           {activeTab === 'study-plan' && <StudyPlanView token={token} userRole={user.role} />}
           {activeTab === 'announcements' && <AnnouncementsView token={token} userRole={user.role} />}
-          {activeTab === 'voice-interview' && <VoiceInterviewView token={token} userRole={user.role} />}
+          {activeTab === 'voice-interview' && (
+            <VoiceInterviewView token={token} userRole={user.role} userName={user.name} userEmail={user.email} />
+          )}
           {(activeTab === 'pdf-manager' || activeTab === 'pdf-chat') && (
             user.role === 'admin' ? <PDFManager token={token} /> : <StudyPlanView token={token} />
           )}

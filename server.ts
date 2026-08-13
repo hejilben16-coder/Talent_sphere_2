@@ -8,7 +8,8 @@ import { generateExamFromPDFs, submitExamAttempt } from './server/examEngine.js'
 import { getStudentCoachData } from './server/coachEngine.js';
 import { sendCredentialsEmail } from './server/emailService.js';
 import { processVoiceInterviewTurn } from './server/voiceAgentEngine.js';
-import { User, ActivityLog, WeeklyStudyPlan, Announcement } from './src/types.js';
+import { setupLiveVoiceWebSocketServer } from './server/liveVoiceEngine.js';
+import { User, ActivityLog, WeeklyStudyPlan, Announcement, VoiceInterviewSubmission } from './src/types.js';
 
 async function startServer() {
   const app = express();
@@ -781,7 +782,7 @@ async function startServer() {
     });
   });
 
-  // --- REAL-TIME AI VOICE INTERVIEW ENDPOINT ---
+  // --- REAL-TIME AI VOICE INTERVIEW ENDPOINTS ---
   app.post('/api/voice-interview/turn', async (req, res) => {
     try {
       const turnResult = await processVoiceInterviewTurn(req.body);
@@ -790,6 +791,83 @@ async function startServer() {
       console.error('Error processing voice interview turn:', err);
       return res.status(500).json({ error: 'Voice evaluation service error' });
     }
+  });
+
+  app.post('/api/voice-interview/submit', (req, res) => {
+    const user = getAuthUser(req);
+    if (!user) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const {
+      planId,
+      planTitle,
+      weekNumber,
+      scorePct,
+      clarityScore,
+      correctnessScore,
+      relevanceScore,
+      conceptualScore,
+      completenessScore,
+      transcriptCount,
+      feedback,
+      testedTopics,
+      weakTopics,
+      recommendedMaterials,
+      transcript
+    } = req.body;
+
+    const submission: VoiceInterviewSubmission = {
+      id: `int_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+      studentId: user.id,
+      studentName: user.name,
+      planId,
+      planTitle,
+      weekNumber: Number(weekNumber) || 1,
+      submittedAt: new Date().toISOString(),
+      scorePct: Number(scorePct) || 85,
+      clarityScore: Number(clarityScore) || 88,
+      correctnessScore: Number(correctnessScore) || 85,
+      relevanceScore: Number(relevanceScore) || 88,
+      conceptualScore: Number(conceptualScore) || 85,
+      completenessScore: Number(completenessScore) || 82,
+      transcriptCount: Number(transcriptCount) || (transcript?.length || 0),
+      feedback: feedback || 'Completed AI voice interview session successfully.',
+      testedTopics: testedTopics || ['Machine Learning Foundations', 'RAG Architecture & Embeddings'],
+      weakTopics: weakTopics || [],
+      recommendedMaterials: recommendedMaterials || [],
+      transcript: transcript || []
+    };
+
+    dbStore.addInterview(submission);
+
+    dbStore.logActivity({
+      userId: user.id,
+      userName: user.name,
+      userRole: user.role,
+      action: 'chat',
+      details: `Completed AI Voice Interview Session (Score: ${submission.scorePct}%)`
+    });
+
+    return res.json({ success: true, submissionId: submission.id, submission });
+  });
+
+  app.get('/api/student/interviews', (req, res) => {
+    const user = getAuthUser(req);
+    if (!user) return res.status(401).json({ error: 'Unauthorized' });
+
+    const studentInterviews = dbStore.getStudentInterviews(user.id);
+    return res.json(studentInterviews);
+  });
+
+  app.get('/api/admin/student/:id/interviews', (req, res) => {
+    const user = getAuthUser(req);
+    if (!user || user.role !== 'admin') {
+      return res.status(403).json({ error: 'Forbidden: Admin access required' });
+    }
+
+    const studentInterviews = dbStore.getStudentInterviews(req.params.id);
+    return res.json(studentInterviews);
   });
 
   app.post('/api/admin/test-smtp', async (req, res) => {
@@ -825,9 +903,11 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
+  const httpServer = app.listen(PORT, '0.0.0.0', () => {
     console.log(`Talent Sphere AI Server running on http://0.0.0.0:${PORT}`);
   });
+
+  setupLiveVoiceWebSocketServer(httpServer);
 }
 
 startServer();
