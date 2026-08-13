@@ -128,6 +128,11 @@ export interface SystemSettings {
   chunkOverlap: number;
   topKRetrieval: number;
   theme: 'dark' | 'light' | 'system';
+  smtpHost?: string;
+  smtpPort?: number;
+  smtpUser?: string;
+  smtpPass?: string;
+  smtpFrom?: string;
 }
 
 export interface AdminAnalytics {
@@ -141,6 +146,56 @@ export interface AdminAnalytics {
   averageExamScore: number;
   recentActivity: ActivityLog[];
   topPdfs: { docName: string; queriesCount: number }[];
+}
+
+export interface StudyDayModule {
+  dayNumber: number;
+  title: string;
+  objective: string;
+  documents: string[];
+  quizzes: string[];
+}
+
+export interface WeeklyStudyPlan {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  weeksCount: number;
+  totalDays: number;
+  isPublished: boolean;
+  isActiveDefault?: boolean;
+  createdBy: string;
+  createdAt: string;
+  updatedAt: string;
+  days: StudyDayModule[];
+}
+
+export interface Announcement {
+  id: string;
+  title: string;
+  content: string;
+  category: 'Important' | 'Exam Notice' | 'Course Update' | 'Maintenance' | 'General';
+  targetRole: 'all' | 'student' | 'admin';
+  isPinned: boolean;
+  createdBy: string;
+  createdByName: string;
+  createdAt: string;
+}
+
+export interface UserCreatePayload {
+  name: string;
+  email: string;
+  role: UserRole;
+  password?: string;
+  sendEmailNotice?: boolean;
+}
+
+export interface UserCreateResponse {
+  user: User;
+  generatedPassword?: string;
+  emailSent: boolean;
+  emailMessage?: string;
 }
 
 export interface StudentAnalytics {

@@ -73,52 +73,35 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onLoginSuccess }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center p-4 z-50">
-      <div className="w-full max-w-md rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl p-8 relative overflow-hidden">
-        {/* Background glow effects */}
-        <div className="absolute -top-24 -right-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
+    <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-md flex items-center justify-center p-4 z-50">
+      <div className="w-full max-w-md rounded-3xl bg-white border border-slate-200/90 shadow-2xl p-8 relative overflow-hidden">
         {/* Brand Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl gradient-button text-white mb-3 shadow-xl shadow-indigo-500/20">
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl gradient-button text-white mb-3 shadow-lg shadow-indigo-100">
             <Sparkles className="w-7 h-7" />
           </div>
-          <h2 className="text-2xl font-bold text-slate-100 tracking-tight">Talent Sphere AI</h2>
-          <p className="text-xs text-slate-400 mt-1">
-            Enterprise RAG Learning Management System
+          <h2 className="text-2xl font-extrabold text-slate-800 tracking-tight">Talent Sphere AI</h2>
+          <p className="text-xs text-slate-500 mt-1">
+            Sign in with your Email Address and Password
           </p>
         </div>
 
-        {/* Quick Demo Credentials Switcher */}
-        <div className="mb-6 p-3 rounded-2xl bg-slate-800/60 border border-slate-700/50 flex items-center justify-between">
-          <span className="text-xs font-medium text-slate-400">Quick Demo Presets:</span>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={() => fillQuickPreset('admin')}
-              className="px-2.5 py-1 rounded-lg bg-indigo-500/20 text-indigo-300 hover:bg-indigo-500/30 text-xs font-semibold border border-indigo-500/30 transition"
-            >
-              Admin Demo
-            </button>
-            <button
-              type="button"
-              onClick={() => fillQuickPreset('student')}
-              className="px-2.5 py-1 rounded-lg bg-purple-500/20 text-purple-300 hover:bg-purple-500/30 text-xs font-semibold border border-purple-500/30 transition"
-            >
-              Student Demo
-            </button>
-          </div>
+        {/* Credentials Notice Box */}
+        <div className="mb-6 p-3.5 rounded-2xl bg-indigo-50 border border-indigo-100 text-xs text-indigo-900">
+          <div className="font-bold text-indigo-950 mb-1">🔐 Sign In Credentials:</div>
+          <p className="text-[11px] text-slate-600 leading-relaxed">
+            Use <code className="text-indigo-700 font-bold bg-indigo-100 px-1 py-0.5 rounded">admin@talentsphere.ai</code> for Admin access or <code className="text-indigo-700 font-bold bg-indigo-100 px-1 py-0.5 rounded">student@talentsphere.ai</code> for Student access. Any password is accepted!
+          </p>
         </div>
 
         {/* Form Error & Success Banners */}
         {error && (
-          <div className="mb-4 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs">
+          <div className="mb-4 p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 font-medium text-xs">
             {error}
           </div>
         )}
         {successMessage && (
-          <div className="mb-4 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs">
+          <div className="mb-4 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 font-medium text-xs">
             {successMessage}
           </div>
         )}
@@ -126,53 +109,53 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onLoginSuccess }) => {
         <form onSubmit={handleSubmit} className="space-y-4">
           {mode === 'register' && (
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1">Full Name</label>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Full Name</label>
               <div className="relative">
-                <UserIcon className="w-4 h-4 text-slate-500 absolute left-3.5 top-3" />
+                <UserIcon className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
                 <input
                   type="text"
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="John Doe"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700/60 text-slate-100 text-sm focus:outline-none focus:border-indigo-500 transition"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:outline-none focus:bg-white focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500/20 transition"
                 />
               </div>
             </div>
           )}
 
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1">Email Address</label>
+            <label className="block text-xs font-bold text-slate-700 mb-1">Email Address</label>
             <div className="relative">
-              <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-3" />
+              <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="user@talentsphere.ai"
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700/60 text-slate-100 text-sm focus:outline-none focus:border-indigo-500 transition"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:outline-none focus:bg-white focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500/20 transition"
               />
             </div>
           </div>
 
           {mode !== 'forgot' && (
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1">Password</label>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Password</label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-3" />
+                <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700/60 text-slate-100 text-sm focus:outline-none focus:border-indigo-500 transition"
+                  className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:outline-none focus:bg-white focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500/20 transition"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3.5 top-3 text-slate-500 hover:text-slate-300"
+                  className="absolute right-3.5 top-3 text-slate-400 hover:text-slate-600"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>

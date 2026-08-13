@@ -324,12 +324,40 @@ export async function checkAndRepairCorruptedDocuments(): Promise<void> {
   }
 }
 
-export function retrieveRelevantChunks(query: string, topK: number = 6): {
+export function retrieveRelevantChunks(
+  query: string,
+  topK: number = 6,
+  userRole: string = 'admin',
+  studentUnlockedDay: number = 2
+): {
   chunk: DocumentChunk;
   score: number;
 }[] {
-  const allChunks = dbStore.getChunks();
+  let allChunks = dbStore.getChunks();
   if (allChunks.length === 0) return [];
+
+  // Filter chunks for students based on 7-day study plan unlocked days
+  if (userRole === 'student') {
+    const unlockedDocKeywordsByDay: Record<number, string[]> = {
+      1: ['machine learning', '101', 'ml101', 'foundations'],
+      2: ['machine learning', '101', 'ml101', 'foundations', 'software engineering', 'rag handbook', 'rag202', 'handbook'],
+      3: ['machine learning', '101', 'ml101', 'foundations', 'software engineering', 'rag handbook', 'rag202', 'handbook', 'vector', 'embeddings'],
+      4: ['machine learning', '101', 'ml101', 'foundations', 'software engineering', 'rag handbook', 'rag202', 'handbook', 'vector', 'embeddings', 'enterprise rag', 'architecture'],
+      5: ['machine learning', '101', 'ml101', 'foundations', 'software engineering', 'rag handbook', 'rag202', 'handbook', 'vector', 'embeddings', 'enterprise rag', 'architecture', 'prompt', 'fine-tuning'],
+      6: ['machine learning', '101', 'ml101', 'foundations', 'software engineering', 'rag handbook', 'rag202', 'handbook', 'vector', 'embeddings', 'enterprise rag', 'architecture', 'prompt', 'fine-tuning', 'ethics', 'bias'],
+      7: ['machine learning', '101', 'ml101', 'foundations', 'software engineering', 'rag handbook', 'rag202', 'handbook', 'vector', 'embeddings', 'enterprise rag', 'architecture', 'prompt', 'fine-tuning', 'ethics', 'bias', 'capstone']
+    };
+
+    const allowedKeywords = unlockedDocKeywordsByDay[Math.min(7, Math.max(1, studentUnlockedDay))] || unlockedDocKeywordsByDay[2];
+
+    allChunks = allChunks.filter((chunk) => {
+      const docNameLower = chunk.docName.toLowerCase();
+      const docIdLower = chunk.docId.toLowerCase();
+      return allowedKeywords.some((kw) => docNameLower.includes(kw) || docIdLower.includes(kw));
+    });
+
+    if (allChunks.length === 0) return [];
+  }
 
   const rawQuery = query.toLowerCase().trim();
 
@@ -398,7 +426,9 @@ export function retrieveRelevantChunks(query: string, topK: number = 6): {
 
 export async function generateRAGAnswer(
   query: string,
-  userId: string
+  userId: string,
+  userRole: string = 'admin',
+  studentUnlockedDay: number = 2
 ): Promise<{ answer: string; sources: { docName: string; pageNumber: number; snippet: string; score: number }[] }> {
   await checkAndRepairCorruptedDocuments();
 
@@ -408,11 +438,18 @@ export async function generateRAGAnswer(
 
   if (allDocs.length === 0) {
     const noDocAnswer =
-      'No PDF documents were found in your Knowledge Base. Please upload your course materials or reference PDF files to begin asking questions.';
+      'No PDF documents were found in your Knowledge Base. Please contact your instructor to assign study plan materials.';
     return { answer: noDocAnswer, sources: [] };
   }
 
-  const retrieved = retrieveRelevantChunks(query, topK);
+  const retrieved = retrieveRelevantChunks(query, topK, userRole, studentUnlockedDay);
+
+  if (retrieved.length === 0 && userRole === 'student') {
+    return {
+      answer: `🔒 **Study Plan Material Locked**\n\nYour question references materials that belong to locked modules in your 7-Day Study Plan. You are currently on **Day ${studentUnlockedDay}**.\n\nPlease complete your active day modules to unlock subsequent PDF materials and ask questions about them!`,
+      sources: []
+    };
+  }
 
   const sources = retrieved.map((item) => ({
     docName: item.chunk.docName,

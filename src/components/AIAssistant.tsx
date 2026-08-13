@@ -19,9 +19,10 @@ import { ChatMessage } from '../types';
 
 interface AIAssistantProps {
   token: string;
+  userRole?: 'admin' | 'student';
 }
 
-export const AIAssistant: React.FC<AIAssistantProps> = ({ token }) => {
+export const AIAssistant: React.FC<AIAssistantProps> = ({ token, userRole }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -348,26 +349,30 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ token }) => {
           }}
           className="flex items-center gap-3"
         >
-          <input
-            type="file"
-            ref={fileInputRef}
-            onChange={handleDirectPdfUpload}
-            accept="application/pdf,.pdf"
-            className="hidden"
-          />
-          <button
-            type="button"
-            onClick={() => fileInputRef.current?.click()}
-            disabled={uploadingPdf}
-            className="p-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-indigo-400 hover:text-indigo-300 transition flex items-center justify-center border border-slate-700/60 disabled:opacity-50"
-            title="Upload PDF document to Knowledge Base"
-          >
-            {uploadingPdf ? (
-              <RefreshCw className="w-4 h-4 animate-spin text-indigo-400" />
-            ) : (
-              <Paperclip className="w-4 h-4" />
-            )}
-          </button>
+          {userRole === 'admin' && (
+            <>
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleDirectPdfUpload}
+                accept="application/pdf,.pdf"
+                className="hidden"
+              />
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploadingPdf}
+                className="p-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-indigo-400 hover:text-indigo-300 transition flex items-center justify-center border border-slate-700/60 disabled:opacity-50"
+                title="Upload PDF document to Knowledge Base"
+              >
+                {uploadingPdf ? (
+                  <RefreshCw className="w-4 h-4 animate-spin text-indigo-400" />
+                ) : (
+                  <Paperclip className="w-4 h-4" />
+                )}
+              </button>
+            </>
+          )}
 
           <input
             type="text"
@@ -376,7 +381,9 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ token }) => {
             placeholder={
               uploadingPdf
                 ? 'Processing & indexing uploaded PDF...'
-                : 'Ask a question about your uploaded PDF documents or click 📎 to add a PDF...'
+                : userRole === 'student'
+                ? 'Ask a question about your unlocked 7-day study plan materials...'
+                : 'Ask a question about your uploaded PDF documents...'
             }
             className="flex-1 px-4 py-3 rounded-2xl bg-slate-800/80 border border-slate-700/60 text-slate-100 text-xs focus:outline-none focus:border-indigo-500 transition"
           />
