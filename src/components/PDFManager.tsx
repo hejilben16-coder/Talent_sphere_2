@@ -11,13 +11,14 @@ import {
   Sparkles,
   BookOpen
 } from 'lucide-react';
-import { PDFDocument } from '../types';
+import { PDFDocument, UserRole } from '../types';
 
 interface PDFManagerProps {
   token: string;
+  role: UserRole;
 }
 
-export const PDFManager: React.FC<PDFManagerProps> = ({ token }) => {
+export const PDFManager: React.FC<PDFManagerProps> = ({ token, role }) => {
   const [documents, setDocuments] = useState<PDFDocument[]>([]);
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -28,7 +29,9 @@ export const PDFManager: React.FC<PDFManagerProps> = ({ token }) => {
   const fetchDocuments = async () => {
     setLoading(true);
     try {
-      const res = await fetch('/api/documents');
+      const res = await fetch('/api/documents', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       if (!res.ok) throw new Error('Failed to load documents');
       const data = await res.json();
       setDocuments(data);
@@ -40,8 +43,9 @@ export const PDFManager: React.FC<PDFManagerProps> = ({ token }) => {
   };
 
   useEffect(() => {
+    if (!token) return;
     fetchDocuments();
-  }, []);
+  }, [token]);
 
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
@@ -175,6 +179,7 @@ export const PDFManager: React.FC<PDFManagerProps> = ({ token }) => {
       )}
 
       {/* Dropzone */}
+<<<<<<< Updated upstream
       <div className="relative p-8 rounded-3xl border-2 border-dashed border-indigo-200 bg-indigo-50/40 hover:bg-indigo-50/80 transition text-center group cursor-pointer shadow-xs">
         <input
           type="file"
@@ -200,6 +205,47 @@ export const PDFManager: React.FC<PDFManagerProps> = ({ token }) => {
             </p>
           </div>
         </div>
+=======
+      <div className={`relative p-8 rounded-3xl border-2 border-dashed border-slate-700 bg-slate-900/60 transition text-center ${role === 'admin' ? 'hover:bg-slate-900/90 cursor-pointer group' : 'opacity-70 cursor-not-allowed'}`}>
+        {role === 'admin' ? (
+          <>
+            <input
+              type="file"
+              multiple
+              accept="application/pdf"
+              onChange={(e) => handleFileUpload(e.target.files)}
+              className="absolute inset-0 opacity-0 cursor-pointer z-10"
+            />
+            <div className="flex flex-col items-center justify-center space-y-3">
+              <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center group-hover:scale-110 transition">
+                {uploading ? (
+                  <RefreshCw className="w-7 h-7 animate-spin" />
+                ) : (
+                  <UploadCloud className="w-7 h-7" />
+                )}
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-slate-200">
+                  {uploading ? 'Processing & Extracting PDF Knowledge Chunks...' : 'Click to upload or drag & drop PDFs'}
+                </p>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  Supports multiple PDF files up to 50MB each with automatic incremental indexing
+                </p>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="flex flex-col items-center justify-center space-y-3 py-12">
+            <div className="w-14 h-14 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center">
+              <UploadCloud className="w-7 h-7 text-slate-500" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-slate-400">PDF upload is restricted to admins.</p>
+              <p className="text-xs text-slate-500 mt-0.5">Students can only view and query available PDF resources.</p>
+            </div>
+          </div>
+        )}
+>>>>>>> Stashed changes
       </div>
 
       {/* Documents Table Section */}

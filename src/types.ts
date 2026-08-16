@@ -120,6 +120,16 @@ export interface ActivityLog {
   ipAddress?: string;
 }
 
+export interface Notification {
+  id: string;
+  title: string;
+  message: string;
+  createdAt: string;
+  createdBy?: string;
+  target?: 'all' | string; // 'all' or specific userId
+  readBy?: string[];
+}
+
 export interface SystemSettings {
   llmModel: string;
   embeddingModel: string;

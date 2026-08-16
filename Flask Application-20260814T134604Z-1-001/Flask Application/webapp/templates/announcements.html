@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% set active_page = 'announce' %}
+{% block title %}Announcements · Talent Sphere Elevate{% endblock %}
+{% block page_title %}Announcements{% endblock %}
+{% block content %}
+
+<div class="section-h">
+  <h2>📣 Announcements</h2>
+  <p>News and updates from your training team.</p>
+</div>
+
+{% if not announcements %}
+  <div class="empty-state card static">
+    <div class="e-icon">📭</div>
+    <h3>Nothing here yet</h3>
+    <p>Announcements from your admin will appear here.</p>
+  </div>
+{% endif %}
+
+{% for a in announcements %}
+<div class="news">
+  <div class="n-head">
+    <span class="n-title">{{ a.title }}</span>
+    <span class="pill {{ {'General':'mid','Training':'high','Exam':'warn','Policy':'low','Event':'mid'}.get(a.category, 'mid') }}">{{ a.category }}</span>
+  </div>
+  <div class="n-meta">{{ a.created_at[:16] }} UTC</div>
+  <div class="n-body">{{ a.body }}</div>
+</div>
+{% endfor %}
+
+{% endblock %}

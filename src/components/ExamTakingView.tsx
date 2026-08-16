@@ -31,7 +31,7 @@ export const ExamTakingView: React.FC<ExamTakingViewProps> = ({ token }) => {
   const fetchExamsAndAttempts = async () => {
     try {
       const [resExams, resAttempts] = await Promise.all([
-        fetch('/api/exams'),
+        fetch('/api/exams', { headers: { Authorization: `Bearer ${token}` } }),
         fetch('/api/exams/attempts/my', { headers: { Authorization: `Bearer ${token}` } })
       ]);
       if (resExams.ok) setExams(await resExams.json());

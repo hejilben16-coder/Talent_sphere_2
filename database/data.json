@@ -1,0 +1,2848 @@
+{
+  "users": [
+    {
+      "id": "usr_admin_1",
+      "name": "System Admin",
+      "email": "admin@talentsphere.ai",
+      "role": "admin",
+      "status": "active",
+      "createdAt": "2026-07-27T13:05:23.579Z",
+      "passwordHash": "$2b$10$v9vQCVAuVWXz/d2BBHQMQ.SaD95ZKA.uUDrDDY1xknIwhvJCSUdhy",
+      "lastLogin": "2026-08-11T09:53:05.752Z"
+    },
+    {
+      "id": "usr_student_1",
+      "name": "Alex Rivera",
+      "email": "student@talentsphere.ai",
+      "role": "student",
+      "status": "active",
+      "createdAt": "2026-07-27T13:05:23.579Z",
+      "passwordHash": "$2b$10$v9vQCVAuVWXz/d2BBHQMQ.LfdRo1k0k2dbmbs1kg6B.NkrGGqY1mW",
+      "lastLogin": "2026-08-11T09:53:52.359Z"
+    }
+  ],
+  "documents": [
+    {
+      "id": "doc_1785158549285_1tgu",
+      "name": "sample_test.pdf",
+      "size": 14,
+      "uploadedAt": "2026-07-27T13:22:29.285Z",
+      "pageCount": 1,
+      "chunkCount": 1,
+      "uploadedBy": "usr_admin_1",
+      "summary": "Uploaded document \"sample_test.pdf\" with 1 page(s) and 1 extracted knowledge section(s).",
+      "status": "ready"
+    },
+    {
+      "id": "doc_1785158634770_o0kc",
+      "name": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "size": 6489540,
+      "uploadedAt": "2026-07-27T13:43:57.548Z",
+      "pageCount": 53,
+      "chunkCount": 94,
+      "uploadedBy": "usr_admin_1",
+      "summary": "Echolocation is a biological process where animals emit sound waves and interpret their reflections to navigate, find food, and interact, even in darkness. This bio-inspired mechanism is applied in technologies like medical ultrasonography, which uses sound waves for internal body imaging, and sonar, used for underwater detection and navigation.",
+      "status": "ready"
+    },
+    {
+      "id": "doc_1785158926507_qgf8",
+      "name": "Machine_Learning_Course.pdf",
+      "size": 655,
+      "uploadedAt": "2026-07-27T13:44:02.128Z",
+      "pageCount": 1,
+      "chunkCount": 1,
+      "uploadedBy": "usr_admin_1",
+      "summary": "The provided document is incomplete. It introduces supervised learning as a method using labeled data for predictions, but the sentence describing its applications cuts off mid-word.",
+      "status": "ready"
+    }
+  ],
+  "chunks": [
+    {
+      "id": "chk_doc_1785158549285_1tgu_0",
+      "docId": "doc_1785158549285_1tgu",
+      "docName": "sample_test.pdf",
+      "pageNumber": 1,
+      "content": "Document Title: sample_test.pdf. Note: This document contains visual or structured data. Content indexed for reference."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_0",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 1,
+      "content": "Nature-Bioinspired Materials and\nMechanisms"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_1",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 2,
+      "content": "ECHOLOCATION\n\n* Echolocation, a physiological process for locating distant or invisible objects (such as prey) by means of sound waves reflected back to the emitter (such as a bat) by the objects.\n* Echolocation is used for orientation, obstacle avoidance, food procurement, and social interactions."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_2",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 3,
+      "content": "ECHOLOCATION STEPS:\n\n* Emitting sound waves: The animal emits a series of high-frequency sound waves, which are usually inaudible to humans.\n* Sound wave reflection: When these sound waves hit an object, they bounce back and reflect off the object, creating an echo.\n* Reception of echo: The animal then listens for the echoes that bounce back, which provides information about the location, size, and shape of the object.\n* Interpretation of echo: The animal's brain processes the information provided by the echoes and uses it to create a mental image of the object's location and characteristics.\n* Echolocation is an incredibly effective way for animals to navigate and find food, even in complete darkness."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_3",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 3,
+      "content": "animals to navigate and find food, even in complete darkness."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_4",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 4,
+      "content": "ECHOLOCATION APPLICATION:\n\n* Medical imaging: Ultrasound imaging uses high-frequency sound waves to create images of internal organs and tissues.\n* This technique is non-invasive and can be used for a variety of diagnostic purposes, such as monitoring fetal development during pregnancy and detecting tumour's.\n* Sonar technology: Sonar technology is used for navigation and detection in a variety of applications, such as in submarines, boats, and aircraft."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_5",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 5,
+      "content": "APPLICATION OF ECHOLOCATION IN ULTRASONOGRAPHY:\n\n* Ultrasonography, also known as ultrasound imaging, uses the principles of echolocation to produce images of internal organs and tissues.\n* In ultrasonography, the transducer emits sound waves and receives echoes in real-time, allowing for the visualization of moving structures, such as the beating of the heart or the flow of blood through blood vessels."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_6",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 6,
+      "content": "* Ultrasonography is a non-invasive imaging technique that is commonly used in obstetrics and gynecology, cardiology, and other medical specialties to diagnose and monitor a variety of conditions.\n* Ultrasonography uses high-frequency sound waves to create images of the body's internal structures.\n* principle behind sonography is based on the way sound waves travel through different tissues in the body and receives the echoes."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_7",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 7,
+      "content": "INSTRUMENTATION OF ULTRASONOGRAPHY\n\n* Transducer: The transducer is a handheld device that emits high-frequency sound waves and receives echoes. It is placed on the skin over the area of interest and moved around to obtain images from different angles.\n* Pulser and receiver: The pulser generates electrical signals that are converted into sound waves by the transducer. The receiver detects the echoes and converts them back into electrical-signal.\n* Signal processor: The signal processor amplifies and filters the electrical signals received by the transducer, and converts them into a format that can be displayed on a monitor.\n* Display: The display shows the images produced by the signal processor in real-time."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_8",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 7,
+      "content": "play shows the images produced by the signal processor in real-time."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_9",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 8,
+      "content": "Pulser\n(transmitter)\nReceiver\nBeam\nformer\nProcessor\nDisplay\nTransducer\nHard\ncopy\nSoft\ncopy\nPatient\nFilm/paper\nstorage\nDigital\nstorage"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_10",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 9,
+      "content": "SONAR- Sound Navigation & Ranging\n\n* Technology that uses sound waves to detect and locate underwater objects\n\nWater\nShip\nsonar\nTransmitter\nUltra sound\npulse\nReceiver\nReflected ultra\nsound pulse\nBottom of sea\nFigure: Representing working principle of sonar"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_11",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 10,
+      "content": "Working Principle\nReflected wave\nSender/\nReceiver\nOriginal wave\nDistance r\nWorking Principle of Sonars\nThe working principle of sonar technology is based on the reflection of sound waves. Here's how it works:\n* Transmitter: A sonar system consists of a transmitter that produces and emits a series of sound pulses into the water. These sound pulses are typically in the form of high-frequency, low-power acoustic signals, known as \"ping.\"\n* Propagation of sound waves: The sound pulses propagate through the water, traveling to the target object and bouncing back as echoes. The speed of sound in water is slower than in air, and it depends on the temperature, pressure, and salinity of the water.\n* Receiver: The sonar system also includes a receiver that listens for the returning echoes. The recei"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_12",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 10,
+      "content": "mperature, pressure, and salinity of the water.\n* Receiver: The sonar system also includes a receiver that listens for the returning echoes. The receiver is typically placed far away from the transmitter to minimize interference from the transmitted signals.\n* Calculation of range: The time it takes for the echoes to return to the receiver is used to calculate the range to the target object. The range is simply the product of the speed of sound in water and the time it takes for the echoes to return.\n* Determination of target properties: The frequency and pattern of the echoes are used to determine the properties of the target object, such as its size, shape, and composition. For example, a large, solid object will produce a strong, low-frequency echo, while a small, porous object will pro"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_13",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 10,
+      "content": "its size, shape, and composition. For example, a large, solid object will produce a strong, low-frequency echo, while a small, porous object will produce a weaker, high-frequency echo.\n* Display of results: The results of the sonar measurement are typically displayed on a screen or other output device, allowing the operator to visualize the target object and its location."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_14",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 11,
+      "content": "Uses of Sonars\nSonars are commonly used for a variety of purposes, including;\n* Naval applications: Sonars are used by naval vessels to detect and locate other ships, submarines, and underwater obstacles, allowing them to navigate safely and avoid potential collisions.\n* Fishery: Sonars are used in the fishing industry to locate schools of fish and determine the depth of the water, allowing fishermen to more efficiently target their catch.\n* Oceanography: Sonars are used in oceanography to study the physical and biological properties of the ocean, including the structure of the ocean floor, the movement of currents, and the distribution of marine life.\n* Environmental monitoring: Sonars are used to monitor the health of marine ecosystems, track the migration patterns of whales and other ma"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_15",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 11,
+      "content": "rine life.\n* Environmental monitoring: Sonars are used to monitor the health of marine ecosystems, track the migration patterns of whales and other marine mammals, and assess the impact of human activities on the ocean environment.\nSonar technology works by emitting a series of sound pulses and listening for the echoes that bounce back from underwater objects. The time it takes for the echoes to return is used to calculate the distance to the objects, and the frequency and pattern of the echoes are used to determine their size and shape."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_16",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 12,
+      "content": "Lotus Leaf Effect\nThe Lotus Effect\nThe superhydrophobic power of self cleaning:\nThe leaves of the lotus flower exhibit extremely water-repellent properties due to micro and nano-structures on the leaf surface.\nThese structures allow the plant to have a magnificent self-cleaning function\nThis concept has been extrapolated and applied to sealing windshields, waterproofing phones, and protecting fabrics, wood, and other surfaces from dirt, dust, or car exhaust particle residue.\nWater\nWax crystals\nDebris\nLeaf\nEpidermal cell\nmicro-structures"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_17",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 13,
+      "content": "THE PRINCIPLE SUPER HYDROPHOBIC SURFACES\nθ\nθ<10°\nsuperhydrophilic\nθ<90°\nhydrophilic\nθ>90°\nhydrophobic\nθ>150°\nsuperhydrophobic\nSuperhydrophobic coating can be made from many different materials.\n* Manganese oxide polystyrene (MnO2/PS) nano-composite\n* Zinc oxide polystyrene (ZnO/PS) nano-composite\n* Precipitated calcium carbonate\n* Carbon nano-tube structures\n* Silica nano-coating"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_18",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 14,
+      "content": "Engineering Applications of Super Hydrophobic Surfaces\nSuper hydrophobic surfaces have potential applications in the electronics, automobile, and aerospace industries, offering several benefits in these sectors. Here are some specific applications:\nElectronics Industry:\n* Waterproofing Electronics: Super hydrophobic coatings can protect electronic components from water damage. By applying super hydrophobic coatings on circuit boards, connectors, and other sensitive electronic parts, water ingress can be minimized, improving the reliability and durability of electronic devices.\n* Moisture Resistance: Electronic devices exposed to humid environments or moisture-prone conditions can benefit from super hydrophobic coatings. These coatings prevent moisture from reaching critical electronic comp"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_19",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 14,
+      "content": "ments or moisture-prone conditions can benefit from super hydrophobic coatings. These coatings prevent moisture from reaching critical electronic components, reducing the risk of short circuits, corrosion, and malfunction.\n* Self-Cleaning Displays: Super hydrophobic coatings applied to displays and touch screens repel water, oils, and fingerprints, making them easier to clean and maintain. This improves the visibility and functionality of electronic displays, especially in outdoor or high-touch applications.\nAutomobile Industry:\n* Anti-Fogging Windows and Mirrors: Super hydrophobic coatings can be used on automobile windows and mirrors to prevent fogging or condensation formation. The water-repellent property helps maintain clear visibility, enhancing driver safety and comfort in humid or"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_20",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 14,
+      "content": "vent fogging or condensation formation. The water-repellent property helps maintain clear visibility, enhancing driver safety and comfort in humid or cold weather conditions.\n* Self-Cleaning Surfaces: Applying super hydrophobic coatings to the exterior surfaces of vehicles can facilitate self-cleaning by repelling water, dirt, and contaminants. This reduces the need for frequent washing and maintenance, keeping the vehicle cleaner and improving its appearance.\n* Fuel Efficiency: Super hydrophobic coatings can reduce drag and frictional resistance on vehicle surfaces, leading to improved aerodynamics and fuel efficiency. By minimizing"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_21",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 15,
+      "content": "Aerospace Industry:\n* Anti-Icing and Deicing: Super hydrophobic coatings applied to aircraft surfaces can prevent ice formation or facilitate ice removal. This is particularly important for critical areas such as wings, engine components, and sensors, helping to ensure safe operations and reducing the risk of ice-related incidents.\n* Drag Reduction: Super hydrophobic coatings on aircraft surfaces can minimize frictional drag during flight, leading to improved fuel efficiency and reduced emissions. The water-repellent property helps maintain a smooth airflow over the surface, optimizing aerodynamic performance.\n* Corrosion Resistance: Super hydrophobic coatings can protect aerospace components from corrosion caused by exposure to moisture, rain, or harsh environments. By repelling water and"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_22",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 15,
+      "content": "drophobic coatings can protect aerospace components from corrosion caused by exposure to moisture, rain, or harsh environments. By repelling water and reducing surface contact with corrosive agents, these coatings help preserve the structural integrity and lifespan of aerospace equipment.\nAerospace"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_23",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 16,
+      "content": "4.4.2 Self-Cleaning Surfaces\nSelf-cleaning surfaces are surfaces that are able to clean themselves without the need for manual cleaning. These surfaces are typically super hydrophobic and have a high contact angle with water, which causes water droplets to bead up and roll off the surface, carrying away any dirt or debris.\nPrinciple of Self Cleaning Surfaces\nThe principle of self-cleaning surfaces is based on two main mechanisms: the reduction of surface energy and the modification of surface texture. These mechanisms work together to minimize the adhesion of dirt, water, and other contaminants, enabling the self-cleaning effect. Here's a breakdown of the principle:\n* Low Surface Energy: Self-cleaning surfaces often have low surface energy, which means they have a reduced affinity for liqu"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_24",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 16,
+      "content": "akdown of the principle:\n* Low Surface Energy: Self-cleaning surfaces often have low surface energy, which means they have a reduced affinity for liquid and solid particles. Materials with low surface energy repel water, oils, and other substances, preventing them from adhering to the surface. This property is typically achieved through the application of hydrophobic or oleophobic coatings, such as fluoropolymers or other low-surface-energy materials.\n* Lotus Effect: The Lotus Effect is a phenomenon observed in nature on the leaves of lotus plants. It is a classic example of self-cleaning surfaces. Lotus leaves have a unique micro/nanostructured surface covered with hydrophobic wax crystals. When water droplets come into contact with the leaf surface, they form near-perfect spheres and rol"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_25",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 16,
+      "content": "red surface covered with hydrophobic wax crystals. When water droplets come into contact with the leaf surface, they form near-perfect spheres and roll off, collecting dirt and contaminants along the way. This is due to the combination of the surface's low surface energy and the presence of micro/nanostructures, which reduce the contact area and enable easy droplet mobility."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_26",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 17,
+      "content": "Applications of Self-Cleaning Surfaces and Coatings\nSelf-cleaning surfaces have a wide range of applications in various industries. Here are some notable examples:\n* Architecture and Building Materials: Self-cleaning surfaces find applications in architectural structures and building materials, such as self-cleaning glass for windows and facades. These surfaces repel dirt, dust, and pollutants, reducing the need for frequent cleaning and maintenance.\n* Solar Panels: Self-cleaning coatings on solar panels prevent the accumulation of dust and dirt on the surface, ensuring optimal energy efficiency. By repelling contaminants, self-cleaning surfaces help maintain the transparency and effectiveness of solar panels.\n* Automotive Industry: Self-cleaning surfaces can be applied to vehicle exterior"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_27",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 17,
+      "content": "ces help maintain the transparency and effectiveness of solar panels.\n* Automotive Industry: Self-cleaning surfaces can be applied to vehicle exteriors, including car windows and windshields. These surfaces repel water, oil, and dirt, improving visibility and reducing the need for frequent cleaning.\n* Electronics: Self-cleaning coatings can be used on electronic displays, touchscreens, and optical lenses. These surfaces resist fingerprints, oils, and smudges, ensuring clear visibility and enhancing device performance.\n* Textiles: Self-cleaning coatings can be applied to fabrics used in outdoor clothing, upholstery, and carpets. These coatings repel liquids, stains, and dirt, making the textiles easier to clean and maintain.\n* Medical Equipment: Self-cleaning surfaces can be utilized in med"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_28",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 17,
+      "content": "repel liquids, stains, and dirt, making the textiles easier to clean and maintain.\n* Medical Equipment: Self-cleaning surfaces can be utilized in medical equipment, such as hospital furniture, beds, and surfaces prone to contamination. These surfaces minimize the adhesion of microorganisms, reducing the risk of cross-contamination and improving hygiene.\n* Kitchen and Bathroom Surfaces: Self-cleaning surfaces can be employed in kitchen countertops, sinks, and bathroom fixtures to repel water, oils, and stains. This helps keep the surfaces clean and reduces the effort required for cleaning and maintenance.\n* Outdoor Signage and Billboards: Self-cleaning coatings on outdoor signage and billboards prevent the accumulation of dirt, grime, and pollutants. This helps maintain the visibility and"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_29",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 17,
+      "content": "f-cleaning coatings on outdoor signage and billboards prevent the accumulation of dirt, grime, and pollutants. This helps maintain the visibility and effectiveness of advertisements, reducing the need for manual cleaning.\n* Air Conditioning and Ventilation Systems: Self-cleaning coatings can be applied to air conditioning and ventilation system components, such as filters and ducts. These surfaces repel dust and particles, improving air quality and reducing the need for frequent cleaning or filter replacements.\n* Food and Beverage Industry: Self-cleaning surfaces can be used in food processing equipment and containers to prevent the adhesion of food residues, oils, and contaminants. This enhances food safety and facilitates easier cleaning and sanitation.\nThe engineering applications of se"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_30",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 17,
+      "content": "of food residues, oils, and contaminants. This enhances food safety and facilitates easier cleaning and sanitation.\nThe engineering applications of self-cleaning surfaces are vast and varied. The ability to repel dirt, dust, water, and oils offers advantages in terms of cleanliness, efficiency, and maintenance across numerous industries. By reducing the need for manual cleaning and improving the performance of various products and applications, self-cleaning surfaces have the potential to improve efficiency, reduce costs, and enhance safety across a range of industries.\nWithout Self-Cleaning Coating\nWith Self-Cleaning Coating"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_31",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 18,
+      "content": "Plant burrs and Velcro\nb)\na)\nLOOP\nVELCRO\nHOOK\nb)\nVelcro was invented by Swiss engineer George De Mestral in 1941, after he became fascinated by the way burrs clung to his clothes and his dog's fur during a walk.\nHe examined the burrs under a microscope and found that they had small hooks that could latch onto loops in fabric.\nThe name \"Velcro\" is actually a combination of the words \"velvet\" and \"crochet,\" as the fabric strips resemble velvet and are hooked together like crochet. Velcro has since become a popular alternative to traditional fasteners, such as buttons and zippers, due to its ease of use and versatility."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_32",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 19,
+      "content": "Materials Used in Velcro Technology\nVelcro technology uses two main materials: nylon and polyester.\n1. The nylon is extruded to create tiny hooks that are then cut and shaped into the familiar hook shape. These hooks are designed to latch onto the loop side of the Velcro.\nPlant Burrs\nand Textile\nHook & Loop\n\"Velcro\"\nFigure: The hook of Velcro\nThe loop side of Velcro is made of polyester. Polyester is a synthetic fabric that is strong and durable. The polyester is woven into a fabric that has many tiny loops. When the loops are pressed against the hook side of the Velcro, the hooks latch onto the loops, creating a secure attachment.\nFigure: The loop of Velcro\nIn addition to nylon and polyester, the adhesive used to attach the Velcro to surfaces can also vary. Some types of Velcro use a pres"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_33",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 19,
+      "content": "e loop of Velcro\nIn addition to nylon and polyester, the adhesive used to attach the Velcro to surfaces can also vary. Some types of Velcro use a pressure-sensitive adhesive that can be easily removed without leaving a residue, while others use a stronger adhesive that creates a more permanent bond."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_34",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 20,
+      "content": "Engineering Application Of Velcro\nTechnology"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_35",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 21,
+      "content": "Engineering Applications of Velcro Technology\nClothing and footwear:\nVelcro is commonly used in clothing and footwear for closures and adjustable straps. It can be easily opened and closed, making it convenient for users with limited dexterity or mobility.\nMedical devices:\nVelcro is used in medical devices such as braces, splints, and compression garments for its adjustable and secure fastening capabilities.\nAerospace equipment:\nVelcro is used in aerospace equipment, such as satellites and spacecraft, to secure components in place and prevent them from vibrating or shifting during launch or flight.\nAutomotive industry:\nVelcro is used in the automotive industry for a range of applications, such as securing carpets and headliners, and attaching door panels and seat cushions.\nPackaging indust"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_36",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 21,
+      "content": "utomotive industry for a range of applications, such as securing carpets and headliners, and attaching door panels and seat cushions.\nPackaging industry:\nVelcro is used in the packaging industry for resealable closures on bags, pouches, and other types of packaging.\nSports equipment:\nVelcro is used in sports equipment, such as helmets and gloves, for its ability to provide a secure and adjustable fit."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_37",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 22,
+      "content": "Shark Skin and Friction Reducing Swim Suits\nThe denticles on shark skin have evolved over millions of years to reduce drag and increase swimming efficiency. These structures disrupt the flow of water around the shark's body, reducing turbulence and minimizing the formation of vortices. As a result, sharks can swim faster and with less effort compared to other fish.\n100 μm\nUSA\nDenticles on shark skin are like tiny bumps or ridges. They disrupt the flow of water around the shark's body, making it smoother and reducing turbulence. This disruption reduces the resistance the shark experiences as it swim, allowing it to move faster and with less effort."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_38",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 23,
+      "content": "SHARK SKIN INSPIRED SURFACES\nmicrograph of shark skin denticles\nSharklet™ antibacterial surface\nSpeedo fastskin swimsuit\nSource: Designing Regenerative Cultures, 2016 - www.danielchristianwahl.com; Graphics: www.flaviagargiulo.com\nTurbulence in Water\nTurbulence is when a fluid, like water or air, becomes chaotic and unpredictable. Instead of flowing smoothly, it swirls and forms irregular patterns. This turbulence creates resistance or drag, which makes it harder for things to move through the fluid. In swimming, reducing turbulence is important because it helps to minimize resistance, allowing swimmers to move more easily and efficiently through the water.\nReducing Drag\nWhen a shark swims through the water, the water normally flows smoothly over its body. However, the denticles on the sha"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_39",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 23,
+      "content": "ough the water.\nReducing Drag\nWhen a shark swims through the water, the water normally flows smoothly over its body. However, the denticles on the shark's skin disrupt this smooth flow. They create small disturbances in the water, which helps to break up turbulent currents that can slow the shark down. By reducing turbulence, the denticles make the flow of water around the shark's body smoother. This smoother flow reduces the resistance or drags the shark experiences as it moves through the water, allowing it to swim more efficiently.\nFrictionless Swim Suits\nShark skin has inspired the development of friction-reducing swim suits, which are designed to improve the performance of swimmers by reducing drag in the water.\nFriction-reducing swim suits use a similar structure to that of shark ski"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_40",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 23,
+      "content": "signed to improve the performance of swimmers by reducing drag in the water.\nFriction-reducing swim suits use a similar structure to that of shark skin to reduce drag and improve swimmer performance. These suits are made from high-tech materials that mimic the properties of shark skin, such as the shape and size of the denticles."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_41",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 24,
+      "content": "Materials Used\nThe materials used to create friction-reducing swim suits inspired by shark skin include:\n* Polyurethane: A type of polymer that is commonly used in the production of swim suits, as it is durable and can be molded into a variety of shapes.\n* Lycra/Spandex: Lycra and spandex are made from the same synthetic fiber, which is technically called elastane. Elastane fibers are typically composed of a polymer called polyurethane which is then blended with other fibers like nylon, polyester, or cotton) that is known for its stretch and flexibility.\n* High-tech fabrics: A range of high-tech fabrics have been developed specifically for use in swim suits. These fabrics are designed to be lightweight, water-repellent, and hydrodynamic, and often incorporate materials such as silicone or"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_42",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 24,
+      "content": "e in swim suits. These fabrics are designed to be lightweight, water-repellent, and hydrodynamic, and often incorporate materials such as silicone or Teflon to reduce drag.\nExamples\n* Speedo Fastskin: This swim suit was designed based on the structure of shark skin and is made from a high-tech fabric that incorporates a range of materials to reduce drag and turbulence in the water.\n* Arena Powerskin Carbon Ultra: Another example of a friction-reducing swim suit, the Arena Powerskin Carbon Ultra is made from a combination of polyurethane and high-tech fabrics to provide a hydrodynamic and form-fitting design.\n* TYR Venzo: The TYR Venzo is a friction-reducing swim suit that incorporates a unique surface structure inspired by shark skin, as well as other advanced materials to improve swimmer"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_43",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 24,
+      "content": "iction-reducing swim suit that incorporates a unique surface structure inspired by shark skin, as well as other advanced materials to improve swimmer performance."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_44",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 25,
+      "content": "Bullet Train\n* 150-200 miles per hour.\n* Contain more people.\n* Connects different cities with a short time.\n* Less environmental pollution.\nSONIC\nBOOM"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_45",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 27,
+      "content": "Streamlining:\nThe beak of a kingfisher is long, slender, and sharply pointed, which helps reduce drag or air resistance as the bird dives into the water. The streamlined shape allows the kingfisher to smoothly cut through the air and minimize the energy required for the dive.\nSurface Tension:\nWhen the kingfisher hits the water, it encounters the resistance caused by surface tension. Surface tension is the cohesive force between water molecules that creates a \"skin\" on the water's surface. The sharp beak of the kingfisher helps to pierce through the water's surface, breaking the surface tension and reducing the force required to enter the water.\nMinimizing Splash:\nAs the kingfisher dives, it needs to enter the water with minimal disturbance to avoid scaring away the fish it intends to catch"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_46",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 27,
+      "content": "r.\nMinimizing Splash:\nAs the kingfisher dives, it needs to enter the water with minimal disturbance to avoid scaring away the fish it intends to catch. The shape of the beak helps to reduce the splash generated upon entry. The beak's narrow and pointed design helps create a smooth entry by\nAerodynamic Design:\nThe front of the Shinkansen is meticulously shaped to reduce air resistance and improve aerodynamic performance. The streamlined design minimizes drag as the train travels at high speeds, allowing it to maintain stability and efficiency. The smooth, tapered shape reduces the pressure difference between the front and rear of the train, reducing noise and vibration.\nPressure Wave Reduction:\nWhen a high-speed train moves through a tunnel, it creates pressure waves that can cause noise an"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_47",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 27,
+      "content": "ducing noise and vibration.\nPressure Wave Reduction:\nWhen a high-speed train moves through a tunnel, it creates pressure waves that can cause noise and discomfort for passengers. The nose of the Shinkansen is designed to reduce these pressure waves by effectively managing airflow and minimizing the compression and expansion of air as the train enters and exits tunnels. This reduces the noise level and enhances passenger comfort."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_48",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 28,
+      "content": "2. Photosynthesis\n* Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored in organic molecules.\n* This process is critical for life on Earth, as it provides the primary source of energy for all living organisms.\nPHOTOSYNTHESIS\nOxygen\nO2\nSugar\nCHLOROPLAST\nLight\nenergy\nCalvin\nCycle\nCarbon dioxide\nCO2\nMinerals\nWater\nH2O"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_49",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 29,
+      "content": "CO2\nH2O\nChloroplast\nLight\nATP\nNADPH\nCalvin\nCycle\nLight Reactions\nNADP\nThylakoid\nADP\nPi\nStroma\nO2\nGlucose\nThe Process of Photosynthesis in Plants and in Some Animals\nThe process of photosynthesis in plants and some animals differs in terms of the type of organisms involved and the specific details of the process. However, the basic principle of converting light energy into usable forms of energy is the same in both.\nIn plants, photosynthesis takes place in the chloroplasts of the cells located in the leaves. The process starts with the absorption of light energy by pigments such as chlorophyll, which then excites electrons. These excited electrons are used to power the transfer of carbon dioxide into organic molecules, such as sugars and starches, through a series of chemical reactions. The"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_50",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 29,
+      "content": "rons are used to power the transfer of carbon dioxide into organic molecules, such as sugars and starches, through a series of chemical reactions. The end product of photosynthesis in plants is stored chemical energy in the form of organic compounds.\nIn some animals, such as algae, photosynthesis also takes place in chloroplasts. The process is essentially the same as in plants, with the absorption of light energy and the conversion of carbon dioxide into organic molecules.\nIn contrast, some animals, such as jellyfish, have a symbiotic relationship with photosynthetic organisms, such as algae. In this relationship, the animal provides a safe and stable environment for the photosynthetic organism, while the photosynthetic organism provides energy in the form of organic compounds produced th"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_51",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 29,
+      "content": "and stable environment for the photosynthetic organism, while the photosynthetic organism provides energy in the form of organic compounds produced through photosynthesis.\nLight-dependent reactions and light-independent reactions (also known as the Calvin cycle) are two interconnected processes that occur in the chloroplasts of plants and algae during photosynthesis."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_52",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 30,
+      "content": "2.1 Photovoltaic Cells\n* The connection between photosynthesis and photovoltaics lies in the conversion of light energy into usable forms of energy.\n* In photosynthesis, light energy from the sun is converted into chemical energy stored in organic molecules, such as sugars and starches. In photovoltaics, light energy is converted into electrical energy.\nenergy\nfrom light\ntransparent\nnegative\nterminal\nglass\nn-type layer\n(semiconductor)\njunction\np-type layer\n(semiconductor)\npositive\nterminal\nenergy\nfrom light\nFreed electrons\navailable to the circuit\nelectron\nflow\n(current)\nfreed electrons\nholes filled by freed electrons"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_53",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 31,
+      "content": "* Both photosynthesis and photovoltaics use the same basic principle of converting light energy into usable forms of energy, but the end products are different.\n* In photosynthesis, the end product is stored chemical energy, while in photovoltaics, the end product is electrical energy."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_54",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 32,
+      "content": "New Technology Photovoltaic Cells\n* Perovskite solar cells: Perovskite solar cells are a new type of photovoltaic cell that use a crystalline material made of perovskite to convert light energy into electrical energy.\n* They are highly efficient and have the potential to be more affordable than traditional silicon-based photovoltaic cells.\n* Thin-film photovoltaic cells: Thin-film photovoltaic cells are a type of photovoltaic cell that uses a thin layer of material, such as silicon or cadmium telluride, to convert light energy into electrical energy.\n* They are lighter and more flexible than traditional silicon- based photovoltaic cells and are ideal for use in portable and flexible solar panels.\n* Concentrator photovoltaic cells: Concentrator photovoltaic cells are a type of photovoltaic"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_55",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 32,
+      "content": "re ideal for use in portable and flexible solar panels.\n* Concentrator photovoltaic cells: Concentrator photovoltaic cells are a type of photovoltaic cell that uses a lens or mirror to concentrate sunlight onto a small area, increasing the amount of light energy that can be captured and converted into electrical energy."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_56",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 33,
+      "content": "2.2 Bionic Leaf\n* A bionic leaf is a system that uses artificial photosynthesis to convert sunlight into usable forms of energy, such as hydrogen or other biofuels.\n* The bionic leaf is designed to mimic the process of photosynthesis in plants, where light energy is used to split water molecules into hydrogen and oxygen, and the hydrogen can then be used as a source of energy.\nH2O → 2H+ + 2e- + 1/2 O2\nH2O\nO2\nH2"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_57",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 34,
+      "content": "Components:\n* The bionic leaf consists of a photovoltaic cell that captures sunlight and converts it into electrical energy, and a catalyst, such as a bacteria, that uses the electrical energy to split water molecules into hydrogen and oxygen.\n* The hydrogen produced by the bionic leaf can then be stored and used as a source of energy for a variety of applications, such as powering vehicles or generating electricity."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_58",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 35,
+      "content": "Work flow:\nSunlight is captured and directed to the bionic leaf.\n↓\nThe bionic leaf contains a catalyst (typically a special type of bacteria or an artificial catalyst) and a water-splitting enzyme.\n↓\nSunlight energy is used to split water molecules (H2O) into hydrogen ions (H+) and oxygen (O2) through a process called photolysis.\n↓\nThe hydrogen ions (H+) generated from water splitting combine with electrons from an external source (e.g., a wire) to form hydrogen gas (H2).\n↓\nThe oxygen gas (O2) produced during water splitting is released into the atmosphere.\n↓\nThe generated hydrogen gas (H2) can be collected and stored for later use as a clean and renewable energy source.\n↓\nThe bionic leaf also absorbs carbon dioxide (CO2) from the air or a supplied source.\n↓\nThe absorbed carbon dioxide (CO"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_59",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 35,
+      "content": "and renewable energy source.\n↓\nThe bionic leaf also absorbs carbon dioxide (CO2) from the air or a supplied source.\n↓\nThe absorbed carbon dioxide (CO2) is converted into carbon-based compounds, such as formic acid or methane, through a reduction reaction."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_60",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 36,
+      "content": "Applications of Bionic Leaf Technology\n* Renewable Energy Production\n* Carbon Dioxide Reduction\n* Sustainable Chemical Production\n* Agriculture and Food Production\n* Remote and Off-Grid Areas\n* Environmental Remediation"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_61",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 37,
+      "content": "Bird Flying\nDirection\nof flight\nLift due to pressure difference\nHigh velocity air flow\nLow\npressure\nWing\nLow velocity air flow\nHigh\npressure\n* Wing Shape: Birds have specialized wings with a unique shape that generates lift. The wings are curved on the upper surface and flatter on the bottom, creating a pressure difference known as Bernoulli's principle. This pressure difference generates lift, allowing birds to stay airborne.\n* Wing Muscles: Birds have strong flight muscles attached to their wings, allowing them to flap their wings vigorously. The upstroke and downstroke motion of the wings generates thrust, propelling the bird forward through the air.\n* Hollow Bones: Birds have lightweight bones that are hollow and filled with air sacs, reducing their overall weight. This makes it easier"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_62",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 37,
+      "content": "gh the air.\n* Hollow Bones: Birds have lightweight bones that are hollow and filled with air sacs, reducing their overall weight. This makes it easier for them to stay aloft.\n* Feathers: Feathers play a crucial role in flight. They provide both lift and control. The primary feathers at the tips of the wings help generate lift, while the tail feathers assist in maneuvering and stabilizing during flight.\n* Respiratory System: Birds have a unique respiratory system that allows for efficient oxygen exchange. Air flows unidirectionally through their lungs, as well as through a system of air sacs located throughout their body. This constant supply of oxygen fuels their high metabolic demands during flight.\n* Efficient Circulatory System: Birds have a highly efficient circulatory system that deli"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_63",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 37,
+      "content": "of oxygen fuels their high metabolic demands during flight.\n* Efficient Circulatory System: Birds have a highly efficient circulatory system that delivers oxygen-rich blood to their muscles and organs. Their heart rate increases during flight, ensuring a steady supply of oxygen to meet the demands of their active muscles.\n* Flight Control: Birds have remarkable coordination and control over their flight. They can adjust the angle and shape of their wings, control their speed and direction, and perform intricate aerial maneuvers using their tail, wings, and body movements.\nIt's important to note that bird flight is a complex process influenced by several factors, including aerodynamics, muscle strength, metabolic efficiency, and specialized adaptations. The science behind bird flight contin"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_64",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 37,
+      "content": "by several factors, including aerodynamics, muscle strength, metabolic efficiency, and specialized adaptations. The science behind bird flight continues to be an area of study and fascination for researchers and aviation engineers alike."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_65",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 38,
+      "content": "3.1 GPS Technology\n* GPS (Global Positioning System) is a technology that uses a network of satellites to provide location and time information to users.\n* The technology works by measuring the time it takes for signals to travel from satellites to a receiver on the ground or in a vehicle, and using this information to calculate the user's position.\nSatellite Segment\nBidirectional\nSignal\nOne Way\nSignal\nControl\nSegment\nUser\nSegment\n* Satellites: The GPS satellite network consists of 24-32 satellites orbiting the Earth. These satellites continuously broadcast signals containing information about their location, time, and status.\n* Receivers: GPS receivers, which are typically integrated into devices such as smartphones, navigation systems, and aircraft, receive signals from GPS satellites an"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_66",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 38,
+      "content": "S receivers, which are typically integrated into devices such as smartphones, navigation systems, and aircraft, receive signals from GPS satellites and use the information to calculate the user's position.\n* Control segment: The control segment consists of ground-based monitoring stations that track the GPS satellites, check the accuracy of their signals, and make adjustments as needed.\n* User segment: The user segment consists of the GPS receivers used by individuals and organizations to obtain location and time information."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_67",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 39,
+      "content": "GPS technology is essential for aircraft navigation and guidance. Here's how it is used:\n1. Positioning and Navigation\n2. Flight Planning\n3. Approach and Landing\n4. Air Traffic Management\n5. Collision Avoidance\n6. Flight Data Recording\nComm Satellite\nGPS Constellation\nSatellite\nPositioning\nAircraft-to-Aircraft\nGround Communication\nAir Traffic\nControl\nGround Station"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_68",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 40,
+      "content": "Comparing Birds and Aircrafts with GPS Technology for Navigation\n| Criteria           | Aircrafts                                                                                                                                                                                            | Birds                                                                                                                                                                                                                                                                                                                                                                                                                                         |\n| :----------------- | :---------------------------------------------------------"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_69",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 40,
+      "content": "|\n| :----------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Mechanism          | GPS technology in aircraft relies on signals received"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_70",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 40,
+      "content": "---------------------------------------------------------------------- |\n| Mechanism          | GPS technology in aircraft relies on signals received from satellites to determine precise position, velocity, and time.                                                                               | Birds use a combination of visual cues, magnetic fields, landmarks, and celestial navigation to navigate and orient themselves during flight.                                                                                                                                                                                                                                                                                                  |\n| Accuracy           | GPS technology provides highly accurate positio"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_71",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 40,
+      "content": "|\n| Accuracy           | GPS technology provides highly accurate position information with a margin of error typically within a few meters.                                                                                     | Birds have remarkable navigational abilities but may not possess the same level of accuracy as GPS. However, birds can adjust their flight path based on real-time environmental cues, which allows for more dynamic and adaptable navigation.                                                                                                                                                                                                     |\n| Sensory Input      | GPS technology relies solely on rece"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_72",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 40,
+      "content": "|\n| Sensory Input      | GPS technology relies solely on receiving satellite signals.                                                                                                                                           | Birds integrate various sensory inputs for navigation. They can perceive and interpret visual cues, such as landmarks and the position of the sun or stars, and they may also have sensitivity to Earth's magnetic field, enabling them to navigate across vast distances.                                                                                                                                                                    |\n| Adaptability       | GPS technology in aircraft pro"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_73",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 40,
+      "content": "|\n| Adaptability       | GPS technology in aircraft provides consistent and reliable navigation regardless of the environmental conditions or time of day.                                                                       | Birds, on the other hand, demonstrate remarkable adaptability in their navigation abilities. They can adjust their flight paths based on changing weather conditions, wind patterns, and other factors, which allows for efficient long-distance migration and navigation through complex landscapes.                                                                                                                                               |\n| Evolutionary Aspect | GPS technology i"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_74",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 40,
+      "content": "|\n| Evolutionary Aspect | GPS technology is a human-made innovation designed to enhance navigation and safety in aircraft. | Birds, however, have evolved over millions of years, developing specialized neural and physiological adaptations that enable them to navigate and fly efficiently in diverse habitats. |"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_75",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 41,
+      "content": "Bio Mimicking Birds Fly for Aircraft\nTechnology\nA) Wing design: The shape of bird wings has inspired the design of aircraft wings, which have evolved to be more aerodynamic and fuel-efficient as a result.\n* The study of bird flight has also led to the development of winglets, small structures at the tip of wings that reduce drag and increase lift.\nAir\nAir\nWINGLETS\nGLOBAL\n8000\n.............."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_76",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 42,
+      "content": "B) Flapping-wing drones: Researchers have developed drones that use flapping wings to fly, mimicking the way birds and insects fly.\n* These drones can be used for various applications, such as monitoring crops and wildlife, inspecting buildings and infrastructure, and search and rescue operations."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_77",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 43,
+      "content": "C) Soaring algorithms: Soaring refers to the flight technique used by birds and certain aircraft to stay aloft and travel long distances with minimal energy expenditure. Researchers have developed algorithms inspired by bird flight to help gliders and other aircraft use thermals more efficiently, leading to longer and more sustainable flights.\nD) Landing gear: The legs and feet of birds have inspired the design of landing gear for aircraft, with shock-absorbing and retractable structures that help absorb impact upon landing."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_78",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 44,
+      "content": "8. Human Blood Substitutes\n* Human blood substitutes are synthetic products that are designed to act as a replacement for blood in the human body.\n* Basic Requirement for Human Blood Substitutes:\n* Effective Oxygen Transport\n* Safety and Compatibility\n* Storage and Transport\n* Cost-Effectiveness and Scalability\nWHY WE\nNEED ??\nShortage\nShort shelf\nlife\nRare blood\ngroup\ndemand\nImmunologi-\ncal\nincompatibilit\ny\nDisease\nTransmission"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_79",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 45,
+      "content": "Types of HBS\n* There are two types of human blood substitutes –\n1. Hemoglobin-based oxygen carriers (HBOCs) and\n2. Perfluorocarbons (PFCs)\nRed Blood Cells (RBCs)\n(7 microns)\nHemoglobin-Based\nOxygen Carriers (HBOCs)\n(0.08-0.1 microns)\nPerflourocarbons (PFCs)\n(0.2 microns)\n©2006 HowStuffWorks\n1. HBOCs: are based on the hemoglobin molecule, which is the protein in red blood cells that carries oxygen to the body's tissues.\n* Hemoglobin is extracted from human or animal blood and then modified to create a stable, synthetic version.\n* When introduced into the body, HBOCs can help to increase the amount of oxygen available to the tissues, which can be important in situations where the body is unable to produce or transport enough red blood cells."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_80",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 45,
+      "content": "be important in situations where the body is unable to produce or transport enough red blood cells."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_81",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 46,
+      "content": "Haemoglobin- based Oxygen Carriers[HBOCs]\n* They are made by isolating hemoglobin, the protein responsible for carrying oxygen in red blood cells, and formulating it into a solution or suspension that can be infused into a patient's bloodstream.\nAdvantages:\n* Increased oxygen-carrying capacity\n* Universal compatibility\n* Longer shelf life\n* Reduced risk of infections\n* Availability in remote or challenging settings\nVS.\nHemopure starts with hemoglobin that's\nextracted from bovine red blood cells and then\npurified and formulated in a salt solution."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_82",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 47,
+      "content": "Limitations/Risks:\n* Limited oxygen release - inadequate oxygen delivery to tissues in certain conditions\n* Short half-life - This means that the HBOCs may be rapidly cleared from circulation, reducing their effectiveness and requiring more frequent doses or infusions.\n* Nitric oxide scavenging - Excessive nitric oxide scavenging by HBOCs can lead to vasoconstriction, impairing blood flow to vital organs and potentially causing adverse cardiovascular effects."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_83",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 48,
+      "content": "* Renal toxicity - shown a potential for renal toxicity, causing damage to the kidneys.\n* Immunogenicity and adverse reactions - HBOCs can trigger immune responses in the body, potentially leading to allergic reactions or other adverse events.\n* Regulatory challenges- HBOCs are subject to rigorous regulatory scrutiny due to their potential risks and complex nature."
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_84",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 49,
+      "content": "Examples of HBOCs\n* Hemopure: Hemopure is an HBOC that is made from bovine hemoglobin. It has been approved for use in South Africa, Russia, and some other countries.\n* Oxyglobin: Oxyglobin is another HBOC that is made from bovine hemoglobin. It is approved for veterinary use in the United States and has been used to treat anemia in dogs.\n* Hemospan: Hemospan is an HBOC that is being developed by Sangart Inc. It is currently in clinical trials and has shown promise in increasing oxygen delivery to tissues.\n* MP4OX: MP4OX is an HBOC that is being developed by Baxter Healthcare. It is designed to increase oxygen delivery to tissues and also to scavenge harmful free radicals in the bloodstream.\n* Hemolink: Hemolink is an HBOC that is being developed by Hemosol Inc. It is designed to be used i"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_85",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 49,
+      "content": "scavenge harmful free radicals in the bloodstream.\n* Hemolink: Hemolink is an HBOC that is being developed by Hemosol Inc. It is designed to be used in trauma and surgical settings and has shown promise in improving oxygen delivery to tissues.\n* Note: Many countries have not yet given regulatory approval for clinical usage of HBOCs\nАКАДЕМИЯ НАУК СССР\nПЕРФТОРАН\nPERFTORAN\nСТЕРИЛЬНО ВНУТРИВЕННО\nПАРТИЯ\nмл\nДАТА\nАКАДЕМИЯ НАУК СССР\nПЕРФТОРАН\nPERFTORAN\nСТЕРИЛЬНО ВНУТРИВЕННО\nПАРТИЯ\nмл\nДАТА\nАКАДЕМИЯ НАУК СССР\nПЕРФТОРАН\nPERFTORAN\nСТЕРИЛЬНО ВНУТРИВЕННО\nПАРТИЯ\nмл\nДАТА\nАКАДЕМИЯ НАУК СССР\nПЕРФТОРАН\nPERFTORAN\nСТЕРИЛЬНО ВНУТРИВЕННО\nПАРТИЯ\nмл\nДАТА\nАКАДЕМИЯ НАУК СССР\nПЕРФТОРАН\nPERFTORAN\nСТЕРИЛЬНО ВНУТРИВЕННО\nПАРТИЯ\nмл\nДАТА\nАКАДЕМИЯ НАУК СССР\nПЕРФТОРАН\nPERFTORAN\nСТЕРИЛЬНО ВНУТРИВЕННО\nПАРТИЯ\nмл\nДАТА\n* Oxycyte"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_86",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 49,
+      "content": "К СССР\nПЕРФТОРАН\nPERFTORAN\nСТЕРИЛЬНО ВНУТРИВЕННО\nПАРТИЯ\nмл\nДАТА\nАКАДЕМИЯ НАУК СССР\nПЕРФТОРАН\nPERFTORAN\nСТЕРИЛЬНО ВНУТРИВЕННО\nПАРТИЯ\nмл\nДАТА\n* Oxycyte PFC Emulsion: This is another PFC-based blood substitute being developed by Oxygen Biotherapeutics. It is designed to be used as an oxygen carrier during surgery and other medical procedures.\n* Hemopure-PFC: Hemopure-PFC is a hybrid blood substitute that combines a PFC with a hemoglobin-based oxygen carrier. It is being developed by HbO2 Therapeutics and has shown promise in increasing oxygen delivery to tissues in preclinical studies.\n* Note: It's important to note that while these technologies show promise, they are still in development"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_87",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 49,
+      "content": "show promise, they are still in development"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_88",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 50,
+      "content": "2. Perfluorocarbons (PFCs):\n* They are synthetic molecules that are similar in structure to the hemoglobin molecule.\n* However, unlike HBOCs, they do not require modification from natural sources.\n* PFCs are able to dissolve oxygen and transport it throughout the body, similar to the way that red blood cells work.\nF F\nF\nF\nF\nF\nF\nF F\nF\nF F F\nF F\nF\nF\nF F\nOxygen binding site\nH3C=CH\nCH3\nCH2\nH3C\nA\nB\nCH\nN\nN\nFe(II)\nN\nN\nH3C\nD\nC\nCH3\n-OOC-CH2-CH2\nHN\nCH2-CH2-COO-\nCovalently bonded to imidazole side chain\non the globin molecule\nCH2\nCH\nO"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_89",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 51,
+      "content": "Advantages of PFCs\n* High oxygen-carrying capacity\n* Improved oxygen solubility\n* Stability and long shelf life\n* No blood typing or cross-matching required\n* Reduced risk of infection transmission\n* Compatibility with diagnostic tests"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_90",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 52,
+      "content": "Limitations of PFCs\n* Limited oxygen offloading\n* Need for specialized administration methods - such as emulsification or encapsulation.\n* Short half-life\n* Clearance and elimination - primarily eliminated from the body through the lungs.\n* Side effects and toxicity\n* Regulatory considerations"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_91",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 53,
+      "content": "Examples of PFCs\n* Perftoran: Perftoran is a PFC that was developed in Russia and is used in several countries, including Russia, Ukraine, and China. It has been used in the treatment of a variety of conditions, including trauma, heart attack, and stroke.\n* Oxycyte: Oxycyte is a PFC that is being developed by Oxygen Biotherapeutics. It is currently in clinical trials and has shown promise in increasing oxygen delivery to tissues in patients with traumatic brain injury.\nАКАДЕМИЯ НАУК СССР\nПЕРФТОРАН\nPERFTORAN\nСТЕРИЛЬНО ВНУТРИВЕННО\nПАРТИЯ\nмл\nДАТА\nАКАДЕМИЯ НАУК СССР\nПЕРФТОРАН\nPERFTORAN\nСТЕРИЛЬНО ВНУТРИВЕННО\nПАРТИЯ\nмл\nДАТА\nАКАДЕМИЯ НАУК СССР\nПЕРФТОРАН\nPERFTORAN\nСТЕРИЛЬНО ВНУТРИВЕННО\nПАРТИЯ\nмл\nДАТА\nАКАДЕМИЯ НАУК СССР\nПЕРФТОРАН\nPERFTORAN\nСТЕРИЛЬНО ВНУТРИВЕННО\nПАРТИЯ\nмл\nДАТА\nАКАДЕМИЯ НАУК СССР\nПЕР"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_92",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 53,
+      "content": "ОРАН\nPERFTORAN\nСТЕРИЛЬНО ВНУТРИВЕННО\nПАРТИЯ\nмл\nДАТА\nАКАДЕМИЯ НАУК СССР\nПЕРФТОРАН\nPERFTORAN\nСТЕРИЛЬНО ВНУТРИВЕННО\nПАРТИЯ\nмл\nДАТА\nАКАДЕМИЯ НАУК СССР\nПЕРФТОРАН\nPERFTORAN\nСТЕРИЛЬНО ВНУТРИВЕННО\nПАРТИЯ\nмл\nДАТА\nАКАДЕМИЯ НАУК СССР\nПЕРФТОРАН\nPERFTORAN\nСТЕРИЛЬНО ВНУТРИВЕННО\nПАРТИЯ\nмл\nДАТА\n* Oxycyte PFC Emulsion: This is another PFC-based blood substitute being developed by Oxygen Biotherapeutics. It is designed to be used as an oxygen carrier during surgery and other medical procedures.\n* Hemopure-PFC: Hemopure-PFC is a hybrid blood substitute that combines a PFC with a hemoglobin-based oxygen carrier. It is being developed by HbO2 Therapeutics and has shown promise in increasing oxygen delivery to tissues in preclinical studies.\n* Note: It's important to note that while these technologies show prom"
+    },
+    {
+      "id": "chk_doc_1785158634770_o0kc_93",
+      "docId": "doc_1785158634770_o0kc",
+      "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+      "pageNumber": 53,
+      "content": "shown promise in increasing oxygen delivery to tissues in preclinical studies.\n* Note: It's important to note that while these technologies show promise, they are still in development"
+    },
+    {
+      "id": "chk_doc_1785158926507_qgf8_0",
+      "docId": "doc_1785158926507_qgf8",
+      "docName": "Machine_Learning_Course.pdf",
+      "pageNumber": 1,
+      "content": "Machine Learning 101: Supervised learning uses labeled training data to predict outcomes like cl"
+    }
+  ],
+  "chats": [
+    {
+      "id": "chat_1785158209114",
+      "userId": "usr_admin_1",
+      "messages": [
+        {
+          "id": "msg_1785158209114_usr",
+          "sender": "user",
+          "text": "what is nature insprired materials",
+          "timestamp": "2026-07-27T13:16:49.114Z"
+        },
+        {
+          "id": "msg_1785158209115_ai",
+          "sender": "ai",
+          "text": "The requested information is not present in the uploaded PDF knowledge base. Please upload relevant course materials or reference documents to answer your query.",
+          "timestamp": "2026-07-27T13:16:49.115Z",
+          "sources": []
+        },
+        {
+          "id": "msg_1785158688826_usr",
+          "sender": "user",
+          "text": "what is nature inspired materials",
+          "timestamp": "2026-07-27T13:24:48.826Z"
+        },
+        {
+          "id": "msg_1785158688827_ai",
+          "sender": "ai",
+          "text": "The requested information is not present in the uploaded PDF knowledge base. Please upload relevant course materials or reference documents to answer your query.",
+          "timestamp": "2026-07-27T13:24:48.827Z",
+          "sources": []
+        },
+        {
+          "id": "msg_1785158773737_usr",
+          "sender": "user",
+          "text": "what is echolocation",
+          "timestamp": "2026-07-27T13:26:13.737Z"
+        },
+        {
+          "id": "msg_1785158773738_ai",
+          "sender": "ai",
+          "text": "The requested information is not present in the uploaded PDF knowledge base. Please upload relevant course materials or reference documents to answer your query.",
+          "timestamp": "2026-07-27T13:26:13.738Z",
+          "sources": []
+        },
+        {
+          "id": "msg_1785158790460_usr",
+          "sender": "user",
+          "text": "echolocation?",
+          "timestamp": "2026-07-27T13:26:30.460Z"
+        },
+        {
+          "id": "msg_1785158790462_ai",
+          "sender": "ai",
+          "text": "The requested information is not present in the uploaded PDF knowledge base. Please upload relevant course materials or reference documents to answer your query.",
+          "timestamp": "2026-07-27T13:26:30.462Z",
+          "sources": []
+        },
+        {
+          "id": "msg_1785159001375_usr",
+          "sender": "user",
+          "text": "what is echolocation",
+          "timestamp": "2026-07-27T13:30:01.375Z"
+        },
+        {
+          "id": "msg_1785159005454_ai",
+          "sender": "ai",
+          "text": "Based on the provided document context, the term \"echolocation\" is not mentioned or defined [Document: sample_test.pdf, Page 1; Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 1].\n\nHowever, I can provide a general explanation of echolocation:\n\n### Echolocation\n\n**Echolocation** is a biological sonar used by several animal species, most notably bats and dolphins. It involves the emission of sound waves into the environment and listening for the echoes that return from objects in the surroundings.\n\nKey aspects of echolocation include:\n\n*   **Sound Emission**: Animals produce high-frequency sound waves (often ultrasound, beyond human hearing) that travel through the air or water.\n*   **Echo Reception**: These sound waves bounce off objects in the environment, creating echoes. The animal then listens for these returning echoes.\n*   **Information Processing**: By analyzing the time delay between the emitted sound and the returning echo, as well as the direction, intensity, and frequency shifts of the echoes, the animal can create a detailed \"sound map\" of its surroundings. This allows them to:\n    *   **Locate objects**: Determine the position of prey, obstacles, or other features.\n    *   **Determine distance**: Estimate how far away objects are.\n    *   **Identify size and shape**: Infer the physical characteristics of objects.\n    *   **Perceive movement**: Detect if objects are moving and in what direction.\n\nEcholocation is a sophisticated sensory system crucial for navigation, hunting, and communication in environments where vision is limited or ineffective, such as in darkness or murky water.",
+          "timestamp": "2026-07-27T13:30:05.454Z",
+          "sources": [
+            {
+              "docName": "sample_test.pdf",
+              "pageNumber": 1,
+              "snippet": "Document Title: sample_test.pdf. Note: This document contains visual or structured data. Content indexed for reference.",
+              "score": 0.35
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "%PDF-1.4 % /Type /Catalog /Names /PageLabels /Nums [0 2 0 R] /Outlines null /Pages 3 0 R /OpenAction 4 0 R endobj 5 0 obj /Creator FEFF0047006F006F0067006C0065 endobj 2 0 obj /S /D...",
+              "score": 0.35
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "his.print\\({bUI:true,bSilent:false,bShrinkToFit:true}\\);) endobj 6 0 obj /Type /Page /Parent 3 0 R /MediaBox [0 0 720 540] /Contents 59 0 R /Resources 60 0 R /Annots [] /Group /S /...",
+              "score": 0.35
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "viceRGB endobj 10 0 obj /Type /Page /Parent 3 0 R /MediaBox [0 0 720 540] /Contents 67 0 R /Resources 68 0 R /Annots [] /Group /S /Transparency /CS /DeviceRGB endobj 11 0 obj /Type...",
+              "score": 0.35
+            }
+          ]
+        },
+        {
+          "id": "msg_1785159254039_usr",
+          "sender": "user",
+          "text": "what is echolocation",
+          "timestamp": "2026-07-27T13:34:14.039Z"
+        },
+        {
+          "id": "msg_1785159255090_ai",
+          "sender": "ai",
+          "text": "An error occurred while communicating with the AI model: {\"error\":{\"code\":400,\"message\":\"The document has no pages.\",\"status\":\"INVALID_ARGUMENT\"}}. Source details are attached below.",
+          "timestamp": "2026-07-27T13:34:15.090Z",
+          "sources": [
+            {
+              "docName": "sample_test.pdf",
+              "pageNumber": 1,
+              "snippet": "Document Title: sample_test.pdf. Note: This document contains visual or structured data. Content indexed for reference.",
+              "score": 0.35
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "%PDF-1.4 % /Type /Catalog /Names /PageLabels /Nums [0 2 0 R] /Outlines null /Pages 3 0 R /OpenAction 4 0 R endobj 5 0 obj /Creator FEFF0047006F006F0067006C0065 endobj 2 0 obj /S /D...",
+              "score": 0.35
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "his.print\\({bUI:true,bSilent:false,bShrinkToFit:true}\\);) endobj 6 0 obj /Type /Page /Parent 3 0 R /MediaBox [0 0 720 540] /Contents 59 0 R /Resources 60 0 R /Annots [] /Group /S /...",
+              "score": 0.35
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "viceRGB endobj 10 0 obj /Type /Page /Parent 3 0 R /MediaBox [0 0 720 540] /Contents 67 0 R /Resources 68 0 R /Annots [] /Group /S /Transparency /CS /DeviceRGB endobj 11 0 obj /Type...",
+              "score": 0.35
+            }
+          ]
+        },
+        {
+          "id": "msg_1785159389224_usr",
+          "sender": "user",
+          "text": "what is echolocation",
+          "timestamp": "2026-07-27T13:36:29.224Z"
+        },
+        {
+          "id": "msg_1785159392308_ai",
+          "sender": "ai",
+          "text": "I apologize, but the provided documents do not contain information about \"echolocation.\" The extracted text from \"Nature-Bioinspired Materials and Mechanisms.pdf\" appears to be raw PDF structural data, and \"sample_test.pdf\" only indicates it contains visual or structured data without providing any content [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 1], [Document: sample_test.pdf, Page 1].",
+          "timestamp": "2026-07-27T13:36:32.308Z",
+          "sources": [
+            {
+              "docName": "sample_test.pdf",
+              "pageNumber": 1,
+              "snippet": "Document Title: sample_test.pdf. Note: This document contains visual or structured data. Content indexed for reference.",
+              "score": 0.35
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "%PDF-1.4 % /Type /Catalog /Names /PageLabels /Nums [0 2 0 R] /Outlines null /Pages 3 0 R /OpenAction 4 0 R endobj 5 0 obj /Creator FEFF0047006F006F0067006C0065 endobj 2 0 obj /S /D...",
+              "score": 0.35
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "his.print\\({bUI:true,bSilent:false,bShrinkToFit:true}\\);) endobj 6 0 obj /Type /Page /Parent 3 0 R /MediaBox [0 0 720 540] /Contents 59 0 R /Resources 60 0 R /Annots [] /Group /S /...",
+              "score": 0.35
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "viceRGB endobj 10 0 obj /Type /Page /Parent 3 0 R /MediaBox [0 0 720 540] /Contents 67 0 R /Resources 68 0 R /Annots [] /Group /S /Transparency /CS /DeviceRGB endobj 11 0 obj /Type...",
+              "score": 0.35
+            }
+          ]
+        },
+        {
+          "id": "msg_1785159515233_usr",
+          "sender": "user",
+          "text": "what is echolocation",
+          "timestamp": "2026-07-27T13:38:35.233Z"
+        },
+        {
+          "id": "msg_1785159517424_ai",
+          "sender": "ai",
+          "text": "I apologize, but the provided document context does not contain any information about \"echolocation.\" Therefore, I cannot answer your question based on the documents I have access to.",
+          "timestamp": "2026-07-27T13:38:37.424Z",
+          "sources": [
+            {
+              "docName": "sample_test.pdf",
+              "pageNumber": 1,
+              "snippet": "Document Title: sample_test.pdf. Note: This document contains visual or structured data. Content indexed for reference.",
+              "score": 0.35
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "%PDF-1.4 % /Type /Catalog /Names /PageLabels /Nums [0 2 0 R] /Outlines null /Pages 3 0 R /OpenAction 4 0 R endobj 5 0 obj /Creator FEFF0047006F006F0067006C0065 endobj 2 0 obj /S /D...",
+              "score": 0.35
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "his.print\\({bUI:true,bSilent:false,bShrinkToFit:true}\\);) endobj 6 0 obj /Type /Page /Parent 3 0 R /MediaBox [0 0 720 540] /Contents 59 0 R /Resources 60 0 R /Annots [] /Group /S /...",
+              "score": 0.35
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "viceRGB endobj 10 0 obj /Type /Page /Parent 3 0 R /MediaBox [0 0 720 540] /Contents 67 0 R /Resources 68 0 R /Annots [] /Group /S /Transparency /CS /DeviceRGB endobj 11 0 obj /Type...",
+              "score": 0.35
+            }
+          ]
+        },
+        {
+          "id": "msg_1785159544743_usr",
+          "sender": "user",
+          "text": "give me brief of Nature-Bioinspired Materials and Mechanisms.pdf p.1",
+          "timestamp": "2026-07-27T13:39:04.743Z"
+        },
+        {
+          "id": "msg_1785159548255_ai",
+          "sender": "ai",
+          "text": "Based on the provided document context for \"Nature-Bioinspired Materials and Mechanisms.pdf\", **page 1 does not contain any discernible human-readable content** that describes the materials, mechanisms, or any related subject matter. The text on this page consists primarily of technical metadata related to PDF font definitions and object structures (e.g., font types, encoding, descriptors, and character width arrays).\n\nTherefore, I am unable to provide a brief of the document's content from page 1 [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 1].",
+          "timestamp": "2026-07-27T13:39:08.255Z",
+          "sources": [
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "(((((((((((((((((((((((( %&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz &'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz E&isLWAGzL U ]p9 MXZJZJ ))i)0bUmG endstream endobj 178 0 obj /Typ...",
+              "score": 0.98
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "7 35 0 36 [722 666 666 0 610 556 0 0 333 0 0 610 889 722 722 556 0 666 556 610 0 722] 58 67 0 68 [443 500 443 500 443 0 500 500 277 0 500 277 777] 81 83 500 84 [0 333 389 277 500 0...",
+              "score": 0.98
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "iptor 307 0 R /CIDToGIDMap /Identity /DW 556 /W [0 [750] 1 134 0 135 [350] ] endobj 294 0 obj /Length 234 /Filter /FlateDecode stream x Kx} endstream endobj 295 0 obj /Type /Font /...",
+              "score": 0.98
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "ndobj 305 0 obj /Type /FontDescriptor /FontName /MUFUZY+TimesNewRomanPSMT /Flags 4 /FontBBox [-568 -306 2000 1006] /Ascent 693 /Descent -215 /ItalicAngle 0 /CapHeight 662 /StemV 80...",
+              "score": 0.98
+            }
+          ]
+        },
+        {
+          "id": "msg_1785159792958_usr",
+          "sender": "user",
+          "text": "GIVE ME BRIEF OF Nature-Bioinspired Materials and Mechanisms.pdf p.1",
+          "timestamp": "2026-07-27T13:43:12.958Z"
+        },
+        {
+          "id": "msg_1785159843830_ai",
+          "sender": "ai",
+          "text": "Page 1 of \"Nature-Bioinspired Materials and Mechanisms.pdf\" presents the title of the document, which is **\"Nature-Bioinspired Materials and Mechanisms\"** [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 1].",
+          "timestamp": "2026-07-27T13:44:03.830Z",
+          "sources": [
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 19,
+              "snippet": "Materials Used in Velcro Technology\nVelcro technology uses two main materials: nylon and polyester.\n1. The nylon is extruded to create tiny hooks that are then cut and shaped into ...",
+              "score": 1.28
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 24,
+              "snippet": "Materials Used\nThe materials used to create friction-reducing swim suits inspired by shark skin include:\n* Polyurethane: A type of polymer that is commonly used in the production o...",
+              "score": 1.28
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 24,
+              "snippet": "e in swim suits. These fabrics are designed to be lightweight, water-repellent, and hydrodynamic, and often incorporate materials such as silicone or Teflon to reduce drag.\nExample...",
+              "score": 1.28
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "Nature-Bioinspired Materials and\nMechanisms",
+              "score": 1.1
+            }
+          ]
+        },
+        {
+          "id": "msg_1785159874336_usr",
+          "sender": "user",
+          "text": "GIVE ME BREIF OF PAGE 24 IN Nature-Bioinspired Materials and Mechanisms.pdf p.1",
+          "timestamp": "2026-07-27T13:44:34.336Z"
+        },
+        {
+          "id": "msg_1785159874552_ai",
+          "sender": "ai",
+          "text": "An error occurred while communicating with the AI model: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 25.561346247s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash\"},\"quotaValue\":\"20\"}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"25s\"}]}}. Source details are attached below.",
+          "timestamp": "2026-07-27T13:44:34.552Z",
+          "sources": [
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "Nature-Bioinspired Materials and\nMechanisms",
+              "score": 1.01
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 13,
+              "snippet": "THE PRINCIPLE SUPER HYDROPHOBIC SURFACES\nθ\nθ<10°\nsuperhydrophilic\nθ<90°\nhydrophilic\nθ>90°\nhydrophobic\nθ>150°\nsuperhydrophobic\nSuperhydrophobic coating can be made from many differe...",
+              "score": 1.01
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 16,
+              "snippet": "akdown of the principle:\n* Low Surface Energy: Self-cleaning surfaces often have low surface energy, which means they have a reduced affinity for liquid and solid particles. Materi...",
+              "score": 1.01
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 17,
+              "snippet": "Applications of Self-Cleaning Surfaces and Coatings\nSelf-cleaning surfaces have a wide range of applications in various industries. Here are some notable examples:\n* Architecture a...",
+              "score": 1.01
+            }
+          ]
+        },
+        {
+          "id": "msg_1785164257995_usr",
+          "sender": "user",
+          "text": "what is echolocation",
+          "timestamp": "2026-07-27T14:57:37.996Z"
+        },
+        {
+          "id": "msg_1785164262389_ai",
+          "sender": "ai",
+          "text": "**Echolocation: A Physiological Process for Locating Objects**\n===========================================================\n\nEcholocation is a remarkable physiological process used by certain animals, such as bats and dolphins, to locate distant or invisible objects by emitting and receiving sound waves. This process involves the emission of high-frequency sound waves, which are reflected back to the emitter by the objects, providing information about their location, size, and shape.\n\n**Key Steps in Echolocation**\n-----------------------------\n\n* **Emitting sound waves**: The animal emits a series of high-frequency sound waves, which are usually inaudible to humans.\n* **Sound wave reflection**: When these sound waves hit an object, they bounce back and reflect off the object, creating an echo.\n* **Reception of echo**: The animal then listens for the echoes that bounce back, which provides information about the location, size, and shape of the object.\n* **Interpretation of echo**: The animal's brain processes the information provided by the echoes and uses it to create a mental image of the object's location and characteristics.\n\n**Importance of Echolocation**\n-----------------------------\n\nEcholocation is an incredibly effective way for animals to navigate and find food, even in complete darkness. This process has inspired various technological applications, including medical imaging and sonar technology.\n\n**References**\n---------------\n\n* [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 2]\n* [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 3]\n* [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 5]",
+          "timestamp": "2026-07-27T14:57:42.389Z",
+          "sources": [
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 2,
+              "snippet": "ECHOLOCATION\n\n* Echolocation, a physiological process for locating distant or invisible objects (such as prey) by means of sound waves reflected back to the emitter (such as a bat)...",
+              "score": 1.5
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 3,
+              "snippet": "ECHOLOCATION STEPS:\n\n* Emitting sound waves: The animal emits a series of high-frequency sound waves, which are usually inaudible to humans.\n* Sound wave reflection: When these sou...",
+              "score": 1.5
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 4,
+              "snippet": "ECHOLOCATION APPLICATION:\n\n* Medical imaging: Ultrasound imaging uses high-frequency sound waves to create images of internal organs and tissues.\n* This technique is non-invasive a...",
+              "score": 1.5
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 5,
+              "snippet": "APPLICATION OF ECHOLOCATION IN ULTRASONOGRAPHY:\n\n* Ultrasonography, also known as ultrasound imaging, uses the principles of echolocation to produce images of internal organs and t...",
+              "score": 1.5
+            }
+          ]
+        },
+        {
+          "id": "msg_1786437348560_usr",
+          "sender": "user",
+          "text": "Exam created: give me a exam (ID: exam_1786437348178_rw5r)",
+          "timestamp": "2026-08-11T08:35:48.560Z"
+        },
+        {
+          "id": "msg_1786437381470_ai",
+          "sender": "ai",
+          "text": "Exam ID: exam_1786437348178_rw5r\n\nHere's a 5-question exam based on the provided document context:\n\n**Exam: Nature-Bioinspired Materials and Mechanisms**\n\n**Section A: Multiple Choice Questions**\n\n1. What is the primary function of the receiver in a sonar system?\na) To transmit signals to the target object\nb) To listen for the returning echoes from the target object\nc) To calculate the range to the target object\nd) To determine the properties of the target object\n\nAnswer: b) To listen for the returning echoes from the target object\n\n[Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 10]\n\n2. What is the purpose of applying hydrophobic or oleophobic coatings to materials?\na) To increase their surface energy\nb) To repel water, oils, and other substances\nc) To attract dirt and dust\nd) To reduce their transparency\n\nAnswer: b) To repel water, oils, and other substances\n\n[Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 16]\n\n3. What is the Lotus Effect?\na) A phenomenon observed in nature on the leaves of lotus plants\nb) A type of self-cleaning surface\nc) A method for applying hydrophobic coatings\nd) A technique for calculating the range to a target object\n\nAnswer: a) A phenomenon observed in nature on the leaves of lotus plants\n\n[Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 16]\n\n4. What is the benefit of using self-cleaning surfaces on solar panels?\na) To increase their energy efficiency\nb) To reduce their transparency\nc) To attract dirt and dust\nd) To decrease their lifespan\n\nAnswer: a) To increase their energy efficiency\n\n[Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 17]\n\n5. What is the primary advantage of self-cleaning surfaces in the automotive industry?\na) To reduce the need for frequent cleaning and maintenance\nb) To increase the transparency of vehicle exteriors\nc) To decrease the lifespan of vehicle exteriors\nd) To attract dirt and dust\n\nAnswer: a) To reduce the need for frequent cleaning and maintenance\n\n[Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 17]\n\n**Section B: Short Answer Questions**\n\n1. Describe the principle behind the calculation of range in a sonar system.\n\nAnswer: The range is calculated by multiplying the speed of sound in water by the time it takes for the echoes to return to the receiver.\n\n[Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 10]\n\n2. Explain the concept of the Lotus Effect and its significance in nature.\n\nAnswer: The Lotus Effect is a phenomenon observed in nature on the leaves of lotus plants, where the unique micro/nanostructured surface covered with hydrophobic wax crystals repels water droplets, preventing them from adhering to the surface.\n\n[Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 16]\n\n**Section C: Essay Question**\n\nChoose one of the following topics and write a 500-word essay:\n\n1. Describe the applications of self-cleaning surfaces in various industries.\n2. Explain the principle behind the calculation of range in a sonar system.\n\nPlease select one of the topics and submit your essay response.",
+          "timestamp": "2026-08-11T08:36:21.470Z",
+          "sources": [
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 10,
+              "snippet": "mperature, pressure, and salinity of the water.\n* Receiver: The sonar system also includes a receiver that listens for the returning echoes. The receiver is typically placed far aw...",
+              "score": 0.9
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 10,
+              "snippet": "its size, shape, and composition. For example, a large, solid object will produce a strong, low-frequency echo, while a small, porous object will produce a weaker, high-frequency e...",
+              "score": 0.9
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 16,
+              "snippet": "akdown of the principle:\n* Low Surface Energy: Self-cleaning surfaces often have low surface energy, which means they have a reduced affinity for liquid and solid particles. Materi...",
+              "score": 0.9
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 17,
+              "snippet": "Applications of Self-Cleaning Surfaces and Coatings\nSelf-cleaning surfaces have a wide range of applications in various industries. Here are some notable examples:\n* Architecture a...",
+              "score": 0.9
+            }
+          ]
+        },
+        {
+          "id": "msg_1786437402926_usr",
+          "sender": "user",
+          "text": "what is eco location",
+          "timestamp": "2026-08-11T08:36:42.926Z"
+        },
+        {
+          "id": "msg_1786437405879_ai",
+          "sender": "ai",
+          "text": "Echolocation is a physiological process used by certain animals, such as bats and dolphins, to locate distant or invisible objects by emitting sound waves and interpreting the echoes that bounce back from those objects. This process is used for orientation, obstacle avoidance, food procurement, and social interactions. [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 2]",
+          "timestamp": "2026-08-11T08:36:45.879Z",
+          "sources": [
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 2,
+              "snippet": "ECHOLOCATION\n\n* Echolocation, a physiological process for locating distant or invisible objects (such as prey) by means of sound waves reflected back to the emitter (such as a bat)...",
+              "score": 0.75
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 3,
+              "snippet": "ECHOLOCATION STEPS:\n\n* Emitting sound waves: The animal emits a series of high-frequency sound waves, which are usually inaudible to humans.\n* Sound wave reflection: When these sou...",
+              "score": 0.75
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 4,
+              "snippet": "ECHOLOCATION APPLICATION:\n\n* Medical imaging: Ultrasound imaging uses high-frequency sound waves to create images of internal organs and tissues.\n* This technique is non-invasive a...",
+              "score": 0.75
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 5,
+              "snippet": "APPLICATION OF ECHOLOCATION IN ULTRASONOGRAPHY:\n\n* Ultrasonography, also known as ultrasound imaging, uses the principles of echolocation to produce images of internal organs and t...",
+              "score": 0.75
+            }
+          ]
+        },
+        {
+          "id": "msg_1786437427173_usr",
+          "sender": "user",
+          "text": "Exam created: create an exam for me (ID: exam_1786437427144_47s0)",
+          "timestamp": "2026-08-11T08:37:07.173Z"
+        },
+        {
+          "id": "msg_1786437430917_ai",
+          "sender": "ai",
+          "text": "Exam Created: exam_1786437427144_47s0\n\n**Exam Title:** Nature-Bioinspired Materials and Mechanisms Exam\n\n**Exam Description:** This exam is based on the uploaded document \"Nature-Bioinspired Materials and Mechanisms.pdf\" and covers topics related to sonar systems and self-cleaning surfaces.\n\n**Exam Questions:**\n\n1. What is the primary function of the transmitter in a sonar system? (Page 10)\na) To listen for returning echoes\nb) To calculate the range to the target object\nc) To emit sound waves into the water\nd) To determine the properties of the target object\n\nAnswer: c) To emit sound waves into the water\n\n2. How do self-cleaning surfaces typically achieve their low surface energy? (Page 16)\na) Through the application of hydrophilic coatings\nb) Through the application of hydrophobic or oleophobic coatings\nc) Through the use of high-surface-energy materials\nd) Through the use of porous materials\n\nAnswer: b) Through the application of hydrophobic or oleophobic coatings\n\n3. What is the Lotus Effect, and how is it observed in nature? (Page 16)\na) It is a phenomenon where water droplets stick to a surface\nb) It is a phenomenon where water droplets roll off a surface\nc) It is a phenomenon observed on the leaves of lotus plants\nd) It is a phenomenon observed on the surface of water\n\nAnswer: c) It is a phenomenon observed on the leaves of lotus plants\n\n4. What is the primary benefit of self-cleaning surfaces on solar panels? (Page 17)\na) They increase the energy efficiency of solar panels\nb) They decrease the energy efficiency of solar panels\nc) They prevent the accumulation of dust and dirt on the surface\nd) They require frequent cleaning and maintenance\n\nAnswer: c) They prevent the accumulation of dust and dirt on the surface\n\n5. What is the typical application of self-cleaning surfaces in the automotive industry? (Page 17)\na) To clean the interior of vehicles\nb) To clean the exterior of vehicles\nc) To apply self-cleaning coatings to vehicle exterior surfaces\nd) To apply self-cleaning coatings to vehicle interior surfaces\n\nAnswer: c) To apply self-cleaning coatings to vehicle exterior surfaces\n\n**Exam Submission:**\n\nTo submit your exam, please provide your answers to the above questions. I will then evaluate your responses and provide feedback.",
+          "timestamp": "2026-08-11T08:37:10.917Z",
+          "sources": [
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 10,
+              "snippet": "mperature, pressure, and salinity of the water.\n* Receiver: The sonar system also includes a receiver that listens for the returning echoes. The receiver is typically placed far aw...",
+              "score": 0.75
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 10,
+              "snippet": "its size, shape, and composition. For example, a large, solid object will produce a strong, low-frequency echo, while a small, porous object will produce a weaker, high-frequency e...",
+              "score": 0.75
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 16,
+              "snippet": "akdown of the principle:\n* Low Surface Energy: Self-cleaning surfaces often have low surface energy, which means they have a reduced affinity for liquid and solid particles. Materi...",
+              "score": 0.75
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 17,
+              "snippet": "Applications of Self-Cleaning Surfaces and Coatings\nSelf-cleaning surfaces have a wide range of applications in various industries. Here are some notable examples:\n* Architecture a...",
+              "score": 0.75
+            }
+          ]
+        },
+        {
+          "id": "msg_1786440775370_usr",
+          "sender": "user",
+          "text": "Exam created: hey create an exam based on nature and biosphere materials (ID: exam_1786440770059_0ien)",
+          "timestamp": "2026-08-11T09:32:55.370Z"
+        },
+        {
+          "id": "msg_1786440806622_ai",
+          "sender": "ai",
+          "text": "To create an exam based on the uploaded document \"Nature-Bioinspired Materials and Mechanisms.pdf,\" I'll generate a comprehensive exam with questions and answers. Here's the exam:\n\n**Exam ID: exam_1786440770059_0ien**\n\n**Section 1: Multiple Choice Questions (30 points)**\n\n1. What is the primary characteristic of self-cleaning surfaces?\na) High surface energy\nb) Low surface energy\nc) Hydrophobic coating\nd) Oleophobic coating\n\nAnswer: b) Low surface energy [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 16]\n\n2. Which phenomenon is observed on the leaves of lotus plants, making them self-cleaning?\na) Lotus Effect\nb) Shark Skin Effect\nc) Hydrophobic Effect\nd) Oleophobic Effect\n\nAnswer: a) Lotus Effect [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 16]\n\n3. What is the main purpose of incorporating materials like silicone or Teflon in swim suits?\na) To increase drag\nb) To reduce water repellency\nc) To reduce drag and turbulence in water\nd) To increase weight\n\nAnswer: c) To reduce drag and turbulence in water [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 24]\n\n4. Which swim suit is designed based on the structure of shark skin?\na) Speedo Fastskin\nb) Arena Powerskin Carbon Ultra\nc) TYR Venzo\nd) All of the above\n\nAnswer: a) Speedo Fastskin [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 24]\n\n5. What is the primary application of self-cleaning surfaces in the automotive industry?\na) Interior design\nb) Exterior design\nc) Engine maintenance\nd) None of the above\n\nAnswer: b) Exterior design [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 17]\n\n**Section 2: Short Answer Questions (40 points)**\n\n1. Describe the principle of echolocation and its steps. (10 points)\nAnswer: Echolocation is a biological sonar system used by animals to navigate and find food. The steps involved in echolocation are:\n- Emitting sound waves\n- Sound wave reflection\n- Reception of echo\n- Interpretation of echo\n[Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 3]\n\n2. Explain the concept of low surface energy and its relation to self-cleaning surfaces. (10 points)\nAnswer: Low surface energy refers to the reduced affinity of a surface for liquid and solid particles. Self-cleaning surfaces often have low surface energy, which allows them to repel water, oils, and other substances, preventing them from adhering to the surface. [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 16]\n\n3. Discuss the applications of self-cleaning surfaces in various industries. (20 points)\nAnswer: Self-cleaning surfaces have a wide range of applications in various industries, including:\n- Architecture and building materials\n- Solar panels\n- Automotive industry\n- Aerospace industry\n[Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 17]\n\n**Section 3: Essay Questions (30 points)**\n\n1. Describe the Lotus Effect and its significance in the development of self-cleaning surfaces. (15 points)\nAnswer: The Lotus Effect is a phenomenon observed on the leaves of lotus plants, which makes them self-cleaning. The unique micro/nanostructured surface covered with hydrophobic wax crystals allows water droplets to form near-perfect spheres and roll off the surface, taking dirt and contaminants with them. This effect has inspired the development of self-cleaning surfaces in various industries. [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 16]\n\n2. Discuss the importance of biomimicry in the development of advanced materials and technologies. (15 points)\nAnswer: Biomimicry is the process of using nature as a source of inspiration for the development of advanced materials and technologies. By studying the structures and functions of living organisms, scientists and engineers can develop innovative solutions to real-world problems. The examples of self-cleaning surfaces and swim suits mentioned in the document demonstrate the potential of biomimicry in creating sustainable and efficient technologies. [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Pages 16-24]\n\nNote: The points allocated to each section are indicative and can be adjusted according to the specific requirements of the exam.",
+          "timestamp": "2026-08-11T09:33:26.622Z",
+          "sources": [
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 16,
+              "snippet": "akdown of the principle:\n* Low Surface Energy: Self-cleaning surfaces often have low surface energy, which means they have a reduced affinity for liquid and solid particles. Materi...",
+              "score": 2.42
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 24,
+              "snippet": "e in swim suits. These fabrics are designed to be lightweight, water-repellent, and hydrodynamic, and often incorporate materials such as silicone or Teflon to reduce drag.\nExample...",
+              "score": 2.28
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 17,
+              "snippet": "Applications of Self-Cleaning Surfaces and Coatings\nSelf-cleaning surfaces have a wide range of applications in various industries. Here are some notable examples:\n* Architecture a...",
+              "score": 2.15
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 3,
+              "snippet": "ECHOLOCATION STEPS:\n\n* Emitting sound waves: The animal emits a series of high-frequency sound waves, which are usually inaudible to humans.\n* Sound wave reflection: When these sou...",
+              "score": 2.09
+            }
+          ]
+        },
+        {
+          "id": "msg_1786441195410_usr",
+          "sender": "user",
+          "text": "Exam created: a create an exam (ID: exam_1786441194989_zq65)",
+          "timestamp": "2026-08-11T09:39:55.447Z"
+        },
+        {
+          "id": "msg_1786441208141_ai",
+          "sender": "ai",
+          "text": "Exam ID: exam_1786441194989_zq65\n\nHere's a potential exam based on the provided documents:\n\n**Exam Title:** Nature-Bioinspired Materials and Mechanisms Exam\n\n**Section 1: Multiple Choice Questions (10 points)**\n\n1. What is the primary purpose of the receiver in a sonar system?\na) To transmit signals to the target object\nb) To listen for returning echoes from the target object\nc) To calculate the range to the target object\nd) To determine the properties of the target object\n\nAnswer: b) To listen for returning echoes from the target object\n\n2. What is the result of applying low surface energy to a material?\na) It attracts liquid and solid particles\nb) It repels water, oils, and other substances\nc) It has no effect on the material's properties\nd) It increases the material's surface area\n\nAnswer: b) It repels water, oils, and other substances\n\n3. What is the Lotus Effect?\na) A phenomenon observed in nature on the leaves of lotus plants\nb) A type of self-cleaning surface\nc) A material with high surface energy\nd) A coating that attracts dirt and dust\n\nAnswer: a) A phenomenon observed in nature on the leaves of lotus plants\n\n4. What is the primary application of self-cleaning surfaces in the automotive industry?\na) To clean the interior of vehicles\nb) To apply self-cleaning coatings to vehicle exteriors\nc) To reduce the weight of vehicles\nd) To increase the fuel efficiency of vehicles\n\nAnswer: b) To apply self-cleaning coatings to vehicle exteriors\n\n5. What is the benefit of applying self-cleaning coatings to solar panels?\na) To increase the energy efficiency of solar panels\nb) To reduce the cost of solar panels\nc) To increase the transparency of solar panels\nd) To reduce the need for frequent cleaning and maintenance\n\nAnswer: d) To reduce the need for frequent cleaning and maintenance\n\n**Section 2: Short Answer Questions (20 points)**\n\n1. Describe the process of calculating the range to a target object using a sonar system. (5 points)\n\nAnswer: The time it takes for the echoes to return to the receiver is used to calculate the range to the target object. The range is simply the product of the speed of sound in water and the time it takes for the echoes to return.\n\n2. Explain the concept of low surface energy and its application in self-cleaning surfaces. (5 points)\n\nAnswer: Low surface energy refers to the reduced affinity of a material for liquid and solid particles. This property is typically achieved through the application of hydrophobic or oleophobic coatings, such as fluoropolymers or other low-surface-energy materials.\n\n3. Describe the Lotus Effect and its relevance to self-cleaning surfaces. (5 points)\n\nAnswer: The Lotus Effect is a phenomenon observed in nature on the leaves of lotus plants. It is a classic example of self-cleaning surfaces, where the unique micro/nanostructured surface covered with hydrophobic wax crystals repels water droplets and prevents them from adhering to the surface.\n\n4. Discuss the applications of self-cleaning surfaces in various industries. (5 points)\n\nAnswer: Self-cleaning surfaces have a wide range of applications in various industries, including architecture and building materials, solar panels, and the automotive industry. They find applications in self-cleaning glass for windows and facades, solar panels, and vehicle exteriors.\n\n**Section 3: Essay Question (30 points)**\n\nDescribe the principles and applications of nature-bioinspired materials and mechanisms, including self-cleaning surfaces and sonar systems. Be sure to provide examples and explanations to support your answer. (30 points)\n\nNote: This is just a sample exam and can be modified to suit your specific needs.",
+          "timestamp": "2026-08-11T09:40:08.141Z",
+          "sources": [
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 10,
+              "snippet": "mperature, pressure, and salinity of the water.\n* Receiver: The sonar system also includes a receiver that listens for the returning echoes. The receiver is typically placed far aw...",
+              "score": 0.75
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 10,
+              "snippet": "its size, shape, and composition. For example, a large, solid object will produce a strong, low-frequency echo, while a small, porous object will produce a weaker, high-frequency e...",
+              "score": 0.75
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 16,
+              "snippet": "akdown of the principle:\n* Low Surface Energy: Self-cleaning surfaces often have low surface energy, which means they have a reduced affinity for liquid and solid particles. Materi...",
+              "score": 0.75
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 17,
+              "snippet": "Applications of Self-Cleaning Surfaces and Coatings\nSelf-cleaning surfaces have a wide range of applications in various industries. Here are some notable examples:\n* Architecture a...",
+              "score": 0.75
+            }
+          ]
+        },
+        {
+          "id": "msg_1786441294395_usr",
+          "sender": "user",
+          "text": "Exam created: create an exam based on nature and biosphere materials (ID: exam_1786441294138_9odu)",
+          "timestamp": "2026-08-11T09:41:34.395Z"
+        },
+        {
+          "id": "msg_1786441327761_ai",
+          "sender": "ai",
+          "text": "Exam ID: exam_1786441294138_9odu\n\n**Exam Title:** Nature and Biosphere Materials Exam\n\n**Total Questions:** 10\n\n**Time:** 60 minutes\n\n**Instructions:** Choose the correct answer for each question.\n\n**Section 1: Multiple Choice Questions (5 points each)**\n\n1. What is the primary characteristic of self-cleaning surfaces?\na) High surface energy\nb) Low surface energy\nc) Hydrophilic properties\nd) Oleophilic properties\n\nAnswer: b) Low surface energy [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 16]\n\n2. Which phenomenon observed in nature is a classic example of self-cleaning surfaces?\na) Lotus Effect\nb) Shark Skin Effect\nc) Butterfly Wing Effect\nd) Plant Burrs Effect\n\nAnswer: a) Lotus Effect [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 16]\n\n3. What is the primary function of the hook side of Velcro?\na) To latch onto the loop side\nb) To attach to surfaces\nc) To repel dirt and dust\nd) To reduce drag in water\n\nAnswer: a) To latch onto the loop side [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 19]\n\n4. Which material is used to make the loop side of Velcro?\na) Nylon\nb) Polyester\nc) Teflon\nd) Silicone\n\nAnswer: b) Polyester [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 19]\n\n5. What is the primary benefit of self-cleaning coatings on solar panels?\na) Increased energy efficiency\nb) Reduced maintenance costs\nc) Improved transparency\nd) All of the above\n\nAnswer: d) All of the above [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 17]\n\n**Section 2: Short Answer Questions (10 points each)**\n\n1. Describe the Lotus Effect and its significance in nature-inspired materials.\n\nAnswer: The Lotus Effect is a phenomenon observed in nature on the leaves of lotus plants. It is a classic example of self-cleaning surfaces. Lotus leaves have a unique micro/nanostructured surface covered with hydrophobic wax crystals. When water droplets come into contact with the leaf surface, they form near-perfect spheres and roll off, taking dirt and contaminants with them. This property is significant in nature-inspired materials, as it can be replicated to create self-cleaning surfaces with various applications. [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 16]\n\n2. Explain the concept of Velcro technology and its materials.\n\nAnswer: Velcro technology uses two main materials: nylon and polyester. The nylon is extruded to create tiny hooks that are then cut and shaped into the familiar hook shape. These hooks are designed to latch onto the loop side of the Velcro. The loop side of Velcro is made of polyester, a synthetic fabric that is strong and durable. The polyester is woven into a fabric that has many tiny loops. When the loops are pressed against the hook side of the Velcro, the hooks latch onto the loops, creating a secure attachment. [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 19]\n\n**Section 3: Essay Question (30 points)**\n\nDescribe the applications of nature-inspired materials in various industries, including architecture, solar panels, and the automotive industry. Be sure to include examples and explain the benefits of these materials.\n\nAnswer: Nature-inspired materials have a wide range of applications in various industries. In architecture, self-cleaning surfaces find applications in architectural structures and building materials, such as self-cleaning glass for windows and facades. These surfaces repel dirt, dust, and pollutants, reducing the need for frequent cleaning and maintenance. In the solar panel industry, self-cleaning coatings prevent the accumulation of dust and dirt on the surface, ensuring optimal energy efficiency. By repelling contaminants, self-cleaning surfaces help maintain the transparency and effectiveness of solar panels. In the automotive industry, self-cleaning surfaces can be applied to vehicle exteriors to reduce maintenance costs and improve aesthetics. [Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 17]\n\nNote: This is a sample exam and may not be comprehensive or accurate.",
+          "timestamp": "2026-08-11T09:42:07.761Z",
+          "sources": [
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 16,
+              "snippet": "akdown of the principle:\n* Low Surface Energy: Self-cleaning surfaces often have low surface energy, which means they have a reduced affinity for liquid and solid particles. Materi...",
+              "score": 2.35
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 24,
+              "snippet": "e in swim suits. These fabrics are designed to be lightweight, water-repellent, and hydrodynamic, and often incorporate materials such as silicone or Teflon to reduce drag.\nExample...",
+              "score": 2.35
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 17,
+              "snippet": "Applications of Self-Cleaning Surfaces and Coatings\nSelf-cleaning surfaces have a wide range of applications in various industries. Here are some notable examples:\n* Architecture a...",
+              "score": 2.2
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 19,
+              "snippet": "Materials Used in Velcro Technology\nVelcro technology uses two main materials: nylon and polyester.\n1. The nylon is extruded to create tiny hooks that are then cut and shaped into ...",
+              "score": 2.14
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chat_1785158917782",
+      "userId": "usr_student_1",
+      "messages": [
+        {
+          "id": "msg_1785158917782_usr",
+          "sender": "user",
+          "text": "Summarize the uploaded document",
+          "timestamp": "2026-07-27T13:28:37.782Z"
+        },
+        {
+          "id": "msg_1785158920036_ai",
+          "sender": "ai",
+          "text": "The requested information is not present in the uploaded documents. The provided context for `sample_test.pdf` only indicates that it contains visual or structured data and its content is indexed for reference, but the actual content for summarization is not provided.",
+          "timestamp": "2026-07-27T13:28:40.036Z",
+          "sources": [
+            {
+              "docName": "sample_test.pdf",
+              "pageNumber": 1,
+              "snippet": "Document Title: sample_test.pdf. Note: This document contains visual or structured data. Content indexed for reference....",
+              "score": 0.25
+            }
+          ]
+        },
+        {
+          "id": "msg_1785158933864_usr",
+          "sender": "user",
+          "text": "What is supervised learning according to the uploaded PDF?",
+          "timestamp": "2026-07-27T13:28:53.864Z"
+        },
+        {
+          "id": "msg_1785158935585_ai",
+          "sender": "ai",
+          "text": "According to the uploaded PDF:\n\n*   **Supervised learning** uses labeled training data to predict outcomes such as classification and regression (Machine_Learning_Course.pdf, Page 1).",
+          "timestamp": "2026-07-27T13:28:55.585Z",
+          "sources": [
+            {
+              "docName": "Machine_Learning_Course.pdf",
+              "pageNumber": 1,
+              "snippet": "%PDF-1.4 1 0 obj /Type/Catalog/Pages 2 0 R endobj 2 0 obj /Type/Pages/Count 1/Kids[3 0 R] endobj 3 0 obj /Type/Page/MediaBox[0 0 612 792]/Parent 2 0 R/Resources var/F1 4 0 R /Conte...",
+              "score": 0.43
+            },
+            {
+              "docName": "sample_test.pdf",
+              "pageNumber": 1,
+              "snippet": "Document Title: sample_test.pdf. Note: This document contains visual or structured data. Content indexed for reference....",
+              "score": 0.14
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "%PDF-1.4 % /Type /Catalog /Names /PageLabels /Nums [0 2 0 R] /Outlines null /Pages 3 0 R /OpenAction 4 0 R endobj 5 0 obj /Creator FEFF0047006F006F0067006C0065 endobj 2 0 obj /S /D...",
+              "score": 0.14
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "/CS /DeviceRGB endobj 57 0 obj /Type /Page /Parent 3 0 R /MediaBox [0 0 720 540] /Contents 161 0 R /Resources 162 0 R /Annots [] /Group /S /Transparency /CS /DeviceRGB endobj 58 0 ...",
+              "score": 0.14
+            }
+          ]
+        },
+        {
+          "id": "msg_1785159187649_usr",
+          "sender": "user",
+          "text": "What is supervised learning?",
+          "timestamp": "2026-07-27T13:33:07.649Z"
+        },
+        {
+          "id": "msg_1785159189015_ai",
+          "sender": "ai",
+          "text": "**Supervised Learning**\n\nSupervised learning is a type of machine learning that utilizes **labeled training data** to predict various outcomes. These outcomes typically fall into categories such as **classification** and **regression** [Document: Machine_Learning_Course.pdf, Page 1].",
+          "timestamp": "2026-07-27T13:33:09.015Z",
+          "sources": [
+            {
+              "docName": "Machine_Learning_Course.pdf",
+              "pageNumber": 1,
+              "snippet": "%PDF-1.4 1 0 obj /Type/Catalog/Pages 2 0 R endobj 2 0 obj /Type/Pages/Count 1/Kids[3 0 R] endobj 3 0 obj /Type/Page/MediaBox[0 0 612 792]/Parent 2 0 R/Resources var/F1 4 0 R /Conte...",
+              "score": 2.3
+            }
+          ]
+        },
+        {
+          "id": "msg_1785159336641_usr",
+          "sender": "user",
+          "text": "What is supervised learning?",
+          "timestamp": "2026-07-27T13:35:36.641Z"
+        },
+        {
+          "id": "msg_1785159340235_ai",
+          "sender": "ai",
+          "text": "**Supervised learning** is a method within Machine Learning that utilizes **labeled training data** to predict various outcomes. These outcomes can include tasks such as **classification** and **regression** [Document: Machine_Learning_Course.pdf, Page 1].",
+          "timestamp": "2026-07-27T13:35:40.235Z",
+          "sources": [
+            {
+              "docName": "Machine_Learning_Course.pdf",
+              "pageNumber": 1,
+              "snippet": "%PDF-1.4 1 0 obj /Type/Catalog/Pages 2 0 R endobj 2 0 obj /Type/Pages/Count 1/Kids[3 0 R] endobj 3 0 obj /Type/Page/MediaBox[0 0 612 792]/Parent 2 0 R/Resources var/F1 4 0 R /Conte...",
+              "score": 2.3
+            }
+          ]
+        },
+        {
+          "id": "msg_1785159473474_usr",
+          "sender": "user",
+          "text": "What is supervised learning?",
+          "timestamp": "2026-07-27T13:37:53.474Z"
+        },
+        {
+          "id": "msg_1785159476359_ai",
+          "sender": "ai",
+          "text": "**Supervised learning** is a type of machine learning that utilizes **labeled training data** to predict various outcomes. Its primary goal is to learn a function that maps an input to an output based on example input-output pairs [Document: Machine_Learning_Course.pdf, Page 1].\n\nKey characteristics and applications of supervised learning include:\n*   It relies on **labeled training data**, meaning the input data comes with the correct output already known [Document: Machine_Learning_Course.pdf, Page 1].\n*   It is used to **predict outcomes** [Document: Machine_Learning_Course.pdf, Page 1].\n*   Common types of problems solved by supervised learning are **classification** (predicting a categorical label) and **regression** (predicting a continuous value) [Document: Machine_Learning_Course.pdf, Page 1].",
+          "timestamp": "2026-07-27T13:37:56.359Z",
+          "sources": [
+            {
+              "docName": "Machine_Learning_Course.pdf",
+              "pageNumber": 1,
+              "snippet": "%PDF-1.4 1 0 obj /Type/Catalog/Pages 2 0 R endobj 2 0 obj /Type/Pages/Count 1/Kids[3 0 R] endobj 3 0 obj /Type/Page/MediaBox[0 0 612 792]/Parent 2 0 R/Resources var/F1 4 0 R /Conte...",
+              "score": 2.3
+            }
+          ]
+        },
+        {
+          "id": "msg_1785159741414_usr",
+          "sender": "user",
+          "text": "What is supervised learning?",
+          "timestamp": "2026-07-27T13:42:21.414Z"
+        },
+        {
+          "id": "msg_1785159997251_usr",
+          "sender": "user",
+          "text": "What is supervised learning?",
+          "timestamp": "2026-07-27T13:46:37.251Z"
+        },
+        {
+          "id": "msg_1785159997999_ai",
+          "sender": "ai",
+          "text": "### Extracted Information from Knowledge Base\n\n*Below is the exact relevant excerpt extracted from your uploaded document **Machine_Learning_Course.pdf** (Page 1):*\n\n---\n\nMachine Learning 101: Supervised learning uses labeled training data to predict outcomes like cl\n\n---\n\n*Citation: [Document: Machine_Learning_Course.pdf, Page 1]*",
+          "timestamp": "2026-07-27T13:46:37.999Z",
+          "sources": [
+            {
+              "docName": "Machine_Learning_Course.pdf",
+              "pageNumber": 1,
+              "snippet": "Machine Learning 101: Supervised learning uses labeled training data to predict outcomes like cl",
+              "score": 2.3
+            }
+          ]
+        },
+        {
+          "id": "msg_1786437744537_usr",
+          "sender": "user",
+          "text": "biosphere materials",
+          "timestamp": "2026-08-11T08:42:24.537Z"
+        },
+        {
+          "id": "msg_1786437745591_ai",
+          "sender": "ai",
+          "text": "Based on the uploaded document \"Nature-Bioinspired Materials and Mechanisms.pdf,\" I found information related to biosphere materials.\n\nThe document mentions various materials that are inspired by nature and have self-cleaning properties. Some of these materials include:\n\n* Manganese oxide polystyrene (MnO2/PS) nano-composite\n* Zinc oxide polystyrene (ZnO/PS) nano-composite\n* Precipitated calcium carbonate\n* Carbon nano-tube structures\n* Silica nano-coating\n\nThese materials are mentioned as examples of superhydrophobic coatings that can be used to create self-cleaning surfaces (Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 13).\n\nAdditionally, the document highlights the importance of low surface energy in creating self-cleaning surfaces. Materials with low surface energy, such as hydrophobic or oleophobic coatings, can repel water, oils, and other substances, preventing them from adhering to the surface (Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 16).\n\nThese biosphere-inspired materials have various applications, including in architecture, solar panels, and the automotive industry, where they can help reduce the need for frequent cleaning and maintenance (Document: Nature-Bioinspired Materials and Mechanisms.pdf, Page 17).",
+          "timestamp": "2026-08-11T08:42:25.591Z",
+          "sources": [
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 1,
+              "snippet": "Nature-Bioinspired Materials and\nMechanisms",
+              "score": 1.55
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 13,
+              "snippet": "THE PRINCIPLE SUPER HYDROPHOBIC SURFACES\nθ\nθ<10°\nsuperhydrophilic\nθ<90°\nhydrophilic\nθ>90°\nhydrophobic\nθ>150°\nsuperhydrophobic\nSuperhydrophobic coating can be made from many differe...",
+              "score": 1.55
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 16,
+              "snippet": "akdown of the principle:\n* Low Surface Energy: Self-cleaning surfaces often have low surface energy, which means they have a reduced affinity for liquid and solid particles. Materi...",
+              "score": 1.55
+            },
+            {
+              "docName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+              "pageNumber": 17,
+              "snippet": "Applications of Self-Cleaning Surfaces and Coatings\nSelf-cleaning surfaces have a wide range of applications in various industries. Here are some notable examples:\n* Architecture a...",
+              "score": 1.55
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "exams": [
+    {
+      "id": "exam_1785165260571_5bta",
+      "title": "Unit Assessment - RAG & Vector Search",
+      "description": "Automated assessment generated from uploaded course materials.",
+      "sourceDocIds": [
+        "doc_1785158634770_o0kc"
+      ],
+      "docNames": [
+        "Nature-Bioinspired Materials and Mechanisms.pdf"
+      ],
+      "totalQuestions": 5,
+      "durationMinutes": 15,
+      "questions": [
+        {
+          "id": "q_1785165260571_0",
+          "type": "mcq",
+          "question": "What is the primary purpose of echolocation in animals?",
+          "options": [
+            "To communicate with other animals",
+            "To navigate and find food",
+            "To defend against predators",
+            "To regulate body temperature"
+          ],
+          "correctAnswer": "To navigate and find food",
+          "explanation": "Echolocation is a physiological process used by animals to locate distant or invisible objects by emitting sound waves and receiving echoes. This process is essential for navigation, obstacle avoidance, food procurement, and social interactions.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 2,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        },
+        {
+          "id": "q_1785165260571_1",
+          "type": "short",
+          "question": "Describe the steps involved in echolocation.",
+          "options": [],
+          "correctAnswer": "Emitting sound waves, sound wave reflection, reception of echo, interpretation of echo",
+          "explanation": "Echolocation involves a series of steps, including emitting sound waves, receiving echoes, and interpreting the information provided by the echoes to create a mental image of the object's location and characteristics.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 3,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        },
+        {
+          "id": "q_1785165260571_2",
+          "type": "long",
+          "question": "Explain how ultrasonography uses the principles of echolocation to produce images of internal organs and tissues.",
+          "options": [],
+          "correctAnswer": "Ultrasonography uses high-frequency sound waves to create images of internal organs and tissues. The transducer emits sound waves and receives echoes in real-time, allowing for the visualization of moving structures, such as the beating of the heart or the flow of blood through blood vessels.",
+          "explanation": "Ultrasonography is a non-invasive imaging technique that uses the principles of echolocation to produce images of internal organs and tissues. The transducer emits high-frequency sound waves and receives echoes in real-time, allowing for the visualization of moving structures.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 5,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 20
+        },
+        {
+          "id": "q_1785165260571_3",
+          "type": "true_false",
+          "question": "Sonar technology uses light waves to detect and locate underwater objects.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correctAnswer": "False",
+          "explanation": "Sonar technology uses sound waves to detect and locate underwater objects.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 9,
+          "difficulty": "Medium",
+          "bloomsLevel": "Remembering",
+          "points": 5
+        },
+        {
+          "id": "q_1785165260571_4",
+          "type": "fill_in_blank",
+          "question": "The speed of sound in water depends on the _______________________, _______________________, and _______________________ of the water.",
+          "options": [],
+          "correctAnswer": "temperature, pressure, salinity",
+          "explanation": "The speed of sound in water depends on the temperature, pressure, and salinity of the water.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 10,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        }
+      ],
+      "createdBy": "usr_admin_1",
+      "createdAt": "2026-07-27T15:14:20.571Z"
+    },
+    {
+      "id": "exam_1786437348178_rw5r",
+      "title": "give me a exam",
+      "description": "Exam generated via voice assistant",
+      "sourceDocIds": [
+        "doc_1785158549285_1tgu",
+        "doc_1785158634770_o0kc",
+        "doc_1785158926507_qgf8"
+      ],
+      "docNames": [
+        "sample_test.pdf",
+        "Nature-Bioinspired Materials and Mechanisms.pdf",
+        "Machine_Learning_Course.pdf"
+      ],
+      "totalQuestions": 5,
+      "durationMinutes": 15,
+      "questions": [
+        {
+          "id": "q_1786437348178_0",
+          "type": "mcq",
+          "question": "What is the primary function of echolocation in animals?",
+          "options": [
+            "To produce high-frequency sound waves",
+            "To navigate and find food in complete darkness",
+            "To communicate with other animals",
+            "To detect predators"
+          ],
+          "correctAnswer": "B",
+          "explanation": "Echolocation is a physiological process used by animals to locate distant or invisible objects by means of sound waves reflected back to the emitter. This process is crucial for navigation and finding food in complete darkness.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 2,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 5
+        },
+        {
+          "id": "q_1786437348178_1",
+          "type": "short",
+          "question": "Describe the steps involved in echolocation.",
+          "options": [],
+          "correctAnswer": "Emitting sound waves, Sound wave reflection, Reception of echo, Interpretation of echo",
+          "explanation": "Echolocation involves a series of steps, including emitting sound waves, reflecting off objects, receiving echoes, and interpreting the information provided by the echoes.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 3,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        },
+        {
+          "id": "q_1786437348178_2",
+          "type": "long",
+          "question": "Explain how ultrasonography uses the principles of echolocation to produce images of internal organs and tissues.",
+          "options": [],
+          "correctAnswer": "Ultrasonography uses high-frequency sound waves to create images of internal organs and tissues. The transducer emits sound waves and receives echoes in real-time, allowing for the visualization of moving structures, such as the beating of the heart or the flow of blood through blood vessels.",
+          "explanation": "Ultrasonography is a non-invasive imaging technique that uses the principles of echolocation to produce images of internal organs and tissues. The transducer emits high-frequency sound waves and receives echoes in real-time, allowing for the visualization of moving structures.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 5,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 20
+        },
+        {
+          "id": "q_1786437348178_3",
+          "type": "true_false",
+          "question": "Is echolocation used only for navigation and finding food?",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correctAnswer": "False",
+          "explanation": "Echolocation is also used for social interactions and obstacle avoidance.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 2,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 5
+        },
+        {
+          "id": "q_1786437348178_4",
+          "type": "fill_in_blank",
+          "question": "The speed of sound in water depends on the ______________________, ______________________, and ______________________ of the water.",
+          "options": [],
+          "correctAnswer": "temperature, pressure, and salinity",
+          "explanation": "The speed of sound in water depends on the temperature, pressure, and salinity of the water.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 10,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        }
+      ],
+      "createdBy": "usr_admin_1",
+      "createdAt": "2026-08-11T08:35:48.178Z"
+    },
+    {
+      "id": "exam_1786437385318_vc6k",
+      "title": "Unit Assessment - RAG & Vector Search",
+      "description": "Automated assessment generated from uploaded course materials.",
+      "sourceDocIds": [
+        "doc_1785158549285_1tgu"
+      ],
+      "docNames": [
+        "sample_test.pdf"
+      ],
+      "totalQuestions": 5,
+      "durationMinutes": 15,
+      "questions": [
+        {
+          "id": "q_1786437385318_0",
+          "type": "mcq",
+          "question": "Based on sample_test.pdf (Page 1): What key concept is addressed in the excerpt \"Document Title: sample_test.pdf. Note: This document contain...\"?",
+          "options": [
+            "Document Title: sample_test.pdf. Note: T",
+            "Alternative concept A",
+            "Alternative concept B",
+            "Alternative concept C"
+          ],
+          "correctAnswer": "Document Title: sample_test.pdf. Note: T",
+          "explanation": "Refers to Page 1 of sample_test.pdf.",
+          "sourceDocName": "sample_test.pdf",
+          "sourcePage": 1,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        },
+        {
+          "id": "q_1786437385318_1",
+          "type": "short",
+          "question": "Based on sample_test.pdf (Page 1): What key concept is addressed in the excerpt \"Document Title: sample_test.pdf. Note: This document contain...\"?",
+          "options": [],
+          "correctAnswer": "Document Title: sample_test.pdf. Note: T",
+          "explanation": "Refers to Page 1 of sample_test.pdf.",
+          "sourceDocName": "sample_test.pdf",
+          "sourcePage": 1,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        },
+        {
+          "id": "q_1786437385318_2",
+          "type": "mcq",
+          "question": "Based on sample_test.pdf (Page 1): What key concept is addressed in the excerpt \"Document Title: sample_test.pdf. Note: This document contain...\"?",
+          "options": [
+            "Document Title: sample_test.pdf. Note: T",
+            "Alternative concept A",
+            "Alternative concept B",
+            "Alternative concept C"
+          ],
+          "correctAnswer": "Document Title: sample_test.pdf. Note: T",
+          "explanation": "Refers to Page 1 of sample_test.pdf.",
+          "sourceDocName": "sample_test.pdf",
+          "sourcePage": 1,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        },
+        {
+          "id": "q_1786437385318_3",
+          "type": "short",
+          "question": "Based on sample_test.pdf (Page 1): What key concept is addressed in the excerpt \"Document Title: sample_test.pdf. Note: This document contain...\"?",
+          "options": [],
+          "correctAnswer": "Document Title: sample_test.pdf. Note: T",
+          "explanation": "Refers to Page 1 of sample_test.pdf.",
+          "sourceDocName": "sample_test.pdf",
+          "sourcePage": 1,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        },
+        {
+          "id": "q_1786437385318_4",
+          "type": "mcq",
+          "question": "Based on sample_test.pdf (Page 1): What key concept is addressed in the excerpt \"Document Title: sample_test.pdf. Note: This document contain...\"?",
+          "options": [
+            "Document Title: sample_test.pdf. Note: T",
+            "Alternative concept A",
+            "Alternative concept B",
+            "Alternative concept C"
+          ],
+          "correctAnswer": "Document Title: sample_test.pdf. Note: T",
+          "explanation": "Refers to Page 1 of sample_test.pdf.",
+          "sourceDocName": "sample_test.pdf",
+          "sourcePage": 1,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        }
+      ],
+      "createdBy": "usr_admin_1",
+      "createdAt": "2026-08-11T08:36:25.318Z"
+    },
+    {
+      "id": "exam_1786437427144_47s0",
+      "title": "create an exam for me",
+      "description": "Exam generated via voice assistant",
+      "sourceDocIds": [
+        "doc_1785158549285_1tgu",
+        "doc_1785158634770_o0kc",
+        "doc_1785158926507_qgf8"
+      ],
+      "docNames": [
+        "sample_test.pdf",
+        "Nature-Bioinspired Materials and Mechanisms.pdf",
+        "Machine_Learning_Course.pdf"
+      ],
+      "totalQuestions": 5,
+      "durationMinutes": 15,
+      "questions": [
+        {
+          "id": "q_1786437427144_0",
+          "type": "mcq",
+          "question": "What is the primary function of echolocation in animals?",
+          "options": [
+            "To produce high-frequency sound waves",
+            "To navigate and find food in complete darkness",
+            "To communicate with other animals",
+            "To detect predators"
+          ],
+          "correctAnswer": "B",
+          "explanation": "Echolocation is a physiological process used by animals to locate distant or invisible objects by means of sound waves reflected back to the emitter. This process is crucial for navigation, food procurement, and social interactions in complete darkness.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 2,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 5
+        },
+        {
+          "id": "q_1786437427144_1",
+          "type": "short",
+          "question": "Describe the steps involved in echolocation.",
+          "options": [],
+          "correctAnswer": "Emitting sound waves, Sound wave reflection, Reception of echo, Interpretation of echo",
+          "explanation": "Echolocation involves a series of steps: emitting sound waves, reflecting off objects, receiving echoes, and interpreting the information provided by the echoes to create a mental image of the object's location and characteristics.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 3,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        },
+        {
+          "id": "q_1786437427144_2",
+          "type": "long",
+          "question": "Explain the application of echolocation in ultrasonography.",
+          "options": [],
+          "correctAnswer": "Ultrasonography uses the principles of echolocation to produce images of internal organs and tissues. The transducer emits sound waves and receives echoes in real-time, allowing for the visualization of moving structures, such as the beating of the heart or the flow of blood through blood vessels.",
+          "explanation": "Ultrasonography is a non-invasive imaging technique that uses high-frequency sound waves to create images of the body's internal structures. The principle behind sonography is based on the way sound waves travel through different tissues in the body and receive the echoes.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 6,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 20
+        },
+        {
+          "id": "q_1786437427144_3",
+          "type": "true_false",
+          "question": "Is echolocation used for communication between animals?",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correctAnswer": "False",
+          "explanation": "Echolocation is primarily used for navigation, food procurement, and social interactions, but not for communication between animals.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 2,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 5
+        },
+        {
+          "id": "q_1786437427144_4",
+          "type": "fill_in_blank",
+          "question": "The speed of sound in water depends on the ______________________, pressure, and salinity of the water.",
+          "options": [],
+          "correctAnswer": "temperature",
+          "explanation": "The speed of sound in water is affected by temperature, pressure, and salinity.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 10,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        }
+      ],
+      "createdBy": "usr_admin_1",
+      "createdAt": "2026-08-11T08:37:07.144Z"
+    },
+    {
+      "id": "exam_1786440770059_0ien",
+      "title": "hey create an exam based on nature and biosphere materials",
+      "description": "Exam generated via voice assistant",
+      "sourceDocIds": [
+        "doc_1785158549285_1tgu",
+        "doc_1785158634770_o0kc",
+        "doc_1785158926507_qgf8"
+      ],
+      "docNames": [
+        "sample_test.pdf",
+        "Nature-Bioinspired Materials and Mechanisms.pdf",
+        "Machine_Learning_Course.pdf"
+      ],
+      "totalQuestions": 5,
+      "durationMinutes": 15,
+      "questions": [
+        {
+          "id": "q_1786440770059_0",
+          "type": "mcq",
+          "question": "What is the primary function of echolocation in animals?",
+          "options": [
+            "Locating prey",
+            "Avoiding obstacles",
+            "Social interactions",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "Echolocation is a physiological process used by animals to locate distant or invisible objects, avoid obstacles, find food, and engage in social interactions.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 2,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 5
+        },
+        {
+          "id": "q_1786440770059_1",
+          "type": "short",
+          "question": "Describe the steps involved in echolocation.",
+          "options": [],
+          "correctAnswer": "Emitting sound waves, sound wave reflection, reception of echo, interpretation of echo.",
+          "explanation": "Echolocation involves a series of steps, including emitting sound waves, reflecting off objects, receiving echoes, and interpreting the information to create a mental image of the object's location and characteristics.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 3,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        },
+        {
+          "id": "q_1786440770059_2",
+          "type": "long",
+          "question": "Explain how ultrasonography uses the principles of echolocation to produce images of internal organs and tissues.",
+          "options": [],
+          "correctAnswer": "Ultrasonography uses high-frequency sound waves to create images of internal organs and tissues. The transducer emits sound waves and receives echoes in real-time, allowing for the visualization of moving structures, such as the beating of the heart or the flow of blood through blood vessels.",
+          "explanation": "Ultrasonography is a non-invasive imaging technique that uses the principles of echolocation to produce images of internal organs and tissues. The transducer emits high-frequency sound waves and receives echoes in real-time, allowing for the visualization of moving structures, such as the beating of the heart or the flow of blood through blood vessels.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 6,
+          "difficulty": "Medium",
+          "bloomsLevel": "Analyzing",
+          "points": 20
+        },
+        {
+          "id": "q_1786440770059_3",
+          "type": "true_false",
+          "question": "Is echolocation used for navigation and finding food in complete darkness?",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correctAnswer": "True",
+          "explanation": "Echolocation is an incredibly effective way for animals to navigate and find food, even in complete darkness.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 3,
+          "difficulty": "Medium",
+          "bloomsLevel": "Remembering",
+          "points": 5
+        },
+        {
+          "id": "q_1786440770059_4",
+          "type": "fill_in_blank",
+          "question": "The speed of sound in water depends on the ______________________, pressure, and salinity of the water.",
+          "options": [],
+          "correctAnswer": "temperature",
+          "explanation": "The speed of sound in water depends on the temperature, pressure, and salinity of the water.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 10,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        }
+      ],
+      "createdBy": "usr_admin_1",
+      "createdAt": "2026-08-11T09:32:50.059Z"
+    },
+    {
+      "id": "exam_1786441194989_zq65",
+      "title": "a create an exam",
+      "description": "Exam generated via voice assistant",
+      "sourceDocIds": [
+        "doc_1785158549285_1tgu",
+        "doc_1785158634770_o0kc",
+        "doc_1785158926507_qgf8"
+      ],
+      "docNames": [
+        "sample_test.pdf",
+        "Nature-Bioinspired Materials and Mechanisms.pdf",
+        "Machine_Learning_Course.pdf"
+      ],
+      "totalQuestions": 5,
+      "durationMinutes": 15,
+      "questions": [
+        {
+          "id": "q_1786441194989_0",
+          "type": "mcq",
+          "question": "What is the primary function of echolocation in animals?",
+          "options": [
+            "To produce high-frequency sound waves",
+            "To navigate and find food in complete darkness",
+            "To detect and locate underwater objects",
+            "To create images of internal organs and tissues"
+          ],
+          "correctAnswer": "To navigate and find food in complete darkness",
+          "explanation": "Echolocation is a physiological process used by animals to locate distant or invisible objects by means of sound waves reflected back to the emitter. This process is primarily used for navigation and finding food, even in complete darkness.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 2,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 5
+        },
+        {
+          "id": "q_1786441194989_1",
+          "type": "short",
+          "question": "Describe the steps involved in echolocation.",
+          "options": [],
+          "correctAnswer": "Emitting sound waves, Sound wave reflection, Reception of echo, Interpretation of echo",
+          "explanation": "Echolocation involves a series of steps, including emitting sound waves, reflecting off objects, receiving echoes, and interpreting the information provided by the echoes to create a mental image of the object's location and characteristics.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 3,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        },
+        {
+          "id": "q_1786441194989_2",
+          "type": "long",
+          "question": "Explain how ultrasonography uses the principles of echolocation to produce images of internal organs and tissues.",
+          "options": [],
+          "correctAnswer": "Ultrasonography uses high-frequency sound waves to create images of internal organs and tissues. The transducer emits sound waves and receives echoes in real-time, allowing for the visualization of moving structures, such as the beating of the heart or the flow of blood through blood vessels.",
+          "explanation": "Ultrasonography is a non-invasive imaging technique that uses the principles of echolocation to produce images of internal organs and tissues. The transducer emits high-frequency sound waves and receives echoes in real-time, allowing for the visualization of moving structures, such as the beating of the heart or the flow of blood through blood vessels.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 6,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 20
+        },
+        {
+          "id": "q_1786441194989_3",
+          "type": "true_false",
+          "question": "Is echolocation used primarily for navigation and finding food in complete darkness?",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correctAnswer": "True",
+          "explanation": "Echolocation is a physiological process used by animals to locate distant or invisible objects by means of sound waves reflected back to the emitter. This process is primarily used for navigation and finding food, even in complete darkness.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 2,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 5
+        },
+        {
+          "id": "q_1786441194989_4",
+          "type": "fill_in_blank",
+          "question": "The speed of sound in water depends on the ______________, pressure, and salinity of the water.",
+          "options": [],
+          "correctAnswer": "temperature",
+          "explanation": "The speed of sound in water depends on the temperature, pressure, and salinity of the water.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 10,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 5
+        }
+      ],
+      "createdBy": "usr_admin_1",
+      "createdAt": "2026-08-11T09:39:54.989Z"
+    },
+    {
+      "id": "exam_1786441294138_9odu",
+      "title": "create an exam based on nature and biosphere materials",
+      "description": "Exam generated via voice assistant",
+      "sourceDocIds": [
+        "doc_1785158549285_1tgu",
+        "doc_1785158634770_o0kc",
+        "doc_1785158926507_qgf8"
+      ],
+      "docNames": [
+        "sample_test.pdf",
+        "Nature-Bioinspired Materials and Mechanisms.pdf",
+        "Machine_Learning_Course.pdf"
+      ],
+      "totalQuestions": 5,
+      "durationMinutes": 15,
+      "questions": [
+        {
+          "id": "q_1786441294138_0",
+          "type": "mcq",
+          "question": "What is the primary function of echolocation in animals?",
+          "options": [
+            "Locomotion",
+            "Respiration",
+            "Communication",
+            "Object detection and navigation"
+          ],
+          "correctAnswer": "Object detection and navigation",
+          "explanation": "Echolocation is a physiological process used by animals to locate distant or invisible objects by emitting sound waves and receiving echoes.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 2,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 5
+        },
+        {
+          "id": "q_1786441294138_1",
+          "type": "short",
+          "question": "Describe the steps involved in echolocation.",
+          "options": [],
+          "correctAnswer": "Emitting sound waves, sound wave reflection, reception of echo, interpretation of echo.",
+          "explanation": "Echolocation involves a series of steps including emitting sound waves, reflecting off objects, receiving echoes, and interpreting the information to create a mental image of the object's location and characteristics.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 3,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        },
+        {
+          "id": "q_1786441294138_2",
+          "type": "long",
+          "question": "Discuss the application of echolocation in medical imaging, specifically in ultrasonography.",
+          "options": [],
+          "correctAnswer": "Ultrasonography uses high-frequency sound waves to create images of internal organs and tissues, allowing for non-invasive diagnostic purposes such as monitoring fetal development and detecting tumors.",
+          "explanation": "Ultrasonography is a medical imaging technique that uses the principles of echolocation to produce images of internal organs and tissues. It involves emitting high-frequency sound waves and receiving echoes to create images of the body's internal structures.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 5,
+          "difficulty": "Medium",
+          "bloomsLevel": "Analyzing",
+          "points": 20
+        },
+        {
+          "id": "q_1786441294138_3",
+          "type": "true_false",
+          "question": "Is echolocation used for navigation and food procurement in complete darkness?",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correctAnswer": "True",
+          "explanation": "Echolocation is an effective way for animals to navigate and find food even in complete darkness.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 3,
+          "difficulty": "Medium",
+          "bloomsLevel": "Remembering",
+          "points": 5
+        },
+        {
+          "id": "q_1786441294138_4",
+          "type": "fill_in_blank",
+          "question": "The working principle of sonar technology is based on the ______________ of sound waves.",
+          "options": [],
+          "correctAnswer": "reflection",
+          "explanation": "Sonar technology uses sound waves to detect and locate underwater objects, and its working principle is based on the reflection of sound waves.",
+          "sourceDocName": "Nature-Bioinspired Materials and Mechanisms.pdf",
+          "sourcePage": 10,
+          "difficulty": "Medium",
+          "bloomsLevel": "Understanding",
+          "points": 10
+        }
+      ],
+      "createdBy": "usr_admin_1",
+      "createdAt": "2026-08-11T09:41:34.138Z"
+    }
+  ],
+  "attempts": [
+    {
+      "id": "att_1785165501173_zrt3",
+      "examId": "exam_1785165260571_5bta",
+      "examTitle": "Unit Assessment - RAG & Vector Search",
+      "studentId": "usr_admin_1",
+      "studentName": "System Admin",
+      "startedAt": "2026-07-27T15:18:21.173Z",
+      "submittedAt": "2026-07-27T15:18:21.173Z",
+      "score": 0,
+      "totalPossibleScore": 55,
+      "percentage": 0,
+      "answers": [
+        {
+          "questionId": "q_1785165260571_0",
+          "studentAnswer": "To communicate with other animals",
+          "isCorrect": false,
+          "scoreEarned": 0,
+          "aiFeedback": "Incorrect. Expected: \"To navigate and find food\". Explanation: Echolocation is a physiological process used by animals to locate distant or invisible objects by emitting sound waves and receiving echoes. This process is essential for navigation, obstacle avoidance, food procurement, and social interactions."
+        },
+        {
+          "questionId": "q_1785165260571_1",
+          "studentAnswer": "",
+          "isCorrect": false,
+          "scoreEarned": 0,
+          "aiFeedback": "No response provided."
+        },
+        {
+          "questionId": "q_1785165260571_2",
+          "studentAnswer": "",
+          "isCorrect": false,
+          "scoreEarned": 0,
+          "aiFeedback": "No response provided."
+        },
+        {
+          "questionId": "q_1785165260571_3",
+          "studentAnswer": "",
+          "isCorrect": false,
+          "scoreEarned": 0,
+          "aiFeedback": "No response provided."
+        },
+        {
+          "questionId": "q_1785165260571_4",
+          "studentAnswer": "",
+          "isCorrect": false,
+          "scoreEarned": 0,
+          "aiFeedback": "No response provided."
+        }
+      ],
+      "aiOverallFeedback": "Completed exam with 0% score. Review suggested weak topics to strengthen key concepts.",
+      "weakTopics": [
+        "Nature-Bioinspired Materials and Mechanisms.pdf (Page 2)",
+        "Nature-Bioinspired Materials and Mechanisms.pdf (Page 3)",
+        "Nature-Bioinspired Materials and Mechanisms.pdf (Page 5)",
+        "Nature-Bioinspired Materials and Mechanisms.pdf (Page 9)",
+        "Nature-Bioinspired Materials and Mechanisms.pdf (Page 10)"
+      ],
+      "strongTopics": []
+    }
+  ],
+  "activityLogs": [
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"Exam created: create an exam based on na...\"",
+      "id": "log_1786441327829_drbn",
+      "timestamp": "2026-08-11T09:42:07.829Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "generate_exam",
+      "details": "Generated Exam \"create an exam based on nature and biosphere materials\" (5 questions)",
+      "id": "log_1786441294188_v6mq",
+      "timestamp": "2026-08-11T09:41:34.188Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"Exam created: a create an exam (ID: exam...\"",
+      "id": "log_1786441208339_2e7h",
+      "timestamp": "2026-08-11T09:40:08.339Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "generate_exam",
+      "details": "Generated Exam \"a create an exam\" (5 questions)",
+      "id": "log_1786441195009_0bka",
+      "timestamp": "2026-08-11T09:39:55.009Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1786440902673_8vy3",
+      "timestamp": "2026-08-11T09:35:02.673Z"
+    },
+    {
+      "userId": "usr_student_1",
+      "userName": "Alex Rivera",
+      "userRole": "student",
+      "action": "login",
+      "details": "User logged in (student)",
+      "id": "log_1786440840324_a8ik",
+      "timestamp": "2026-08-11T09:34:00.324Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"Exam created: hey create an exam based o...\"",
+      "id": "log_1786440806626_02nm",
+      "timestamp": "2026-08-11T09:33:26.626Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "generate_exam",
+      "details": "Generated Exam \"hey create an exam based on nature and biosphere materials\" (5 questions)",
+      "id": "log_1786440770605_bsha",
+      "timestamp": "2026-08-11T09:32:50.605Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1786438037127_e4fm",
+      "timestamp": "2026-08-11T08:47:17.127Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1786438036966_czx1",
+      "timestamp": "2026-08-11T08:47:16.966Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1786437761411_qge3",
+      "timestamp": "2026-08-11T08:42:41.411Z"
+    },
+    {
+      "userId": "usr_student_1",
+      "userName": "Alex Rivera",
+      "userRole": "student",
+      "action": "chat",
+      "details": "RAG Query: \"biosphere materials...\"",
+      "id": "log_1786437745725_qanc",
+      "timestamp": "2026-08-11T08:42:25.725Z"
+    },
+    {
+      "userId": "usr_student_1",
+      "userName": "Alex Rivera",
+      "userRole": "student",
+      "action": "login",
+      "details": "User logged in (student)",
+      "id": "log_1786437532043_p087",
+      "timestamp": "2026-08-11T08:38:52.043Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1786437518645_qn47",
+      "timestamp": "2026-08-11T08:38:38.645Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1786437518361_h7hl",
+      "timestamp": "2026-08-11T08:38:38.361Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "logout",
+      "details": "User logged out",
+      "id": "log_1786437515667_v6hk",
+      "timestamp": "2026-08-11T08:38:35.667Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"Exam created: create an exam for me (ID:...\"",
+      "id": "log_1786437430945_4xir",
+      "timestamp": "2026-08-11T08:37:10.945Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "generate_exam",
+      "details": "Generated Exam \"create an exam for me\" (5 questions)",
+      "id": "log_1786437427164_9dev",
+      "timestamp": "2026-08-11T08:37:07.164Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"what is eco location...\"",
+      "id": "log_1786437406024_ihr8",
+      "timestamp": "2026-08-11T08:36:46.024Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "generate_exam",
+      "details": "Generated Exam \"Unit Assessment - RAG & Vector Search\" (5 questions)",
+      "id": "log_1786437385321_apun",
+      "timestamp": "2026-08-11T08:36:25.321Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"Exam created: give me a exam (ID: exam_1...\"",
+      "id": "log_1786437381472_0jhg",
+      "timestamp": "2026-08-11T08:36:21.472Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "generate_exam",
+      "details": "Generated Exam \"give me a exam\" (5 questions)",
+      "id": "log_1786437348328_kc8f",
+      "timestamp": "2026-08-11T08:35:48.328Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1786433506811_hidl",
+      "timestamp": "2026-08-11T07:31:46.811Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1786433506668_layj",
+      "timestamp": "2026-08-11T07:31:46.668Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1786433506457_k81f",
+      "timestamp": "2026-08-11T07:31:46.457Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1786433506140_zyuk",
+      "timestamp": "2026-08-11T07:31:46.140Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1785252175914_yoam",
+      "timestamp": "2026-07-28T15:22:55.914Z"
+    },
+    {
+      "userId": "usr_student_1",
+      "userName": "Alex Rivera",
+      "userRole": "student",
+      "action": "login",
+      "details": "User logged in (student)",
+      "id": "log_1785251942328_mw2i",
+      "timestamp": "2026-07-28T15:19:02.329Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1785249932472_nv4g",
+      "timestamp": "2026-07-28T14:45:32.472Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1785249932351_dwj7",
+      "timestamp": "2026-07-28T14:45:32.351Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1785249454957_oo0h",
+      "timestamp": "2026-07-28T14:37:34.957Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1785249454825_n6fw",
+      "timestamp": "2026-07-28T14:37:34.825Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "take_exam",
+      "details": "Submitted Exam \"Unit Assessment - RAG & Vector Search\" - Score: 0%",
+      "id": "log_1785165501189_ncsq",
+      "timestamp": "2026-07-27T15:18:21.189Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "generate_exam",
+      "details": "Generated Exam \"Unit Assessment - RAG & Vector Search\" (5 questions)",
+      "id": "log_1785165260576_xu7n",
+      "timestamp": "2026-07-27T15:14:20.576Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"what is echolocation...\"",
+      "id": "log_1785164262391_tmxv",
+      "timestamp": "2026-07-27T14:57:42.391Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1785164185503_9esi",
+      "timestamp": "2026-07-27T14:56:25.503Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1785164185293_pb1r",
+      "timestamp": "2026-07-27T14:56:25.293Z"
+    },
+    {
+      "userId": "usr_student_1",
+      "userName": "Student User",
+      "userRole": "student",
+      "action": "chat",
+      "details": "RAG Query: \"What is supervised learning?...\"",
+      "id": "log_1785159998001_ljbg",
+      "timestamp": "2026-07-27T13:46:38.001Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"GIVE ME BREIF OF PAGE 24 IN Nature-Bioin...\"",
+      "id": "log_1785159874556_b1nv",
+      "timestamp": "2026-07-27T13:44:34.556Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"GIVE ME BRIEF OF Nature-Bioinspired Mate...\"",
+      "id": "log_1785159843831_ixp5",
+      "timestamp": "2026-07-27T13:44:03.831Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"give me brief of Nature-Bioinspired Mate...\"",
+      "id": "log_1785159548256_vopr",
+      "timestamp": "2026-07-27T13:39:08.256Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"what is echolocation...\"",
+      "id": "log_1785159517425_5ul3",
+      "timestamp": "2026-07-27T13:38:37.425Z"
+    },
+    {
+      "userId": "usr_student_1",
+      "userName": "Student User",
+      "userRole": "student",
+      "action": "chat",
+      "details": "RAG Query: \"What is supervised learning?...\"",
+      "id": "log_1785159476360_bng1",
+      "timestamp": "2026-07-27T13:37:56.360Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"what is echolocation...\"",
+      "id": "log_1785159392309_yfek",
+      "timestamp": "2026-07-27T13:36:32.309Z"
+    },
+    {
+      "userId": "usr_student_1",
+      "userName": "Student User",
+      "userRole": "student",
+      "action": "chat",
+      "details": "RAG Query: \"What is supervised learning?...\"",
+      "id": "log_1785159340235_302n",
+      "timestamp": "2026-07-27T13:35:40.235Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"what is echolocation...\"",
+      "id": "log_1785159255093_i724",
+      "timestamp": "2026-07-27T13:34:15.093Z"
+    },
+    {
+      "userId": "usr_student_1",
+      "userName": "Student User",
+      "userRole": "student",
+      "action": "chat",
+      "details": "RAG Query: \"What is supervised learning?...\"",
+      "id": "log_1785159189016_q0td",
+      "timestamp": "2026-07-27T13:33:09.016Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"what is echolocation...\"",
+      "id": "log_1785159005455_zd9k",
+      "timestamp": "2026-07-27T13:30:05.455Z"
+    },
+    {
+      "userId": "usr_student_1",
+      "userName": "Student User",
+      "userRole": "student",
+      "action": "chat",
+      "details": "RAG Query: \"What is supervised learning according to...\"",
+      "id": "log_1785158935585_18w9",
+      "timestamp": "2026-07-27T13:28:55.585Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "upload_pdf",
+      "details": "Uploaded PDF \"Machine_Learning_Course.pdf\" (1 knowledge chunks)",
+      "id": "log_1785158931192_lq61",
+      "timestamp": "2026-07-27T13:28:51.192Z"
+    },
+    {
+      "userId": "usr_student_1",
+      "userName": "Student User",
+      "userRole": "student",
+      "action": "chat",
+      "details": "RAG Query: \"Summarize the uploaded document...\"",
+      "id": "log_1785158920036_1xrq",
+      "timestamp": "2026-07-27T13:28:40.036Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"echolocation?...\"",
+      "id": "log_1785158790462_qinj",
+      "timestamp": "2026-07-27T13:26:30.462Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"what is echolocation...\"",
+      "id": "log_1785158773739_c6l7",
+      "timestamp": "2026-07-27T13:26:13.739Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"what is nature inspired materials...\"",
+      "id": "log_1785158688828_kz3o",
+      "timestamp": "2026-07-27T13:24:48.828Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "upload_pdf",
+      "details": "Uploaded PDF \"Nature-Bioinspired Materials and Mechanisms.pdf\" (109 knowledge chunks)",
+      "id": "log_1785158639314_sauo",
+      "timestamp": "2026-07-27T13:23:59.314Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "upload_pdf",
+      "details": "Uploaded PDF \"sample_test.pdf\" (1 knowledge chunks)",
+      "id": "log_1785158549286_hexf",
+      "timestamp": "2026-07-27T13:22:29.286Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "chat",
+      "details": "RAG Query: \"what is nature insprired materials...\"",
+      "id": "log_1785158209115_gzxr",
+      "timestamp": "2026-07-27T13:16:49.115Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1785157816231_sm3b",
+      "timestamp": "2026-07-27T13:10:16.231Z"
+    },
+    {
+      "userId": "usr_student_1",
+      "userName": "Alex Rivera",
+      "userRole": "student",
+      "action": "login",
+      "details": "User logged in (student)",
+      "id": "log_1785157801289_fxua",
+      "timestamp": "2026-07-27T13:10:01.289Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1785157556251_l5ha",
+      "timestamp": "2026-07-27T13:05:56.251Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1785157556145_ygmy",
+      "timestamp": "2026-07-27T13:05:56.145Z"
+    },
+    {
+      "id": "log_init",
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "Talent Sphere AI Database Initialized",
+      "timestamp": "2026-07-27T13:05:23.579Z"
+    },
+    {
+      "userId": "usr_student_1",
+      "userName": "Alex Rivera",
+      "userRole": "student",
+      "action": "login",
+      "details": "User logged in (student)",
+      "id": "log_1786441921330_jb12",
+      "timestamp": "2026-08-11T09:52:01.330Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "login",
+      "details": "User logged in (admin)",
+      "id": "log_1786441985754_9ayk",
+      "timestamp": "2026-08-11T09:53:05.754Z"
+    },
+    {
+      "userId": "usr_admin_1",
+      "userName": "System Admin",
+      "userRole": "admin",
+      "action": "settings_update",
+      "details": "Created notification: exam",
+      "id": "log_1786442013636_615m",
+      "timestamp": "2026-08-11T09:53:33.636Z"
+    },
+    {
+      "userId": "usr_student_1",
+      "userName": "Alex Rivera",
+      "userRole": "student",
+      "action": "login",
+      "details": "User logged in (student)",
+      "id": "log_1786442032361_9qvt",
+      "timestamp": "2026-08-11T09:53:52.361Z"
+    }
+  ],
+  "settings": {
+    "llmModel": "gemini-2.5-flash",
+    "embeddingModel": "text-embedding-004",
+    "temperature": 0.3,
+    "chunkSize": 800,
+    "chunkOverlap": 150,
+    "topKRetrieval": 4,
+    "theme": "dark"
+  },
+  "notifications": [
+    {
+      "id": "note_1786442013608_6ka2",
+      "title": "exam",
+      "message": "complete the exam",
+      "createdAt": "2026-08-11T09:53:33.608Z",
+      "createdBy": "usr_admin_1",
+      "target": "all",
+      "readBy": []
+    }
+  ]
+}

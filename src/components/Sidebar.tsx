@@ -64,6 +64,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
   ];
 
   const items = role === 'admin' ? adminNav : studentNav;
+  const accessibleTabs = role === 'admin'
+    ? items
+    : items.filter((item) => !['user-management', 'activity-logs', 'settings'].includes(item.id));
 
   return (
     <aside
@@ -116,7 +119,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Navigation Links */}
       <nav className="flex-1 px-3 py-2 space-y-1 overflow-y-auto">
-        {items.map((item) => {
+        {accessibleTabs.map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.id;
           return (

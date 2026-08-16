@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% set active_page = 'documents' %}
+{% block title %}Documents · Talent Sphere Elevate{% endblock %}
+{% block page_title %}Document Library{% endblock %}
+{% block content %}
+
+<div class="section-h">
+  <h2>📄 Document Library</h2>
+  <p>Every document indexed into the knowledge base, with in-app preview.</p>
+</div>
+
+{% if not documents %}
+  <div class="empty-state card static">
+    <div class="e-icon">🗂️</div>
+    <h3>No documents yet</h3>
+    <p>Your administrator hasn't ingested any training documents.</p>
+  </div>
+{% else %}
+<div class="doc-layout">
+  <div>
+    {% for d in documents %}
+    <a class="doc-item {{ 'active' if selected and selected.id == d.id }}" href="{{ url_for('main.documents', doc=d.id) }}">
+      <div class="d-name">📄 {{ d.filename }}</div>
+      <div class="d-meta">{{ d.pages }} pages · {{ d.chunks }} chunks · {{ '%.0f'|format(d.size_kb) }} KB · {{ d.uploaded_at[:10] }}</div>
+    </a>
+    {% endfor %}
+  </div>
+  <div>
+    {% if selected %}
+      <div class="card static mb-1" style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+        <div style="flex:1; min-width:200px;">
+          <strong>{{ selected.filename }}</strong>
+          <div class="muted" style="font-size:.8rem">Uploaded by {{ selected.uploaded_by or '—' }} on {{ selected.uploaded_at[:10] }}</div>
+        </div>
+        <a class="btn secondary sm" href="{{ url_for('main.document_file', doc_id=selected.id) }}" download="{{ selected.filename }}">
+          <span class="ms">download</span> Download
+        </a>
+        <a class="btn sm" href="{{ url_for('main.document_file', doc_id=selected.id) }}" target="_blank">
+          <span class="ms">open_in_full</span> Fullscreen
+        </a>
+      </div>
+      <iframe class="pdf-frame" src="{{ url_for('main.document_file', doc_id=selected.id) }}#toolbar=1&navpanes=0"></iframe>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

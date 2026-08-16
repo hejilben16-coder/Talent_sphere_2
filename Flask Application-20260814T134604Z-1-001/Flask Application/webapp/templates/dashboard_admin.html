@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% set active_page = 'dashboard' %}
+{% block title %}Admin Dashboard · Talent Sphere Elevate{% endblock %}
+{% block page_title %}Admin Control Center{% endblock %}
+{% block head %}<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>{% endblock %}
+{% block content %}
+
+<div class="hero">
+  <h1>Admin Control Center</h1>
+  <p>Platform health, engagement, and assessment performance in one place.</p>
+</div>
+
+<div class="grid cols-4 mb-1">
+  <div class="metric"><div class="v">{{ summary.users }}</div><div class="l">Trainees</div></div>
+  <div class="metric"><div class="v">{{ summary.active_users }}</div><div class="l">Active now</div></div>
+  <div class="metric"><div class="v">{{ summary.documents }}</div><div class="l">Documents</div></div>
+  <div class="metric"><div class="v">{{ summary.chunks }}</div><div class="l">Knowledge chunks</div></div>
+</div>
+<div class="grid cols-4 mb-2">
+  <div class="metric"><div class="v">{{ summary.sessions }}</div><div class="l">Chat sessions</div></div>
+  <div class="metric"><div class="v">{{ summary.messages }}</div><div class="l">Messages</div></div>
+  <div class="metric"><div class="v">{{ summary.exams }}</div><div class="l">Exams</div></div>
+  <div class="metric"><div class="v">{{ '%.0f%%'|format(summary.avg_score_pct) }}</div><div class="l">Avg exam score</div></div>
+</div>
+
+<div class="grid cols-2 mb-2">
+  <div class="card static">
+    <h3>💬 Assistant activity (30 days)</h3>
+    {% if activity %}<canvas id="activity-chart" height="130"></canvas>
+    {% else %}<p class="muted">No chat activity yet.</p>{% endif %}
+  </div>
+  <div class="card static">
+    <h3>🎯 Exam score distribution</h3>
+    {% if scores %}<canvas id="scores-chart" height="130"></canvas>
+    {% else %}<p class="muted">No graded submissions yet.</p>{% endif %}
+  </div>
+</div>
+
+<div class="grid cols-2 mb-2">
+  <div class="card static">
+    <h3>📦 Assignment funnel</h3>
+    <canvas id="funnel-chart" height="130"></canvas>
+  </div>
+  <div class="card static">
+    <h3>👥 Learners</h3>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Name</th><th>Status</th><th>Done</th><th>Pending</th><th>Avg</th></tr></thead>
+        <tbody>
+          {% for u in learners %}
+          <tr>
+            <td>{{ u.name }}</td>
+            <td><span class="pill {{ 'high' if u.status == 'active' else 'low' }}">{{ u.status }}</span></td>
+            <td>{{ u.completed }}</td><td>{{ u.pending }}</td>
+            <td>{{ '%.0f%%'|format(u.avg_pct) if u.avg_pct is not none else '—' }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="5" class="muted">No users yet — create them in User Management.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script>
+const BLUE = "#0A66C2", BRIGHT = "#378FE9", DEEP = "#004182";
+Chart.defaults.font.family = "Inter, system-ui, sans-serif";
+
+const activity = {{ activity | tojson }};
+if (activity.length && document.getElementById("activity-chart")) {
+  new Chart(document.getElementById("activity-chart"), {
+    type: "line",
+    data: { labels: activity.map(a => a.day.slice(5)),
+      datasets: [{ data: activity.map(a => a.count), borderColor: BLUE, fill: true,
+        backgroundColor: (ctx) => {
+          const g = ctx.chart.ctx.createLinearGradient(0, 0, 0, 200);
+          g.addColorStop(0, "rgba(55,143,233,.35)"); g.addColorStop(1, "rgba(55,143,233,0)");
+          return g;
+        }, tension: .35, pointRadius: 2 }]},
+    options: { plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
+  });
+}
+
+const scores = {{ scores | tojson }};
+if (scores.length && document.getElementById("scores-chart")) {
+  const bins = new Array(10).fill(0);
+  scores.forEach(p => bins[Math.min(9, Math.floor(p / 10))]++);
+  new Chart(document.getElementById("scores-chart"), {
+    type: "bar",
+    data: { labels: bins.map((_, i) => `${i*10}–${i*10+10}%`),
+      datasets: [{ data: bins, backgroundColor: BLUE, borderRadius: 5 }]},
+    options: { plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
+  });
+}
+
+const funnel = {{ funnel | tojson }};
+new Chart(document.getElementById("funnel-chart"), {
+  type: "doughnut",
+  data: { labels: ["Completed", "Pending"],
+    datasets: [{ data: [funnel.completed || 0, funnel.pending || 0],
+      backgroundColor: ["#057642", BRIGHT], borderWidth: 0 }]},
+  options: { cutout: "65%", plugins: { legend: { position: "bottom" } } }
+});
+</script>
+{% endblock %}

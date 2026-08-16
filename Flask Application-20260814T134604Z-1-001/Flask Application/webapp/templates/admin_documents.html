@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% set active_page = 'ingest' %}
+{% block title %}Document Ingestion · Talent Sphere Elevate{% endblock %}
+{% block page_title %}Document Ingestion{% endblock %}
+{% block content %}
+
+<div class="section-h">
+  <h2>📥 Document Ingestion</h2>
+  <p>Upload training PDFs — chunked, embedded, and instantly searchable. Duplicates are detected automatically.</p>
+</div>
+
+<div class="card static mb-2">
+  <form method="post" action="{{ url_for('admin.documents_upload') }}" enctype="multipart/form-data" id="upload-form">
+    <label class="f-label">PDF files</label>
+    <div style="border:2px dashed var(--ls-primary); border-radius:12px; background:var(--ls-bg); padding:1.6rem; text-align:center; cursor:pointer; transition:all .2s ease"
+         id="dropzone">
+      <span class="ms" style="font-size:2rem; color:var(--ls-primary)">cloud_upload</span>
+      <p style="margin:.4rem 0 0; font-weight:600">Drop PDFs here or click to browse</p>
+      <p class="muted" style="font-size:.8rem; margin:.2rem 0 0" id="file-names">Re-uploading an already-indexed file is skipped with a warning.</p>
+      <input type="file" name="pdfs" id="pdfs" accept="application/pdf" multiple class="hidden">
+    </div>
+    <button class="btn mt-2" id="build-btn" disabled><span class="ms">build</span> Build Index</button>
+    <span class="muted hidden" id="build-hint" style="font-size:.82rem; margin-left:.6rem">Embedding on CPU can take a minute per document…</span>
+  </form>
+</div>
+
+<div class="grid cols-3 mb-2">
+  <div class="metric"><div class="v">{{ index.sources }}</div><div class="l">Documents</div></div>
+  <div class="metric"><div class="v">{{ index.total_chunks }}</div><div class="l">Total chunks</div></div>
+  <div class="metric"><div class="v">{{ documents|length }}</div><div class="l">Stored PDFs</div></div>
+</div>
+
+<div class="table-wrap mb-2">
+  <table class="data">
+    <thead><tr><th>Document</th><th>Pages</th><th>Chunks</th><th>Size (KB)</th><th>Uploaded by</th><th>Uploaded at</th></tr></thead>
+    <tbody>
+      {% for d in documents %}
+      <tr>
+        <td>📄 {{ d.filename }}</td><td>{{ d.pages }}</td><td>{{ d.chunks }}</td>
+        <td>{{ '%.0f'|format(d.size_kb) }}</td><td>{{ d.uploaded_by or '—' }}</td><td class="muted">{{ d.uploaded_at[:16] }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="6" class="muted">Nothing ingested yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="section-h"><h2>Danger zone</h2><p>Clear the entire knowledge base (stored PDF files on disk are kept).</p></div>
+<form method="post" action="{{ url_for('admin.documents_reset') }}"
+      onsubmit="return confirm('Permanently delete EVERY chunk and document record?')">
+  <button class="btn danger"><span class="ms">delete_forever</span> Reset index</button>
+</form>
+
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  const dz = document.getElementById("dropzone"), input = document.getElementById("pdfs");
+  const btn = document.getElementById("build-btn"), names = document.getElementById("file-names");
+  const hint = document.getElementById("build-hint"), form = document.getElementById("upload-form");
+  dz.addEventListener("click", () => input.click());
+  dz.addEventListener("dragover", (e) => { e.preventDefault(); dz.style.background = "rgba(10,102,194,.06)"; });
+  dz.addEventListener("dragleave", () => dz.style.background = "");
+  dz.addEventListener("drop", (e) => {
+    e.preventDefault(); dz.style.background = "";
+    input.files = e.dataTransfer.files; sync();
+  });
+  input.addEventListener("change", sync);
+  function sync() {
+    const files = [...input.files].filter(f => f.type === "application/pdf" || f.name.endsWith(".pdf"));
+    btn.disabled = !files.length;
+    names.textContent = files.length ? files.map(f => f.name).join(" · ") : "Re-uploading an already-indexed file is skipped with a warning.";
+  }
+  form.addEventListener("submit", () => {
+    btn.disabled = true; btn.innerHTML = '<span class="ms">hourglass_top</span> Ingesting…';
+    hint.classList.remove("hidden");
+  });
+})();
+</script>
+{% endblock %}

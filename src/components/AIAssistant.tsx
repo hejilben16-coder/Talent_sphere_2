@@ -13,23 +13,35 @@ import {
   AlertTriangle,
   Paperclip,
   UploadCloud,
-  RefreshCw
+  RefreshCw,
+  Mic
 } from 'lucide-react';
 import { ChatMessage } from '../types';
 
 interface AIAssistantProps {
   token: string;
+<<<<<<< Updated upstream
   userRole?: 'admin' | 'student';
 }
 
 export const AIAssistant: React.FC<AIAssistantProps> = ({ token, userRole }) => {
+=======
+  role: 'admin' | 'student';
+}
+
+export const AIAssistant: React.FC<AIAssistantProps> = ({ token, role }) => {
+>>>>>>> Stashed changes
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [uploadingPdf, setUploadingPdf] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [listening, setListening] = useState(false);
+  const [speechSupported, setSpeechSupported] = useState(false);
+  const [speechError, setSpeechError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const recogRef = useRef<any>(null);
 
   const fetchHistory = async () => {
     try {
@@ -46,6 +58,30 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ token, userRole }) => 
   useEffect(() => {
     fetchHistory();
   }, [token]);
+
+  useEffect(() => {
+    // Initialize speech recognition if available
+    const SpeechRecognition: any = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      setSpeechSupported(true);
+      recogRef.current = new SpeechRecognition();
+      recogRef.current.lang = 'en-US';
+      recogRef.current.interimResults = false;
+      recogRef.current.maxAlternatives = 1;
+      recogRef.current.onresult = (ev: any) => {
+        const text = ev.results[0][0].transcript;
+        handleSend(text);
+      };
+      recogRef.current.onstart = () => setListening(true);
+      recogRef.current.onend = () => setListening(false);
+      recogRef.current.onerror = (ev: any) => {
+        setListening(false);
+        setSpeechError('Voice input failed: ' + (ev.error || 'Unknown error'));
+      };
+    } else {
+      setSpeechSupported(false);
+    }
+  }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -68,6 +104,99 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ token, userRole }) => 
     setMessages((prev) => [...prev, optimisticUserMsg]);
 
     try {
+      // Ask server to classify intent using LLM
+      let intent = 'chat';
+      try {
+        const intentRes = await fetch('/api/intent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ text: query })
+        });
+        if (intentRes.ok) {
+          const intentJson = await intentRes.json();
+          intent = intentJson.intent || 'chat';
+        }
+      } catch (_) {
+        intent = 'chat';
+      }
+
+      // Handle admin-level intents with confirmation
+      if (intent === 'generate_exam') {
+        const ok = window.confirm('Create an exam from uploaded PDFs now? This will generate and save an exam. Continue?');
+        if (!ok) {
+          setLoading(false);
+          return;
+        }
+
+        const docsRes = await fetch('/api/documents', { headers: { Authorization: `Bearer ${token}` } });
+        if (!docsRes.ok) {
+          throw new Error('Failed to load uploaded documents before generating exam');
+        }
+        const docs = await docsRes.json();
+        const docIds = docs.map((d: any) => d.id);
+        const genRes = await fetch('/api/exams/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+          body: JSON.stringify({
+            title: query.substring(0, 120) || 'Voice Generated Exam',
+            description: 'Exam generated via voice assistant',
+            selectedDocIds: docIds,
+            questionType: 'mixed',
+            difficulty: 'Medium',
+            questionCount: 5,
+            durationMinutes: 15
+          })
+        });
+
+        if (genRes.ok) {
+          const exam = await genRes.json();
+          const aiMsg = {
+            id: `msg_${Date.now()}_ai`,
+            sender: 'ai' as const,
+            text: `Exam created: ${exam.title} (ID: ${exam.id})`,
+            timestamp: new Date().toISOString(),
+            sources: []
+          };
+          dbSafeAdd(aiMsg);
+          speak(aiMsg.text);
+          setLoading(false);
+          return;
+        } else {
+          const errData = await genRes.json().catch(() => ({}));
+          const message = errData.error || 'Unable to generate exam with current permissions.';
+          throw new Error(message);
+        }
+      }
+
+      if (intent === 'create_announcement' || intent === 'create_notification') {
+        const ok = window.confirm('Create an announcement for users? Confirm to post.');
+        if (!ok) {
+          setLoading(false);
+          return;
+        }
+
+        const title = query.substring(0, 60);
+        const resNote = await fetch('/api/notifications', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ title: `Announcement: ${title}`, message: query })
+        });
+        if (resNote.ok) {
+          const note = await resNote.json();
+          const aiMsg = {
+            id: `msg_${Date.now()}_ai`,
+            sender: 'ai' as const,
+            text: `Announcement created: ${note.title}`,
+            timestamp: new Date().toISOString(),
+            sources: []
+          };
+          dbSafeAdd(aiMsg);
+          speak(aiMsg.text);
+          setLoading(false);
+          return;
+        }
+      }
+
       const res = await fetch('/api/chat/message', {
         method: 'POST',
         headers: {
@@ -80,9 +209,10 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ token, userRole }) => 
       if (!res.ok) throw new Error('Failed to send message');
       const data = await res.json();
 
-      setMessages((prev) =>
-        prev.map((m) => (m.id === optimisticUserMsg.id ? optimisticUserMsg : m)).concat(data.message)
-      );
+      const received = data.message;
+      setMessages((prev) => prev.map((m) => (m.id === optimisticUserMsg.id ? optimisticUserMsg : m)).concat(received));
+      // speak AI reply
+      if (received && received.text) speak(received.text);
     } catch (err: any) {
       setMessages((prev) => [
         ...prev,
@@ -96,6 +226,23 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ token, userRole }) => 
     } finally {
       setLoading(false);
     }
+  };
+
+  const dbSafeAdd = (aiMsg: ChatMessage) => {
+    // Add to local UI and persist to DB
+    setMessages((prev) => [...prev, aiMsg]);
+    try { fetch('/api/chat/message', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }, body: JSON.stringify({ text: aiMsg.text }) }); } catch (_) {}
+  };
+
+  const speak = (text: string) => {
+    try {
+      const synth = window.speechSynthesis;
+      if (!synth) return;
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US';
+      synth.cancel();
+      synth.speak(u);
+    } catch (_) {}
   };
 
   const handleDirectPdfUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -342,6 +489,11 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ token, userRole }) => 
 
       {/* Input Bar */}
       <div className="p-4 border-t border-slate-800 bg-slate-900">
+        {speechError && (
+          <div className="mb-3 p-3 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs">
+            {speechError}
+          </div>
+        )}
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -349,6 +501,7 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ token, userRole }) => 
           }}
           className="flex items-center gap-3"
         >
+<<<<<<< Updated upstream
           {userRole === 'admin' && (
             <>
               <input
@@ -373,6 +526,58 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ token, userRole }) => 
               </button>
             </>
           )}
+=======
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleDirectPdfUpload}
+            accept="application/pdf,.pdf"
+            className="hidden"
+          />
+          {role === 'admin' ? (
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={uploadingPdf}
+              className="p-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-indigo-400 hover:text-indigo-300 transition flex items-center justify-center border border-slate-700/60 disabled:opacity-50"
+              title="Upload PDF document to Knowledge Base"
+            >
+              {uploadingPdf ? (
+                <RefreshCw className="w-4 h-4 animate-spin text-indigo-400" />
+              ) : (
+                <Paperclip className="w-4 h-4" />
+              )}
+            </button>
+          ) : (
+            <div className="px-3 py-2 rounded-2xl bg-slate-800 border border-slate-700 text-slate-500 text-[11px]">
+              PDF upload reserved for admins.
+            </div>
+          )}
+          <button
+            type="button"
+            onClick={() => {
+              if (!speechSupported) {
+                setSpeechError('Speech recognition is not supported in this browser.');
+                return;
+              }
+              if (recogRef.current) {
+                if (listening) {
+                  try { recogRef.current.stop(); } catch (_) {}
+                  setListening(false);
+                } else {
+                  try { recogRef.current.start(); } catch (err: any) {
+                    setSpeechError(err.message || 'Voice recognition could not start.');
+                  }
+                }
+              }
+            }}
+            className={`p-3 rounded-2xl ml-2 ${listening ? 'bg-rose-600 text-white' : 'bg-slate-800 text-indigo-400'} hover:bg-slate-700 transition flex items-center justify-center border border-slate-700/60 ${!speechSupported ? 'opacity-50 cursor-not-allowed' : ''}`}
+            title={speechSupported ? (listening ? 'Stop listening' : 'Start voice input') : 'Voice input unavailable'}
+            disabled={!speechSupported}
+          >
+            <Mic className="w-4 h-4" />
+          </button>
+>>>>>>> Stashed changes
 
           <input
             type="text"

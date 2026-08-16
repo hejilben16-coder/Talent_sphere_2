@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ code }} · Talent Sphere Elevate{% endblock %}
+{% block page_title %}Oops{% endblock %}
+{% block content %}
+<div class="empty-state card static" style="max-width:520px; margin:3rem auto;">
+  <div class="e-icon">🧭</div>
+  <h3>{{ code }}</h3>
+  <p>{{ message }}</p>
+  <a class="btn mt-2" href="/">Back to home</a>
+</div>
+{% endblock %}

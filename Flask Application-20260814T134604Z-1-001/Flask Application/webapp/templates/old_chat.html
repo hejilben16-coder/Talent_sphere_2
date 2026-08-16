@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% set active_page = 'chat' %}
+{% block title %}AI Assistant · Talent Sphere Elevate{% endblock %}
+{% block page_title %}AI Assistant{% endblock %}
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+{% endblock %}
+{% block main %}
+<div class="chat-layout">
+  <aside class="chat-sessions" id="cs-panel">
+    <div class="cs-head">
+      <button class="btn" style="width:100%; justify-content:center" id="new-chat">
+        <span class="ms">add_circle</span><span class="cs-newtext">New chat</span>
+      </button>
+    </div>
+    <div class="cs-list" id="cs-list"></div>
+  </aside>
+
+  <section class="chat-main">
+    <div class="chat-scroll" id="chat-scroll">
+      <div class="chat-inner" id="chat-inner">
+        <div class="chat-empty" id="chat-empty">
+          <div class="ce-icon">🤖</div>
+          <h2>Welcome to your AI Assistant</h2>
+          <p>Grounded answers with tables, flowcharts and sources — by text or voice.<br>
+             {% if is_admin %}Ask me to <b>create an exam</b> or <b>post an announcement</b> and I'll walk you through it.{% else %}Ask about your training material, your exams, or your progress.{% endif %}</p>
+          <div class="followups" style="justify-content:center; margin-left:0" id="starter-chips">
+            <button class="fu-chip">📘 Summarise the key topics in the training documents</button>
+            <button class="fu-chip">🧭 Explain a core process as a step-by-step flowchart</button>
+            {% if is_admin %}
+            <button class="fu-chip">📝 Create an exam from a document</button>
+            {% else %}
+            <button class="fu-chip">🎯 How am I doing on my exams?</button>
+            {% endif %}
+            <button class="fu-chip">🎙️ Start a mock interview</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if not llm_ready %}
+    <div style="max-width:860px; margin:0 auto; padding:0 1.2rem;">
+      <div class="flash warn" style="position:static; margin-bottom:.6rem">
+        🔑 <b>Groq API key missing.</b> Add <code>GROQ_API_KEY</code> to your <code>.env</code> and restart to enable AI answers.
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="chat-inputbar">
+      <div class="ci-wrap">
+        <textarea class="ci-input" id="ci-input" rows="1"
+                  placeholder="Ask anything about your training material…"></textarea>
+        <select class="voice-select" id="voice-lang" title="Voice language">
+          {% for name, code in languages.items() %}
+          <option value="{{ code }}">{{ name|title }}</option>
+          {% endfor %}
+        </select>
+        <button class="ci-btn" id="ci-speaker" title="Read answers aloud (voice conversation)">
+          <span class="ms" id="ci-speaker-ico">volume_off</span>
+        </button>
+        <button class="ci-btn mic" id="ci-mic" title="Speak your question">
+          <span class="ms">mic</span>
+        </button>
+        <button class="ci-btn voice" id="ci-voice" title="Voice conversation">
+          <span class="ms">graphic_eq</span>
+        </button>
+        <button class="ci-btn send" id="ci-send" title="Send">
+          <span class="ms">arrow_upward</span>
+        </button>
+      </div>
+      <div class="ci-hint" id="ci-hint">Enter to send · Shift+Enter for a new line · 🎙️ mic to dictate</div>
+    </div>
+  </section>
+</div>
+
+<!-- ChatGPT-style full-screen voice conversation -->
+<div class="voice-overlay" id="voice-overlay" aria-hidden="true">
+  <!-- transcript kept in the DOM (hidden) so the engine can log turns; no UI -->
+  <div class="vo-captions" id="vo-caption-panel" hidden></div>
+
+  <div class="vo-stage">
+    <div class="vo-orb-wrap">
+      <div class="vo-orb" id="vo-orb"></div>
+    </div>
+    <div class="vo-status" id="vo-status">Connecting…</div>
+  </div>
+
+  <footer class="vo-bar">
+    <button class="vo-btn" id="vo-mic" title="Mute"><span class="ms">mic</span></button>
+    <button class="vo-btn vo-close" id="vo-close" title="End voice chat"><span class="ms">close</span></button>
+  </footer>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>window.TS_IS_ADMIN = {{ 'true' if is_admin else 'false' }};</script>
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}

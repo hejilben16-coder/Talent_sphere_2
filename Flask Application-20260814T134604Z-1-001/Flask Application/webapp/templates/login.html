@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Sign in · Talent Sphere Elevate{% endblock %}
+{% block shell %}
+<div class="login-wrap">
+  <div class="login-card">
+    <div class="login-brand">
+      <div class="login-logo">🚀</div>
+      <div class="login-title">Talent Sphere Elevate</div>
+      <div class="login-sub">AI-powered training &amp; knowledge platform</div>
+    </div>
+
+    <h3 style="margin-bottom:.2rem">Sign in</h3>
+    <p class="muted" style="font-size:.85rem; margin:.1rem 0 .6rem">Use the credentials provided by your administrator.</p>
+
+    {% if error %}
+      <div class="flash error" style="margin:.6rem 0">{{ error }}</div>
+    {% endif %}
+
+    <form method="post" autocomplete="on">
+      <label class="f-label" for="email">Email address</label>
+      <input class="f-input" type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" required autofocus>
+      <label class="f-label" for="password">Password</label>
+      <input class="f-input" type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
+      <button class="btn" type="submit" style="width:100%; justify-content:center; margin-top:1.2rem">
+        <span class="ms">login</span> Sign in
+      </button>
+    </form>
+
+    <div class="login-note">🔒 Access is provisioned by your administrator.<br>Contact HR if you have trouble signing in.</div>
+  </div>
+</div>
+{% endblock %}

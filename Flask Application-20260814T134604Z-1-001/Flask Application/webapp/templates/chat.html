@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% set active_page = 'chat' %}
+{% block title %}AI Assistant · Talent Sphere Elevate{% endblock %}
+{% block page_title %}AI Assistant{% endblock %}
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+<style>
+  /* ---- Fix 1: inline rename / delete panel for chat sessions ---- */
+  .cs-menu { display:inline-flex; align-items:center; justify-content:center;
+    background:none; border:none; color:inherit; cursor:pointer; opacity:.55;
+    padding:2px; border-radius:8px; }
+  .cs-menu:hover { opacity:1; background:rgba(255,255,255,.08); }
+  .cs-menu .ms { font-size:1.15rem; }
+  .cs-item.editing { gap:.3rem; }
+  .cs-edit-input { flex:1; min-width:0; font:inherit; font-size:.9rem;
+    color:inherit; background:rgba(255,255,255,.07);
+    border:1.5px solid var(--ls-primary, #378FE9); border-radius:9px;
+    padding:.34rem .5rem; outline:none; }
+  .cs-edit-actions { display:flex; gap:.18rem; }
+  .cs-edit-btn { display:inline-flex; align-items:center; justify-content:center;
+    width:28px; height:28px; border:none; border-radius:9px; cursor:pointer;
+    background:rgba(255,255,255,.08); color:inherit; }
+  .cs-edit-btn .ms { font-size:1.05rem; }
+  .cs-edit-btn.ok { background:linear-gradient(135deg,#0A84FF,#5E5CE6); color:#fff; }
+  .cs-edit-btn.del:hover { background:rgba(204,16,22,.22); color:#ff7a7a; }
+  .cs-edit-btn.cancel:hover { background:rgba(255,255,255,.16); }
+
+  /* ---- Fix 2: spoken wizard — curved field heading ---- */
+  .vw-heading { display:none; width:fit-content; max-width:82%;
+    margin:0 auto 10px; padding:11px 28px; border-radius:999px;
+    font-weight:800; font-size:1.16rem; letter-spacing:.01em; color:#eaf1fb;
+    text-align:center;
+    background:linear-gradient(135deg, rgba(10,132,255,.22), rgba(94,92,230,.22));
+    border:1px solid rgba(120,160,230,.4);
+    box-shadow:0 12px 32px -14px rgba(10,132,255,.7),
+               inset 0 1px 0 rgba(255,255,255,.08); }
+  .vw-heading.show { display:block;
+    animation: vwPop .5s cubic-bezier(.34,1.56,.64,1) both; }
+  @keyframes vwPop { 0%{opacity:0; transform:translateY(14px) scale(.9)}
+    60%{transform:translateY(-3px) scale(1.03)}
+    100%{opacity:1; transform:translateY(0) scale(1)} }
+
+  /* ---- Fix 2: spoken wizard — option buttons (2×2 on the right) ---- */
+  .vw-options { position:absolute; right:5%; top:50%; transform:translateY(-50%);
+    display:none; grid-template-columns:repeat(2, minmax(128px,1fr));
+    gap:14px; max-width:320px; z-index:6; }
+  .vw-options.show { display:grid; }
+  .vw-opt { appearance:none; min-height:58px; padding:14px 18px;
+    border-radius:16px; border:1.5px solid rgba(180,200,235,.55);
+    background:rgba(255,255,255,.05); color:#eaf1fb;
+    font:inherit; font-weight:700; font-size:1.02rem; cursor:pointer;
+    display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    opacity:1; transform:none;
+    animation: vwUp .5s cubic-bezier(.34,1.7,.5,1) backwards;
+    transition: background .25s, border-color .25s, box-shadow .25s,
+                transform .25s, opacity .25s, filter .25s; }
+  @keyframes vwUp { 0%{opacity:0; transform:translateY(30px) scale(.85)}
+    70%{transform:translateY(-4px) scale(1.04)}
+    100%{opacity:1; transform:translateY(0) scale(1)} }
+  .vw-opt:hover { border-color:rgba(90,169,255,.9); background:rgba(90,169,255,.14); }
+  .vw-opt.selected { color:#fff; border-color:transparent;
+    background:linear-gradient(135deg,#0A84FF 0%,#5E5CE6 100%);
+    box-shadow:0 14px 30px -8px rgba(74,108,247,.8);
+    transform:translateY(0) scale(1.05); }
+  .vw-opt.dismiss { opacity:0 !important;
+    transform:translateY(6px) scale(.82) !important;
+    filter:grayscale(1) brightness(.55); pointer-events:none; }
+  .vw-opt .ms { font-size:1.1rem; }
+  .vw-confirm { grid-column:1 / -1; font-weight:800;
+    background:rgba(52,211,153,.16); border-color:rgba(52,211,153,.5); color:#d6ffee; }
+  .vw-confirm:hover { background:rgba(52,211,153,.26); }
+  .vw-skip { grid-column:1 / -1; opacity:.85; }
+
+  @media (max-width: 760px) {
+    .vw-options { position:static; transform:none; right:auto; top:auto;
+      margin:16px auto 0; max-width:92%; }
+    .vw-heading { font-size:1.02rem; padding:9px 18px; }
+  }
+</style>
+{% endblock %}
+{% block main %}
+<div class="chat-layout">
+  <aside class="chat-sessions" id="cs-panel">
+    <div class="cs-head">
+      <button class="btn" style="width:100%; justify-content:center" id="new-chat">
+        <span class="ms">add_circle</span><span class="cs-newtext">New chat</span>
+      </button>
+    </div>
+    <div class="cs-list" id="cs-list"></div>
+  </aside>
+
+  <section class="chat-main">
+    <div class="chat-scroll" id="chat-scroll">
+      <div class="chat-inner" id="chat-inner">
+        <div class="chat-empty" id="chat-empty">
+          <div class="ce-icon">🤖</div>
+          <h2>Welcome to your AI Assistant</h2>
+          <p>Grounded answers with tables, flowcharts and sources — by text or voice.<br>
+             {% if is_admin %}Ask me to <b>create an exam</b> or <b>post an announcement</b> and I'll walk you through it.{% else %}Ask about your training material, your exams, or your progress.{% endif %}</p>
+          <div class="followups" style="justify-content:center; margin-left:0" id="starter-chips">
+            <button class="fu-chip">📘 Summarise the key topics in the training documents</button>
+            <button class="fu-chip">🧭 Explain a core process as a step-by-step flowchart</button>
+            {% if is_admin %}
+            <button class="fu-chip">📝 Create an exam from a document</button>
+            {% else %}
+            <button class="fu-chip">🎯 How am I doing on my exams?</button>
+            {% endif %}
+            <button class="fu-chip">🎙️ Start a mock interview</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if not llm_ready %}
+    <div style="max-width:860px; margin:0 auto; padding:0 1.2rem;">
+      <div class="flash warn" style="position:static; margin-bottom:.6rem">
+        🔑 <b>Groq API key missing.</b> Add <code>GROQ_API_KEY</code> to your <code>.env</code> and restart to enable AI answers.
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="chat-inputbar">
+      <div class="ci-wrap">
+        <textarea class="ci-input" id="ci-input" rows="1"
+                  placeholder="Ask anything about your training material…"></textarea>
+        <select class="voice-select" id="voice-lang" title="Voice language">
+          {% for name, code in languages.items() %}
+          <option value="{{ code }}">{{ name|title }}</option>
+          {% endfor %}
+        </select>
+        <button class="ci-btn" id="ci-speaker" title="Read answers aloud (voice conversation)">
+          <span class="ms" id="ci-speaker-ico">volume_off</span>
+        </button>
+        <button class="ci-btn mic" id="ci-mic" title="Speak your question">
+          <span class="ms">mic</span>
+        </button>
+        <button class="ci-btn voice" id="ci-voice" title="Voice conversation">
+          <span class="ms">graphic_eq</span>
+        </button>
+        <button class="ci-btn send" id="ci-send" title="Send">
+          <span class="ms">arrow_upward</span>
+        </button>
+      </div>
+      <div class="ci-hint" id="ci-hint">Enter to send · Shift+Enter for a new line · 🎙️ mic to dictate</div>
+    </div>
+  </section>
+</div>
+
+<!-- ChatGPT-style full-screen voice conversation -->
+<div class="voice-overlay" id="voice-overlay" aria-hidden="true">
+  <!-- transcript kept in the DOM (hidden) so the engine can log turns; no UI -->
+  <div class="vo-captions" id="vo-caption-panel" hidden></div>
+
+  <div class="vo-stage">
+    <!-- Spoken-wizard field name (curved box), shown one field at a time -->
+    <div class="vw-heading" id="vw-heading"></div>
+    <div class="vo-orb-wrap">
+      <div class="vo-orb" id="vo-orb"></div>
+    </div>
+    <div class="vo-status" id="vo-status">Connecting…</div>
+  </div>
+
+  <!-- Spoken-wizard choice buttons (questions / marks / PDFs / assignees …) -->
+  <div class="vw-options" id="vw-options"></div>
+
+  <footer class="vo-bar">
+    <button class="vo-btn" id="vo-mic" title="Mute"><span class="ms">mic</span></button>
+    <button class="vo-btn vo-close" id="vo-close" title="End voice chat"><span class="ms">close</span></button>
+  </footer>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>window.TS_IS_ADMIN = {{ 'true' if is_admin else 'false' }};</script>
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}

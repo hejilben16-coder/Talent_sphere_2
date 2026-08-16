@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% set active_page = 'home' %}
+{% block title %}Home · Talent Sphere Elevate{% endblock %}
+{% block page_title %}Home{% endblock %}
+{% block content %}
+
+<div class="hero">
+  <h1>Welcome back, {{ current_user.name.split(' ')[0] }} 👋</h1>
+  <p>Your AI-powered training workspace — ask questions, study documents, take assessments.</p>
+</div>
+
+<div class="grid cols-4 mb-2">
+  <div class="metric"><div class="v">{{ pending_exams }}</div><div class="l">Pending exams</div></div>
+  <div class="metric"><div class="v">{{ '%.0f%%'|format(avg_pct) if avg_pct is not none else '—' }}</div><div class="l">Avg exam score</div></div>
+  <div class="metric"><div class="v">{{ sessions }}</div><div class="l">My chat sessions</div></div>
+  <div class="metric"><div class="v">{{ index.sources }}</div><div class="l">Library documents</div></div>
+</div>
+
+<div class="grid cols-3 mb-2">
+  <a class="card" href="{{ url_for('chat.chat_page') }}">
+    <h3><span class="ms">forum</span> Ask the AI Assistant</h3>
+    <p class="muted" style="font-size:.86rem">Instant, sourced answers with tables and flowcharts — by text or voice.</p>
+  </a>
+  <a class="card" href="{{ url_for('main.documents') }}">
+    <h3><span class="ms">description</span> Browse documents</h3>
+    <p class="muted" style="font-size:.86rem">Read and preview all training PDFs in-app.</p>
+  </a>
+  <a class="card" href="{{ url_for('exams.my_exams') }}">
+    <h3><span class="ms">quiz</span> Take an exam</h3>
+    <p class="muted" style="font-size:.86rem">{{ pending_exams }} waiting for you — graded instantly with feedback.</p>
+  </a>
+</div>
+
+{% if assignments %}
+<div class="section-h"><h2>Recent exams</h2></div>
+<div class="table-wrap mb-2">
+  <table class="data">
+    <thead><tr><th>Exam</th><th>Status</th><th>Score</th><th>Due</th></tr></thead>
+    <tbody>
+    {% for a in assignments %}
+      <tr>
+        <td>{{ a.title }}</td>
+        <td>{% if a.status == 'completed' %}<span class="pill high">Completed</span>{% else %}<span class="pill warn">Pending</span>{% endif %}</td>
+        <td>{% if a.max_score %}{{ '%.1f'|format(a.total_score or 0) }}/{{ '%.0f'|format(a.max_score) }}{% else %}—{% endif %}</td>
+        <td>{{ a.due_date or '—' }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+<div class="section-h"><h2>📣 Latest announcements</h2></div>
+{% if not announcements %}<p class="muted">No announcements yet.</p>{% endif %}
+{% for a in announcements %}
+<div class="news">
+  <div class="n-head"><span class="n-title">{{ a.title }}</span> <span class="pill outline">{{ a.category }}</span></div>
+  <div class="n-meta">{{ a.created_at[:16] }} UTC</div>
+  <div class="n-body">{{ a.body }}</div>
+</div>
+{% endfor %}
+
+{% endblock %}

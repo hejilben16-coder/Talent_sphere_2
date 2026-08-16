@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% set active_page = 'search' %}
+{% block title %}Knowledge Search · Talent Sphere Elevate{% endblock %}
+{% block page_title %}Knowledge Search{% endblock %}
+{% block content %}
+
+<div class="section-h">
+  <h2>🔍 Knowledge Search</h2>
+  <p>Direct semantic search over the document index — see exactly what the AI retrieves.</p>
+</div>
+
+{% if index.total_chunks == 0 %}
+  <div class="empty-state card static">
+    <div class="e-icon">🗂️</div>
+    <h3>The index is empty</h3>
+    <p>Ask your administrator to ingest training documents.</p>
+  </div>
+{% else %}
+  <div class="card static mb-2">
+    <div class="f-row">
+      <div style="flex:3">
+        <label class="f-label" for="q">Search query</label>
+        <input class="f-input" id="q" placeholder="e.g. What is the onboarding process?">
+      </div>
+      <div>
+        <label class="f-label" for="topk">Results (Top-K)</label>
+        <select class="f-select" id="topk">
+          {% for k in [3,5,8,10,15] %}<option value="{{ k }}" {{ 'selected' if k == top_k }}>{{ k }}</option>{% endfor %}
+        </select>
+      </div>
+    </div>
+    <button class="btn mt-2" id="go"><span class="ms">search</span> Search</button>
+  </div>
+  <div id="results"></div>
+{% endif %}
+
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  const q = document.getElementById("q"), go = document.getElementById("go");
+  const box = document.getElementById("results");
+  if (!q) return;
+  function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+  function badge(score){
+    const cls = score >= 0.6 ? "high" : score >= 0.4 ? "mid" : "low";
+    return `<span class="pill ${cls}">${score.toFixed(3)}</span>`;
+  }
+  async function run() {
+    const query = q.value.trim();
+    if (!query) return;
+    go.disabled = true;
+    box.innerHTML = '<p class="muted">Searching…</p>';
+    try {
+      const r = await fetch("/api/search", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query, top_k: +document.getElementById("topk").value }),
+      });
+      const data = await r.json();
+      if (data.error) { box.innerHTML = `<div class="flash error">${esc(data.error)}</div>`; return; }
+      if (!data.results.length) { box.innerHTML = '<p class="muted">No matching passages found. Try rephrasing.</p>'; return; }
+      box.innerHTML = `<p class="muted" style="font-size:.82rem">Top ${data.results.length} passages · hybrid semantic + keyword ranking</p>` +
+        data.results.map(h => `
+          <div class="card result">
+            <div class="r-head">
+              <span class="r-src">📄 ${esc(h.source)}</span>
+              <span class="r-page">Page ${esc(h.page)}</span>
+              ${badge(h.score)}
+            </div>
+            <div class="r-text">${esc(h.text)}</div>
+          </div>`).join("");
+    } catch (e) {
+      box.innerHTML = '<div class="flash error">Search failed — try again.</div>';
+    } finally { go.disabled = false; }
+  }
+  go.addEventListener("click", run);
+  q.addEventListener("keydown", (e) => e.key === "Enter" && run());
+})();
+</script>
+{% endblock %}

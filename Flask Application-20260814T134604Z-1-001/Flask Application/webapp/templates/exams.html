@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% set active_page = 'exams' %}
+{% block title %}My Exams · Talent Sphere Elevate{% endblock %}
+{% block page_title %}My Exams{% endblock %}
+{% block content %}
+
+<div class="section-h">
+  <h2>📝 My Exams</h2>
+  <p>Assessments assigned to you — fullscreen, proctored, and graded instantly with AI feedback.</p>
+</div>
+
+{% if not pending and not done %}
+  <div class="empty-state card static">
+    <div class="e-icon">🎉</div>
+    <h3>No exams assigned</h3>
+    <p>When your mentor assigns an assessment, it appears here.</p>
+  </div>
+{% endif %}
+
+{% if pending %}
+<h3 class="mb-1">🕒 Pending</h3>
+{% for a in pending %}
+<div class="card mb-1 exam-row">
+  <div class="x-info">
+    <strong>{{ a.title }}{% if a.exam_type == 'voice' %} <span class="pill mid">🎙️ Voice</span>{% endif %}</strong>
+    <div class="muted" style="font-size:.84rem">
+      {{ a.num_questions }} questions · {{ '%.0f'|format(a.total_marks) }} marks ·
+      ~{{ a.duration_minutes }} min{% if a.due_date %} · due <b>{{ a.due_date }}</b>{% endif %}
+    </div>
+    <div class="muted" style="font-size:.78rem; margin-top:.3rem">
+      ⚠️ Opens in fullscreen. Switching tabs or leaving fullscreen is a violation — after 2 warnings the exam auto-submits.
+    </div>
+  </div>
+  <a class="btn" href="{{ url_for('exams.take_exam', assignment_id=a.assignment_id) }}">
+    <span class="ms">play_arrow</span> Start
+  </a>
+</div>
+{% endfor %}
+{% endif %}
+
+{% if done %}
+<h3 class="mb-1 mt-3">✅ Completed</h3>
+{% for a in done %}
+{% set pct = ((a.total_score or 0) * 100.0 / a.max_score) if a.max_score else 0 %}
+{% set color = '#057642' if pct >= 70 else ('#0A66C2' if pct >= 40 else '#CC1016') %}
+<div class="card mb-1">
+  <div class="exam-row">
+    <div class="score-ring" style="background: conic-gradient({{ color }} {{ pct * 3.6 }}deg, #E0DFDC 0deg);">
+      <div class="sr-in">{{ '%.0f%%'|format(pct) }}</div>
+    </div>
+    <div class="x-info">
+      <strong>{{ a.title }}</strong>
+      <div class="muted" style="font-size:.85rem">
+        Score <b>{{ '%.1f'|format(a.total_score or 0) }} / {{ '%.0f'|format(a.max_score or 0) }}</b>
+        {% if not a.graded %} · grading pending{% endif %}
+      </div>
+    </div>
+  </div>
+  {% set rows = details.get(a.assignment_id) %}
+  {% if rows %}
+  <details class="mt-1">
+    <summary style="cursor:pointer; font-weight:600; color:var(--ls-primary); font-size:.86rem">📋 Detailed feedback</summary>
+    <div class="mt-1">
+      {% for r in rows %}
+      {% set qpct = (r.score or 0) / r.marks if r.marks else 0 %}
+      <details class="qa">
+        <summary>Q{{ loop.index }}. {{ r.question[:110] }}
+          <span class="pill {{ 'high' if qpct >= 0.7 else ('mid' if qpct >= 0.4 else 'danger') }}">{{ '%.1f'|format(r.score or 0) }}/{{ '%.0f'|format(r.marks) }}</span>
+        </summary>
+        <div class="qa-body">
+          <blockquote>{{ r.answer or 'No answer' }}</blockquote>
+          {% if r.feedback %}<p>💬 {{ r.feedback }}</p>{% endif %}
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+  </details>
+  {% endif %}
+</div>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

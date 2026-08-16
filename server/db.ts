@@ -34,6 +34,7 @@ interface DatabaseSchema {
   exams: Exam[];
   attempts: ExamAttempt[];
   activityLogs: ActivityLog[];
+  notifications: import('../src/types.js').Notification[];
   settings: SystemSettings;
   plans: WeeklyStudyPlan[];
   announcements: Announcement[];
@@ -397,9 +398,14 @@ function initDatabase(): DatabaseSchema {
         timestamp: new Date().toISOString()
       }
     ],
+<<<<<<< Updated upstream
     settings: defaultSettings,
     plans: initialPlans,
     announcements: initialAnnouncements
+=======
+    notifications: [],
+    settings: defaultSettings
+>>>>>>> Stashed changes
   };
 
   saveDatabase(initialData);
@@ -502,6 +508,39 @@ export const dbStore = {
       timestamp: new Date().toISOString()
     };
     db.activityLogs.push(newLog);
+    saveDatabase();
+  },
+
+  // Notifications / Announcements
+  getNotifications: (userId?: string) => {
+    if (!userId) return db.notifications || [];
+    return (db.notifications || []).filter((n) => n.target === 'all' || n.target === userId);
+  },
+  addNotification: (note: { title: string; message: string; createdBy?: string; target?: 'all' | string }) => {
+    const newNote = {
+      id: `note_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+      title: note.title,
+      message: note.message,
+      createdAt: new Date().toISOString(),
+      createdBy: note.createdBy || 'system',
+      target: note.target || 'all',
+      readBy: []
+    } as import('../src/types.js').Notification;
+    db.notifications = db.notifications || [];
+    db.notifications.unshift(newNote);
+    saveDatabase();
+    return newNote;
+  },
+  markNotificationRead: (noteId: string, userId: string) => {
+    const note = (db.notifications || []).find((n) => n.id === noteId);
+    if (!note) return false;
+    note.readBy = note.readBy || [];
+    if (!note.readBy.includes(userId)) note.readBy.push(userId);
+    saveDatabase();
+    return true;
+  },
+  deleteNotification: (noteId: string) => {
+    db.notifications = (db.notifications || []).filter((n) => n.id !== noteId);
     saveDatabase();
   },
 

@@ -32,8 +32,14 @@ export const ExamGenerator: React.FC<ExamGeneratorProps> = ({ token, onExamCreat
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/api/documents')
-      .then((res) => res.json())
+    if (!token) return;
+    fetch('/api/documents', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to load documents');
+        return res.json();
+      })
       .then((data: PDFDocument[]) => {
         setDocuments(data);
         if (data.length > 0) {
@@ -41,7 +47,7 @@ export const ExamGenerator: React.FC<ExamGeneratorProps> = ({ token, onExamCreat
         }
       })
       .catch((err) => setError(err.message));
-  }, []);
+  }, [token]);
 
   const handleToggleDoc = (docId: string) => {
     if (selectedDocIds.includes(docId)) {

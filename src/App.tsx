@@ -37,6 +37,10 @@ export default function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [showAuthModal, setShowAuthModal] = useState<boolean>(false);
+  const [announcement, setAnnouncement] = useState<{ id: string; title: string; message: string } | null>(null);
+  const [adminAnnouncementTitle, setAdminAnnouncementTitle] = useState('');
+  const [adminAnnouncementMessage, setAdminAnnouncementMessage] = useState('');
+  const [announcementStatus, setAnnouncementStatus] = useState<string | null>(null);
 
   // Authenticate user on load
   useEffect(() => {
@@ -66,6 +70,43 @@ export default function App() {
     }
   }, []);
 
+<<<<<<< Updated upstream
+=======
+  useEffect(() => {
+    // Fetch latest announcement for banner
+    const tokenVal = localStorage.getItem('ts_token');
+    if (!tokenVal) return;
+    fetch('/api/notifications', { headers: { Authorization: `Bearer ${tokenVal}` } })
+      .then((r) => r.json())
+      .then((notes: any[]) => {
+        if (Array.isArray(notes) && notes.length > 0) {
+          setAnnouncement(notes[0]);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const autoLoginDemoAdmin = () => {
+    fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: 'admin@talentsphere.ai',
+        password: 'AdminPass123!'
+      })
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.user && data.token) {
+          setUser(data.user);
+          setToken(data.token);
+          localStorage.setItem('ts_token', data.token);
+        }
+      })
+      .catch(() => setShowAuthModal(true));
+  };
+
+>>>>>>> Stashed changes
   const handleLoginSuccess = (loggedInUser: User, sessionToken: string) => {
     setUser(loggedInUser);
     setToken(sessionToken);
@@ -74,13 +115,79 @@ export default function App() {
     setActiveTab('dashboard');
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    if (token) {
+      try {
+        await fetch('/api/auth/logout', {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${token}` }
+        });
+      } catch (_) {}
+    }
     setUser(null);
     setToken(null);
     localStorage.removeItem('ts_token');
     setShowAuthModal(true);
   };
 
+<<<<<<< Updated upstream
+=======
+  const handleCreateAnnouncement = async () => {
+    if (!adminAnnouncementTitle.trim() || !adminAnnouncementMessage.trim()) {
+      setAnnouncementStatus('Please enter both title and message for the announcement.');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/notifications', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          title: adminAnnouncementTitle.trim(),
+          message: adminAnnouncementMessage.trim()
+        })
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Failed to post announcement');
+      }
+
+      const note = await res.json();
+      setAnnouncement(note);
+      setAdminAnnouncementTitle('');
+      setAdminAnnouncementMessage('');
+      setAnnouncementStatus('Announcement posted successfully.');
+      setTimeout(() => setAnnouncementStatus(null), 5000);
+    } catch (err: any) {
+      setAnnouncementStatus(err.message || 'Unable to send announcement.');
+    }
+  };
+
+  const switchRoleQuickly = async (newRole: UserRole) => {
+    const email = newRole === 'admin' ? 'admin@talentsphere.ai' : 'student@talentsphere.ai';
+    const password = newRole === 'admin' ? 'AdminPass123!' : 'StudentPass123!';
+
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setUser(data.user);
+        setToken(data.token);
+        localStorage.setItem('ts_token', data.token);
+        setActiveTab('dashboard');
+      }
+    } catch (_) {}
+  };
+
+>>>>>>> Stashed changes
   if (!user || !token) {
     return <AuthModal onLoginSuccess={handleLoginSuccess} />;
   }
@@ -108,6 +215,84 @@ export default function App() {
 
         {/* View Switcher Container */}
         <main className="flex-1 p-6 md:p-8 overflow-y-auto max-w-7xl w-full mx-auto space-y-6">
+<<<<<<< Updated upstream
+=======
+          {/* Quick Role Switcher Banner */}
+          <div className="p-3 rounded-2xl bg-indigo-950/40 border border-indigo-800/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2 text-indigo-300">
+              <ShieldCheck className="w-4 h-4 text-indigo-400 shrink-0" />
+              <span>
+                Active Session: <strong className="text-white uppercase font-bold">{user.name} ({user.role})</strong>
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-slate-400">Switch Demo Perspective:</span>
+              <button
+                onClick={() => switchRoleQuickly('admin')}
+                className={`px-2.5 py-1 rounded-lg font-bold border transition ${
+                  user.role === 'admin'
+                    ? 'bg-purple-600 text-white border-purple-500'
+                    : 'bg-slate-800 text-slate-400 hover:text-white border-slate-700'
+                }`}
+              >
+                Admin Mode
+              </button>
+              <button
+                onClick={() => switchRoleQuickly('student')}
+                className={`px-2.5 py-1 rounded-lg font-bold border transition ${
+                  user.role === 'student'
+                    ? 'bg-indigo-600 text-white border-indigo-500'
+                    : 'bg-slate-800 text-slate-400 hover:text-white border-slate-700'
+                }`}
+              >
+                Student Mode
+              </button>
+            </div>
+          </div>
+          {announcement && (
+            <div className="p-4 rounded-2xl bg-emerald-900/60 border border-emerald-800/40 text-emerald-50 text-sm">
+              <strong>{announcement.title}</strong> — {announcement.message}
+            </div>
+          )}
+
+          {user.role === 'admin' && (
+            <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <h3 className="text-sm font-bold text-slate-100">Admin Announcement</h3>
+                  <p className="text-xs text-slate-400">
+                    Share a broadcast message with all users. Announcements appear in the dashboard banner.
+                  </p>
+                </div>
+                <button
+                  onClick={handleCreateAnnouncement}
+                  className="px-4 py-2 rounded-xl bg-emerald-500 text-slate-950 text-xs font-semibold hover:bg-emerald-400 transition"
+                >
+                  Post Announcement
+                </button>
+              </div>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <input
+                  value={adminAnnouncementTitle}
+                  onChange={(e) => setAdminAnnouncementTitle(e.target.value)}
+                  placeholder="Announcement title"
+                  className="w-full px-4 py-3 rounded-2xl bg-slate-800 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:border-emerald-500 transition"
+                />
+                <textarea
+                  value={adminAnnouncementMessage}
+                  onChange={(e) => setAdminAnnouncementMessage(e.target.value)}
+                  placeholder="Announcement message"
+                  rows={2}
+                  className="w-full px-4 py-3 rounded-2xl bg-slate-800 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:border-emerald-500 transition"
+                />
+              </div>
+              {announcementStatus && (
+                <div className="text-xs text-slate-300">{announcementStatus}</div>
+              )}
+            </div>
+          )}
+
+>>>>>>> Stashed changes
           {/* Active Tab Router */}
           {activeTab === 'dashboard' && (
             <div className="space-y-6">
@@ -213,11 +398,16 @@ export default function App() {
                     Launch Full Screen Chat
                   </button>
                 </div>
+<<<<<<< Updated upstream
                 <AIAssistant token={token} userRole={user.role} />
+=======
+                <AIAssistant token={token} role={user.role} />
+>>>>>>> Stashed changes
               </div>
             </div>
           )}
 
+<<<<<<< Updated upstream
           {activeTab === 'voice-tutor' && <VoiceTutorView user={user} token={token || ''} />}
           {activeTab === 'ai-assistant' && <AIAssistant token={token} userRole={user.role} />}
           {activeTab === 'study-plan' && <StudyPlanView token={token} userRole={user.role} />}
@@ -228,6 +418,11 @@ export default function App() {
           {(activeTab === 'pdf-manager' || activeTab === 'pdf-chat') && (
             user.role === 'admin' ? <PDFManager token={token} /> : <StudyPlanView token={token} />
           )}
+=======
+          {activeTab === 'ai-assistant' && <AIAssistant token={token} role={user.role} />}
+          {activeTab === 'pdf-manager' && <PDFManager token={token} role={user.role} />}
+          {activeTab === 'pdf-chat' && <AIAssistant token={token} role={user.role} />}
+>>>>>>> Stashed changes
           {activeTab === 'exam-generator' && <ExamGenerator token={token} onExamCreated={() => setActiveTab('take-exams')} />}
           {activeTab === 'take-exams' && <ExamTakingView token={token} />}
           {activeTab === 'study-coach' && <StudyCoachView token={token} />}

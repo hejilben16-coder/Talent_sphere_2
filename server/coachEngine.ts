@@ -1,5 +1,5 @@
-import { dbStore } from './db.js';
-import { StudyCoachData } from '../src/types.js';
+import { dbStore } from './db.ts';
+import { StudyCoachData } from '../src/types.ts';
 
 export function getStudentCoachData(studentId: string): StudyCoachData {
   const attempts = dbStore.getAttempts(studentId);

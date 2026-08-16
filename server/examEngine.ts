@@ -1,6 +1,6 @@
-import { GoogleGenAI } from '@google/genai';
-import { dbStore } from './db.js';
-import { checkAndRepairCorruptedDocuments, generateWithModelFallback } from './ragEngine.js';
+import { dbStore } from './db.ts';
+import { checkAndRepairCorruptedDocuments, generateWithModelFallback } from './ragEngine.ts';
+import { generateText, getApiKey, getDefaultModel, resolveProvider } from './llmProvider.ts';
 import {
   Exam,
   ExamQuestion,
@@ -8,7 +8,7 @@ import {
   DifficultyLevel,
   ExamAttempt,
   QuestionAnswerAttempt
-} from '../src/types.js';
+} from '../src/types.ts';
 
 export async function generateExamFromPDFs(params: {
   title: string;
@@ -80,15 +80,14 @@ Example format:
   }
 ]`;
 
-  const apiKey = process.env.GEMINI_API_KEY;
+  const provider = resolveProvider();
+  const apiKey = getApiKey(provider);
   let questions: ExamQuestion[] = [];
 
   if (apiKey) {
     try {
-      const ai = new GoogleGenAI({ apiKey });
       let responseText = await generateWithModelFallback(
-        ai,
-        settings.llmModel || 'gemini-2.5-flash',
+        settings.llmModel || getDefaultModel(undefined, provider),
         prompt
       );
 
@@ -178,7 +177,8 @@ export async function submitExamAttempt(params: {
   const weakTopicsSet = new Set<string>();
   const strongTopicsSet = new Set<string>();
 
-  const apiKey = process.env.GEMINI_API_KEY;
+  const provider = resolveProvider();
+  const apiKey = getApiKey(provider);
   const settings = dbStore.getSettings();
 
   for (const q of exam.questions) {
@@ -205,18 +205,17 @@ export async function submitExamAttempt(params: {
       // AI semantic grading for Short, Long, or Fill-in-the-blank
       if (apiKey) {
         try {
-          const ai = new GoogleGenAI({ apiKey });
           const evalPrompt = `Grade the student's answer out of ${q.points} points.
 Question: ${q.question}
 Expected Answer: ${q.correctAnswer}
 Student Answer: ${studentAns}
 
 Return JSON: {"score": number, "isCorrect": boolean, "feedback": "concise explanation"}`;
-          const res = await ai.models.generateContent({
-            model: settings.llmModel || 'gemini-2.5-flash',
-            contents: evalPrompt
+          let evalText = await generateText(evalPrompt, {
+            provider,
+            model: settings.llmModel || getDefaultModel(undefined, provider),
+            temperature: 0.1
           });
-          let evalText = res.text || '{}';
           evalText = evalText.replace(/```json/g, '').replace(/```/g, '').trim();
           const parsed = JSON.parse(evalText);
 

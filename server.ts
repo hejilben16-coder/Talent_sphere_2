@@ -1,7 +1,9 @@
+import 'dotenv/config';
 import express from 'express';
 import path from 'path';
 import bcrypt from 'bcryptjs';
 import { createServer as createViteServer } from 'vite';
+<<<<<<< Updated upstream
 import { dbStore } from './server/db.js';
 import { processUploadedPDF, generateRAGAnswer } from './server/ragEngine.js';
 import { generateExamFromPDFs, submitExamAttempt } from './server/examEngine.js';
@@ -10,6 +12,15 @@ import { sendCredentialsEmail } from './server/emailService.js';
 import { processVoiceInterviewTurn } from './server/voiceAgentEngine.js';
 import { setupLiveVoiceWebSocketServer } from './server/liveVoiceEngine.js';
 import { User, ActivityLog, WeeklyStudyPlan, Announcement, VoiceInterviewSubmission } from './src/types.js';
+=======
+import { dbStore } from './server/db.ts';
+import { processUploadedPDF, generateRAGAnswer } from './server/ragEngine.ts';
+import { generateExamFromPDFs, submitExamAttempt } from './server/examEngine.ts';
+import { getStudentCoachData } from './server/coachEngine.ts';
+import { authorizeRole } from './server/rbac.ts';
+import { User, ActivityLog } from './src/types.ts';
+import { generateText } from './server/llmProvider.ts';
+>>>>>>> Stashed changes
 
 async function startServer() {
   const app = express();
@@ -88,9 +99,18 @@ async function startServer() {
   });
 
   app.post('/api/auth/register', (req, res) => {
+    const actor = getAuthUser(req);
     const { name, email, password, role } = req.body;
     if (!name || !email || !password) {
       return res.status(400).json({ error: 'Name, email, and password required' });
+    }
+
+    const requestedRole = role === 'admin' ? 'admin' : 'student';
+    if (requestedRole === 'admin') {
+      const auth = authorizeRole(actor, ['admin']);
+      if (!auth.allowed) {
+        return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+      }
     }
 
     const existing = dbStore.getUserByEmail(email);
@@ -101,7 +121,7 @@ async function startServer() {
     const salt = bcrypt.genSaltSync(10);
     const passwordHash = bcrypt.hashSync(password, salt);
     const newUserId = `usr_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
-    const userRole = role === 'admin' ? 'admin' : 'student';
+    const userRole = requestedRole;
 
     const newUser: User & { passwordHash: string } = {
       id: newUserId,
@@ -133,6 +153,20 @@ async function startServer() {
     return res.json({ user });
   });
 
+  app.post('/api/auth/logout', (req, res) => {
+    const user = getAuthUser(req);
+    if (user) {
+      dbStore.logActivity({
+        userId: user.id,
+        userName: user.name,
+        userRole: user.role,
+        action: 'logout',
+        details: 'User logged out'
+      });
+    }
+    return res.json({ message: 'Logged out successfully' });
+  });
+
   app.post('/api/auth/forgot-password', (req, res) => {
     const { email } = req.body;
     const user = dbStore.getUserByEmail(email);
@@ -144,12 +178,18 @@ async function startServer() {
 
   // --- PDF DOCUMENT ENDPOINTS ---
   app.get('/api/documents', (req, res) => {
+    const user = getAuthUser(req);
+    if (!user) return res.status(401).json({ error: 'Unauthorized' });
     const docs = dbStore.getDocuments();
     return res.json(docs);
   });
 
   app.post('/api/documents/upload', async (req, res) => {
     const user = getAuthUser(req);
+    const auth = authorizeRole(user, ['admin']);
+    if (!auth.allowed) {
+      return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    }
     let rawHeaderName = (req.headers['x-file-name'] as string) || '';
     let fileName = '';
 
@@ -219,6 +259,10 @@ async function startServer() {
 
   app.delete('/api/documents/:id', (req, res) => {
     const user = getAuthUser(req);
+    const auth = authorizeRole(user, ['admin']);
+    if (!auth.allowed) {
+      return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    }
     const docId = req.params.id;
     const doc = dbStore.getDocumentById(docId);
     if (!doc) return res.status(404).json({ error: 'Document not found' });
@@ -246,6 +290,7 @@ async function startServer() {
 
   app.post('/api/chat/message', async (req, res) => {
     const user = getAuthUser(req);
+    if (!user) return res.status(401).json({ error: 'Unauthorized' });
     const { text } = req.body;
     if (!text) return res.status(400).json({ error: 'Message text required' });
 
@@ -291,13 +336,66 @@ async function startServer() {
     return res.json({ message: 'Chat history cleared' });
   });
 
+  // --- INTENT CLASSIFICATION (LLM-backed) ---
+  app.post('/api/intent', async (req, res) => {
+    const user = getAuthUser(req);
+    if (!user) return res.status(401).json({ error: 'Unauthorized' });
+    const { text } = req.body || {};
+    if (!text || typeof text !== 'string') return res.status(400).json({ error: 'Text required' });
+    // Prepare prompt for LLM classification
+    const prompt = `You are an assistant that classifies short user intents. Respond with a JSON object only.\n\nInput: """${text.replace(/"/g, '\\"')}"""\n\nReturn form:\n{\n  "intent": "chat|generate_exam|create_announcement|upload_pdf|unknown",\n  "confidence": 0.0-1.0,\n  "title": "short title if relevant or empty",\n  "summary": "short summary or extracted parameters"\n}\n\nChoose the best intent. If unsure, use \"unknown\".`;
+
+    let llmResp = '';
+    try {
+      llmResp = await generateText(prompt, { temperature: 0.0 });
+    } catch (err) {
+      // LLM call failed or not configured — fall back to heuristics
+      llmResp = '';
+    }
+
+    // Try to parse JSON from the LLM reply; if not present, use heuristics
+    let parsed: any = { intent: 'unknown', confidence: 0.0, title: '', summary: '' };
+    if (llmResp && typeof llmResp === 'string') {
+      try {
+        const start = llmResp.indexOf('{');
+        const end = llmResp.lastIndexOf('}');
+        if (start !== -1 && end !== -1) {
+          const jsonStr = llmResp.slice(start, end + 1);
+          parsed = JSON.parse(jsonStr);
+        } else {
+          parsed.summary = llmResp;
+        }
+      } catch (e) {
+        parsed = { intent: 'unknown', confidence: 0.0, title: '', summary: llmResp };
+      }
+    }
+
+    // If parsing failed or intent is still unknown, apply keyword heuristics
+    if (!parsed || !parsed.intent || parsed.intent === 'unknown') {
+      const lower = text.toLowerCase();
+      if (lower.includes('exam') || lower.includes('quiz') || lower.includes('generate exam')) parsed.intent = 'generate_exam';
+      else if (lower.includes('announce') || lower.includes('announcement') || lower.includes('notify')) parsed.intent = 'create_announcement';
+      else if (lower.includes('upload') && lower.includes('pdf')) parsed.intent = 'upload_pdf';
+      else parsed.intent = 'chat';
+      parsed.confidence = parsed.confidence || 0.6;
+      parsed.title = parsed.title || text.substring(0, 60);
+      parsed.summary = parsed.summary || text;
+    }
+
+    return res.json({ intent: parsed.intent || 'unknown', confidence: parsed.confidence || 0, title: parsed.title || '', summary: parsed.summary || '' });
+  });
+
   // --- EXAM ENDPOINTS ---
   app.get('/api/exams', (req, res) => {
+    const user = getAuthUser(req);
+    if (!user) return res.status(401).json({ error: 'Unauthorized' });
     const exams = dbStore.getExams();
     return res.json(exams);
   });
 
   app.get('/api/exams/:id', (req, res) => {
+    const user = getAuthUser(req);
+    if (!user) return res.status(401).json({ error: 'Unauthorized' });
     const exam = dbStore.getExamById(req.params.id);
     if (!exam) return res.status(404).json({ error: 'Exam not found' });
     return res.json(exam);
@@ -305,6 +403,10 @@ async function startServer() {
 
   app.post('/api/exams/generate', async (req, res) => {
     const user = getAuthUser(req);
+    const auth = authorizeRole(user, ['admin']);
+    if (!auth.allowed) {
+      return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    }
     try {
       const exam = await generateExamFromPDFs({
         ...req.body,
@@ -327,6 +429,10 @@ async function startServer() {
 
   app.delete('/api/exams/:id', (req, res) => {
     const user = getAuthUser(req);
+    const auth = authorizeRole(user, ['admin']);
+    if (!auth.allowed) {
+      return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    }
     dbStore.deleteExam(req.params.id);
     dbStore.logActivity({
       userId: user?.id || 'usr_admin_1',
@@ -340,6 +446,10 @@ async function startServer() {
 
   app.post('/api/exams/:id/submit', async (req, res) => {
     const user = getAuthUser(req);
+    const auth = authorizeRole(user, ['student']);
+    if (!auth.allowed) {
+      return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    }
     try {
       const attempt = await submitExamAttempt({
         examId: req.params.id,
@@ -364,6 +474,10 @@ async function startServer() {
 
   app.get('/api/exams/attempts/my', (req, res) => {
     const user = getAuthUser(req);
+    const auth = authorizeRole(user, ['student']);
+    if (!auth.allowed) {
+      return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    }
     const attempts = dbStore.getAttempts(user?.id);
     return res.json(attempts);
   });
@@ -371,12 +485,21 @@ async function startServer() {
   // --- STUDY COACH ---
   app.get('/api/study-coach', (req, res) => {
     const user = getAuthUser(req);
+    const auth = authorizeRole(user, ['student']);
+    if (!auth.allowed) {
+      return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    }
     const coachData = getStudentCoachData(user?.id || 'usr_student_1');
     return res.json(coachData);
   });
 
   // --- ANALYTICS ---
   app.get('/api/analytics/admin', (req, res) => {
+    const user = getAuthUser(req);
+    const auth = authorizeRole(user, ['admin']);
+    if (!auth.allowed) {
+      return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    }
     const users = dbStore.getUsers();
     const docs = dbStore.getDocuments();
     const exams = dbStore.getExams();
@@ -409,6 +532,10 @@ async function startServer() {
 
   app.get('/api/analytics/student', (req, res) => {
     const user = getAuthUser(req);
+    const auth = authorizeRole(user, ['student']);
+    if (!auth.allowed) {
+      return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    }
     const attempts = dbStore.getAttempts(user?.id || 'usr_student_1');
 
     const scoreTrend = attempts.map((a) => ({
@@ -446,12 +573,21 @@ async function startServer() {
 
   // --- ADMIN USER MANAGEMENT ---
   app.get('/api/admin/users', (req, res) => {
+    const user = getAuthUser(req);
+    const auth = authorizeRole(user, ['admin']);
+    if (!auth.allowed) {
+      return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    }
     const users = dbStore.getUsers().map(({ passwordHash, ...u }) => u);
     return res.json(users);
   });
 
   app.patch('/api/admin/users/:id', (req, res) => {
     const user = getAuthUser(req);
+    const auth = authorizeRole(user, ['admin']);
+    if (!auth.allowed) {
+      return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    }
     const { status, role } = req.body;
     dbStore.updateUser(req.params.id, { status, role });
 
@@ -468,6 +604,7 @@ async function startServer() {
 
   app.delete('/api/admin/users/:id', (req, res) => {
     const user = getAuthUser(req);
+<<<<<<< Updated upstream
     if (!user || user.role !== 'admin') {
       return res.status(403).json({ error: 'Forbidden: Admin access required to delete users.' });
     }
@@ -487,6 +624,13 @@ async function startServer() {
 
     const isSelfDelete = user.id === targetId;
 
+=======
+    const auth = authorizeRole(user, ['admin']);
+    if (!auth.allowed) {
+      return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    }
+    dbStore.deleteUser(req.params.id);
+>>>>>>> Stashed changes
     dbStore.logActivity({
       userId: user.id,
       userName: user.name,
@@ -504,7 +648,66 @@ async function startServer() {
 
   // --- LOGS AND SETTINGS ---
   app.get('/api/admin/logs', (req, res) => {
+    const user = getAuthUser(req);
+    const auth = authorizeRole(user, ['admin']);
+    if (!auth.allowed) {
+      return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    }
     return res.json(dbStore.getActivityLogs());
+  });
+
+  // --- NOTIFICATIONS / ANNOUNCEMENTS ---
+  app.get('/api/notifications', (req, res) => {
+    const user = getAuthUser(req);
+    if (!user) return res.status(401).json({ error: 'Unauthorized' });
+    const notes = dbStore.getNotifications(user.id);
+    return res.json(notes);
+  });
+
+  app.post('/api/notifications', (req, res) => {
+    const user = getAuthUser(req);
+    const auth = authorizeRole(user, ['admin']);
+    if (!auth.allowed) {
+      return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    }
+
+    const { title, message, target } = req.body || {};
+    if (!title || !message) return res.status(400).json({ error: 'Title and message required' });
+
+    const note = dbStore.addNotification({ title, message, createdBy: user?.id, target: target || 'all' });
+
+    dbStore.logActivity({
+      userId: user?.id || 'usr_admin_1',
+      userName: user?.name || 'System Admin',
+      userRole: user?.role || 'admin',
+      action: 'settings_update',
+      details: `Created notification: ${title}`
+    });
+
+    return res.json(note);
+  });
+
+  app.patch('/api/notifications/:id/read', (req, res) => {
+    const user = getAuthUser(req);
+    if (!user) return res.status(401).json({ error: 'Unauthorized' });
+    const ok = dbStore.markNotificationRead(req.params.id, user.id);
+    if (!ok) return res.status(404).json({ error: 'Notification not found' });
+    return res.json({ message: 'Marked read' });
+  });
+
+  app.delete('/api/notifications/:id', (req, res) => {
+    const user = getAuthUser(req);
+    const auth = authorizeRole(user, ['admin']);
+    if (!auth.allowed) return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    dbStore.deleteNotification(req.params.id);
+    dbStore.logActivity({
+      userId: user?.id || 'usr_admin_1',
+      userName: user?.name || 'System Admin',
+      userRole: user?.role || 'admin',
+      action: 'settings_update',
+      details: `Deleted notification ${req.params.id}`
+    });
+    return res.json({ message: 'Notification deleted' });
   });
 
   app.get('/api/settings', (req, res) => {
@@ -513,6 +716,10 @@ async function startServer() {
 
   app.post('/api/settings', (req, res) => {
     const user = getAuthUser(req);
+    const auth = authorizeRole(user, ['admin']);
+    if (!auth.allowed) {
+      return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    }
     dbStore.updateSettings(req.body);
 
     dbStore.logActivity({
@@ -884,6 +1091,11 @@ async function startServer() {
   });
 
   app.post('/api/admin/reset-database', (req, res) => {
+    const user = getAuthUser(req);
+    const auth = authorizeRole(user, ['admin']);
+    if (!auth.allowed) {
+      return res.status(auth.statusCode).json({ error: auth.message || 'Access denied' });
+    }
     dbStore.resetDatabase();
     return res.json({ message: 'Database reset successfully' });
   });

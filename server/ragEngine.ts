@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import { createRequire } from 'module';
-import { GoogleGenAI } from '@google/genai';
-import { dbStore } from './db.js';
-import { PDFDocument, DocumentChunk } from '../src/types.js';
+import { dbStore } from './db.ts';
+import { PDFDocument, DocumentChunk } from '../src/types.ts';
+import { generateText, getApiKey, getDefaultModel, resolveProvider } from './llmProvider.ts';
 
 const require = createRequire(import.meta.url);
 const pdfParse = require('pdf-parse');
@@ -90,35 +90,60 @@ function filterPdfSyntaxNoise(rawText: string): string {
 }
 
 export async function generateWithModelFallback(
-  ai: GoogleGenAI,
   preferredModel: string,
   contents: any,
   config?: any
 ): Promise<string> {
+  const provider = resolveProvider();
   const candidateModels = Array.from(
-    new Set([preferredModel, 'gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-2.5-pro'])
+    new Set([
+      preferredModel,
+      provider === 'groq' ? process.env.GROQ_MODEL || 'llama-3.1-8b-instant' : 'gemini-2.5-flash',
+      provider === 'groq' ? 'llama-3.3-70b-versatile' : 'gemini-2.0-flash',
+      provider === 'groq' ? 'llama-3.1-70b-versatile' : 'gemini-1.5-flash',
+      provider === 'groq' ? 'llama-3.1-8b-instant' : 'gemini-2.5-pro'
+    ])
   );
 
   let lastError: any = null;
 
   for (const model of candidateModels) {
     try {
-      const res = await ai.models.generateContent({
-        model,
-        contents,
-        config
-      });
-      if (res && res.text) {
-        return res.text;
+      if (provider === 'groq') {
+        const apiKey = getApiKey(provider);
+        if (!apiKey) {
+          throw new Error('GROQ_API_KEY is not configured.');
+        }
+
+        const res = await generateText(contents, { provider, model, temperature: config?.temperature ?? 0.3 });
+        if (res) {
+          return res;
+        }
+      } else {
+        const apiKey = getApiKey(provider);
+        if (!apiKey) {
+          throw new Error('GEMINI_API_KEY is not configured.');
+        }
+
+        const { GoogleGenAI } = await import('@google/genai');
+        const ai = new GoogleGenAI({ apiKey });
+        const res = await ai.models.generateContent({
+          model,
+          contents,
+          config
+        });
+        if (res && res.text) {
+          return res.text;
+        }
       }
     } catch (err: any) {
       lastError = err;
-      console.warn(`Gemini model ${model} failed in fallback chain:`, err?.message || err);
+      console.warn(`${provider.toUpperCase()} model ${model} failed in fallback chain:`, err?.message || err);
       continue;
     }
   }
 
-  throw lastError || new Error('All Gemini model calls failed in fallback chain.');
+  throw lastError || new Error(`All ${provider} model calls failed in fallback chain.`);
 }
 
 export async function processUploadedPDF(
@@ -128,7 +153,8 @@ export async function processUploadedPDF(
   existingDocId?: string
 ): Promise<{ doc: PDFDocument; chunkCount: number }> {
   const settings = dbStore.getSettings();
-  const apiKey = process.env.GEMINI_API_KEY;
+  const provider = resolveProvider();
+  const apiKey = getApiKey(provider);
 
   const docId = existingDocId || `doc_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
   const filePath = path.join(UPLOAD_DIR, `${docId}.pdf`);
@@ -173,7 +199,6 @@ export async function processUploadedPDF(
   // Method 3: Gemini OCR for scanned or image-only PDFs (Uses model fallback chain)
   if ((!text || !isCleanHumanReadableContent(text)) && apiKey && fileBuffer.length > 50) {
     try {
-      const ai = new GoogleGenAI({ apiKey });
       const ocrContents = [
         {
           inlineData: {
@@ -183,7 +208,7 @@ export async function processUploadedPDF(
         },
         'You are an expert document OCR and transcription tool. Extract and transcribe ALL text, headings, section titles, tables, explanations, and bullet points from this PDF document page by page. Precede each page\'s content with "=== Page X ===" (e.g. === Page 1 ===). Provide clean, full, readable human text without any raw PDF source code or binary tags.'
       ];
-      const ocrText = await generateWithModelFallback(ai, settings.llmModel || 'gemini-2.5-flash', ocrContents);
+      const ocrText = await generateWithModelFallback(settings.llmModel || getDefaultModel(undefined, provider), ocrContents);
       if (ocrText) {
         const cleaned = filterPdfSyntaxNoise(ocrText);
         if (isCleanHumanReadableContent(cleaned)) {
@@ -273,9 +298,8 @@ export async function processUploadedPDF(
   let summary = `Uploaded document "${fileName}" with ${pageCount} page(s) and ${chunks.length} extracted section(s).`;
   if (apiKey && text.length > 30) {
     try {
-      const ai = new GoogleGenAI({ apiKey });
       const prompt = `Summarize the following document in 2 concise sentences:\n\n${text.substring(0, 3500)}`;
-      const sumText = await generateWithModelFallback(ai, settings.llmModel || 'gemini-2.5-flash', prompt);
+      const sumText = await generateWithModelFallback(settings.llmModel || getDefaultModel(undefined, provider), prompt);
       if (sumText) {
         summary = sumText.trim();
       }
@@ -430,6 +454,9 @@ export async function generateRAGAnswer(
   userRole: string = 'admin',
   studentUnlockedDay: number = 2
 ): Promise<{ answer: string; sources: { docName: string; pageNumber: number; snippet: string; score: number }[] }> {
+  const user = dbStore.getUserById(userId);
+  const isAdmin = user?.role === 'admin';
+
   await checkAndRepairCorruptedDocuments();
 
   const settings = dbStore.getSettings();
@@ -465,21 +492,16 @@ export async function generateRAGAnswer(
     )
     .join('\n\n---\n\n');
 
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    return {
-      answer: `[API Key Missing] Extracted relevant information from document **${retrieved[0].chunk.docName}** (Page ${retrieved[0].chunk.pageNumber}):\n\n> ${retrieved[0].chunk.content}\n\n*Please set GEMINI_API_KEY in environment settings to enable AI synthesis.*`,
-      sources
-    };
-  }
-
+  const assistantMode = isAdmin ? 'admin' : 'student';
+  const guardrailMessage = 'I couldn\'t find that information in the uploaded learning materials.';
   const promptText = `You are Talent Sphere AI, an expert educational and document assistant.
 You have direct access to the user's uploaded PDF knowledge base.
 CRITICAL INSTRUCTIONS:
 1. Answer the user's query directly, accurately, and thoroughly using content from the document context below.
 2. If the user asks to summarize, explain, analyze, or list details from the document, synthesize the key information directly from the context.
 3. Citing sources: Always cite the document title and page number when referencing specific details (e.g., "[Document: Title.pdf, Page 1]").
-4. Format your answer neatly using Markdown with headings, bullet points, bold key terms, and code/math blocks if relevant.
+4. If the information is not present in the provided documents, respond with the exact phrase: ${guardrailMessage}
+5. ${assistantMode === 'admin' ? 'You may help with admin tasks like explaining documents, generating exam ideas, summarizing PDFs, and analyzing document coverage.' : 'You are a student tutor. Focus only on learning content from the uploaded PDFs. Never reveal user lists, admin data, analytics for other students, or any non-document information.'}
 
 DOCUMENT CONTEXT:
 ${contextText}
@@ -487,11 +509,18 @@ ${contextText}
 USER QUERY:
 ${query}`;
 
+  const provider = resolveProvider();
+  const apiKey = getApiKey(provider);
+  if (!apiKey) {
+    return {
+      answer: `[API Key Missing] Extracted relevant information from document **${retrieved[0].chunk.docName}** (Page ${retrieved[0].chunk.pageNumber}):\n\n> ${retrieved[0].chunk.content}\n\n*Please set ${provider === 'groq' ? 'GROQ_API_KEY' : 'GEMINI_API_KEY'} in environment settings to enable AI synthesis.*`,
+      sources
+    };
+  }
+
   try {
-    const ai = new GoogleGenAI({ apiKey });
     const answer = await generateWithModelFallback(
-      ai,
-      settings.llmModel || 'gemini-2.5-flash',
+      settings.llmModel || getDefaultModel(undefined, provider),
       promptText,
       { temperature: settings.temperature || 0.3 }
     );

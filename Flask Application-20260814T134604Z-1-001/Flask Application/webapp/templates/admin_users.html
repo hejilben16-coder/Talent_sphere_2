@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% set active_page = 'users' %}
+{% block title %}User Management · Talent Sphere Elevate{% endblock %}
+{% block page_title %}User Management{% endblock %}
+{% block content %}
+
+<div class="section-h">
+  <h2>👥 User Management</h2>
+  <p>Provision trainee accounts — credentials are stored hashed in SQLite, never in plain text.</p>
+</div>
+
+<div class="grid cols-2 mb-2">
+  <div class="card static">
+    <h3><span class="ms">person_add</span> Create user</h3>
+    <form method="post" action="{{ url_for('admin.users_create') }}">
+      <div class="f-row">
+        <div><label class="f-label">Employee ID</label><input class="f-input" name="emp_id" placeholder="EMP-1024" required></div>
+        <div><label class="f-label">Full name</label><input class="f-input" name="name" placeholder="Priya Sharma" required></div>
+      </div>
+      <div class="f-row">
+        <div><label class="f-label">Email</label><input class="f-input" type="email" name="email" placeholder="priya@company.com" required></div>
+        <div><label class="f-label">Training domain</label>
+          <select class="f-select" name="domain">{% for d in domains %}<option>{{ d }}</option>{% endfor %}</select></div>
+      </div>
+      <label class="f-label">Password <span class="muted">(leave blank to auto-generate a strong one)</span></label>
+      <input class="f-input" type="text" name="password" placeholder="Auto-generate" minlength="8">
+      <button class="btn mt-2"><span class="ms">person_add</span> Create user</button>
+    </form>
+  </div>
+
+  <div>
+    <div class="grid cols-2 mb-1">
+      <div class="metric"><div class="v">{{ users|length }}</div><div class="l">Total users</div></div>
+      <div class="metric"><div class="v">{{ users|selectattr('status','equalto','active')|list|length }}</div><div class="l">Currently active</div></div>
+    </div>
+    <div class="card static">
+      <h3>Quick tips</h3>
+      <p class="muted" style="font-size:.85rem">
+        • Share the generated password immediately — it can't be shown again.<br>
+        • Reset issues a fresh password; delete removes the user and all their data.<br>
+        • New users get notified automatically when you assign exams or publish announcements.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section-h"><h2>Accounts</h2></div>
+<div class="table-wrap">
+  <table class="data">
+    <thead><tr><th>Employee ID</th><th>Name</th><th>Email</th><th>Domain</th><th>Status</th><th>Last login</th><th class="right">Actions</th></tr></thead>
+    <tbody>
+      {% for u in users %}
+      <tr>
+        <td>{{ u.emp_id }}</td>
+        <td>{{ u.name }}</td>
+        <td>{{ u.email }}</td>
+        <td><span class="pill outline">{{ u.domain }}</span></td>
+        <td><span class="pill {{ 'high' if u.status == 'active' else 'low' }}">{{ u.status }}</span></td>
+        <td class="muted">{{ (u.last_login or '—')[:16] }}</td>
+        <td class="right" style="white-space:nowrap">
+          <form method="post" action="{{ url_for('admin.users_reset_password', user_id=u.id) }}" style="display:inline">
+            <button class="btn secondary sm" title="Reset password"><span class="ms">key</span> Reset</button>
+          </form>
+          <form method="post" action="{{ url_for('admin.users_delete', user_id=u.id) }}" style="display:inline"
+                onsubmit="return confirm('Delete {{ u.name }} and ALL their data? This cannot be undone.')">
+            <button class="btn danger sm" title="Delete user"><span class="ms">person_remove</span></button>
+          </form>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="7" class="muted">No users yet — create the first one above.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
